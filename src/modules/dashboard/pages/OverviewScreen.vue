@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { HelpCircle, InfoIcon, Search } from 'lucide-vue-next'
+import { Search } from 'lucide-vue-next'
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
 } from '@/components/ui/input-group'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import SearchTable from '../components/search-table.vue'
+import Input from '@/components/ui/input/Input.vue'
 </script>
 
 <template>
@@ -55,5 +55,6 @@ import SearchTable from '../components/search-table.vue'
         </Popover>
       </InputGroupAddon>
     </InputGroup>
+    <Input />
   </div>
 </template>

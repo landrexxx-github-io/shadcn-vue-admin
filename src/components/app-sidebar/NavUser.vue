@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-vue-next'
+import { ChevronDown, LogOut, User2Icon, UserCircle2Icon } from 'lucide-vue-next'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -38,20 +38,21 @@ const { isMobile } = useSidebar()
             size="lg"
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
-            <Avatar class="h-8 w-8 rounded-lg">
-              <AvatarImage :src="user.avatar" :alt="user.name" />
-              <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
+            <Avatar class="h-8 w-8 rounded-lg flex items-center">
+              <UserCircle2Icon />
+              <!-- <AvatarImage :src="user.avatar" :alt="user.name" /> -->
+              <!-- <AvatarFallback class="rounded-lg"> CN </AvatarFallback> -->
             </Avatar>
             <div class="grid flex-1 text-left text-sm leading-tight">
-              <span class="truncate font-medium">{{ user.name }}</span>
-              <span class="truncate text-xs">{{ user.email }}</span>
+              <span class="truncate font-medium">{{ props.user.name }}</span>
+              <!-- <span class="truncate text-xs">{{ props.user.email }}</span> -->
             </div>
-            <ChevronsUpDown class="ml-auto size-4" />
+            <ChevronDown class="ml-auto size-4" />
           </SidebarMenuButton>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           class="w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-          :side="isMobile ? 'bottom' : 'right'"
+          :side="isMobile ? 'bottom' : 'bottom'"
           align="end"
           :side-offset="4"
         >
@@ -70,16 +71,8 @@ const { isMobile } = useSidebar()
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <BadgeCheck />
-              Account
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CreditCard />
-              Billing
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Bell />
-              Notifications
+              <User2Icon />
+              My Profile
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />

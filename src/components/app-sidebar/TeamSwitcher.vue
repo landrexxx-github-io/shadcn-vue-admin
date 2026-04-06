@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Component } from "vue"
+import type { Component } from 'vue'
 
-import { ChevronsUpDown, Plus } from "lucide-vue-next"
-import { ref } from "vue"
+import { ChevronsUpDown, Plus } from 'lucide-vue-next'
+import { ref } from 'vue'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -39,29 +39,34 @@ const activeTeam = ref(props.teams[0])
         <DropdownMenuTrigger as-child>
           <SidebarMenuButton
             size="lg"
-            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground group-data-[state=collapsed]:w-full! group-data-[state=collapsed]:justify-center! group-data-[state=collapsed]:px-0! group-data-[state=collapsed]:h-12!"
           >
-            <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-              <component :is="activeTeam.logo" class="size-4" />
+            <div
+              class="flex aspect-square size-8 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
+            >
+              <component :is="activeTeam?.logo" class="size-4" />
             </div>
-            <div class="grid flex-1 text-left text-sm leading-tight">
+
+            <div
+              class="grid flex-1 text-left text-sm leading-tight group-data-[state=collapsed]:hidden"
+            >
               <span class="truncate font-medium">
-                {{ activeTeam.name }}
+                {{ activeTeam?.name }}
               </span>
-              <span class="truncate text-xs">{{ activeTeam.plan }}</span>
+              <span class="truncate text-xs">{{ activeTeam?.plan }}</span>
             </div>
-            <ChevronsUpDown class="ml-auto" />
+
+            <ChevronsUpDown class="ml-auto group-data-[state=collapsed]:hidden" />
           </SidebarMenuButton>
         </DropdownMenuTrigger>
+
         <DropdownMenuContent
           class="w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg"
           align="start"
           :side="isMobile ? 'bottom' : 'right'"
           :side-offset="4"
         >
-          <DropdownMenuLabel class="text-xs text-muted-foreground">
-            Teams
-          </DropdownMenuLabel>
+          <DropdownMenuLabel class="text-xs text-muted-foreground"> Teams </DropdownMenuLabel>
           <DropdownMenuItem
             v-for="(team, index) in teams"
             :key="team.name"
@@ -79,9 +84,7 @@ const activeTeam = ref(props.teams[0])
             <div class="flex size-6 items-center justify-center rounded-md border bg-transparent">
               <Plus class="size-4" />
             </div>
-            <div class="font-medium text-muted-foreground">
-              Add team
-            </div>
+            <div class="font-medium text-muted-foreground">Add team</div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

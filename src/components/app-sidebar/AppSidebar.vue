@@ -3,28 +3,22 @@ import type { SidebarProps } from '@/components/ui/sidebar'
 
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
+  BookOpenText,
   Command,
+  FileBoxIcon,
   Frame,
   GalleryVerticalEnd,
   Map,
   PieChart,
   Settings2,
-  SquareTerminal,
+  TimerIcon,
 } from 'lucide-vue-next'
-import NavMain from '@/components/NavMain.vue'
-import NavProjects from '@/components/NavProjects.vue'
-import NavUser from '@/components/NavUser.vue'
-import TeamSwitcher from '@/components/TeamSwitcher.vue'
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from '@/components/ui/sidebar'
+import NavMain from './NavMain.vue'
+import TeamSwitcher from './TeamSwitcher.vue'
+
+import { SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+import CustomSidebar from '../ui/sidebar/CustomSidebar.vue'
 
 const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: 'icon',
@@ -33,10 +27,11 @@ const props = withDefaults(defineProps<SidebarProps>(), {
 // This is sample data.
 const data = {
   user: {
-    name: 'shadcn',
+    name: 'Landrex',
     email: 'm@example.com',
     avatar: '/avatars/shadcn.jpg',
   },
+  // the user should be able to switch roles
   teams: [
     {
       name: 'Administrator',
@@ -56,17 +51,33 @@ const data = {
   ],
   navMain: [
     {
-      title: 'Dashboard',
-      url: '#',
-      icon: SquareTerminal,
+      title: 'Accounting',
+      url: '/accounting',
+      icon: BookOpenText,
       isActive: false,
       items: [
         {
-          title: 'Customer Overview',
+          title: 'Disbursement Voucher',
+          url: '',
+        },
+        {
+          title: 'Journals',
           url: '#',
         },
         {
-          title: 'Starred',
+          title: 'Journal Entry Voucher',
+          url: '#',
+        },
+        {
+          title: 'Journal Entry Voucher (Special)',
+          url: '#',
+        },
+        {
+          title: 'Journal Entry Voucher (Special) - Deposits',
+          url: '#',
+        },
+        {
+          title: 'Journal Entry Voucher (Special) - Transfers',
           url: '#',
         },
         {
@@ -86,9 +97,9 @@ const data = {
       ],
     },
     {
-      title: 'Models',
+      title: 'Inventory Planning',
       url: '#',
-      icon: Bot,
+      icon: FileBoxIcon,
       items: [
         {
           title: 'Genesis',
@@ -105,9 +116,9 @@ const data = {
       ],
     },
     {
-      title: 'Documentation',
+      title: 'Time and Expenses',
       url: '#',
-      icon: BookOpen,
+      icon: TimerIcon,
       items: [
         {
           title: 'Introduction',
@@ -172,17 +183,14 @@ const data = {
 </script>
 
 <template>
-  <Sidebar v-bind="props" variant="inset">
-    <SidebarHeader>
+  <CustomSidebar v-bind="props" variant="sidebar">
+    <SidebarHeader class="bg-linear-to-r from-blue-700 to-blue-700 text-white">
       <TeamSwitcher :teams="data.teams" />
     </SidebarHeader>
     <SidebarContent>
-      <NavMain :items="data.navMain" />
-      <NavProjects :projects="data.projects" />
+      <NavMain :items="data.navMain" :level="1" />
+      <!-- <NavProjects :projects="data.projects" /> -->
     </SidebarContent>
-    <SidebarFooter>
-      <NavUser :user="data.user" />
-    </SidebarFooter>
     <SidebarRail />
-  </Sidebar>
+  </CustomSidebar>
 </template>
