@@ -189,7 +189,6 @@ const data = {
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" :level="1" />
-      <!-- <NavProjects :projects="data.projects" /> -->
     </SidebarContent>
     <SidebarRail />
   </CustomSidebar>

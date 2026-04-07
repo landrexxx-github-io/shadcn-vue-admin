@@ -48,7 +48,7 @@ function handleToggleFlyout(item: MenuItem) {
           :tooltip="item.title"
           :is-active="activeFlyout?.title === item.title"
           @click="handleToggleFlyout(item)"
-          class="p-5 transition-all duration-300 cursor-pointer group-data-[state=collapsed]:flex-col! group-data-[state=collapsed]:w-full! group-data-[state=collapsed]:p-0! group-data-[state=collapsed]:justify-center! group-data-[state=collapsed]:items-center! group-data-[state=collapsed]:h-18! /* Fixed height for uniformity */ group-data-[state=collapsed]:gap-0!"
+          class="p-5 transition-all duration-300 cursor-pointer group-data-[state=collapsed]:flex-col! group-data-[state=collapsed]:w-full! group-data-[state=collapsed]:p-0! group-data-[state=collapsed]:justify-center! group-data-[state=collapsed]:items-center! group-data-[state=collapsed]:h-18! group-data-[state=collapsed]:gap-0!"
         >
           <component
             :is="item.items?.length ? 'div' : 'a'"
@@ -79,7 +79,7 @@ function handleToggleFlyout(item: MenuItem) {
         >
           <div
             v-if="activeFlyout?.title === item.title && item.items?.length"
-            class="fixed z-50 bg-white border-r p-8 transition-all w-[85vw] top-16 h-[calc(100vh-4rem)] left-(--sidebar-width) group-data-[state=collapsed]:left-24!"
+            class="fixed z-50 bg-white border-r p-8 transition-all w-[calc(90vw-var(--sidebar-width))] top-16 h-[calc(100vh-4rem)] left-(--sidebar-width) group-data-[state=collapsed]:left-24!"
           >
             <button
               @click="activeFlyout = null"
