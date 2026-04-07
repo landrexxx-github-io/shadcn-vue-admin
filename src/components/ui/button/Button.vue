@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
     :as="as"
     :as-child="asChild"
     :class="cn(buttonVariants({ variant, size }), props.class)"
-    class="rounded-sm"
+    class="rounded-sm cursor-pointer"
   >
     <slot />
   </Primitive>
