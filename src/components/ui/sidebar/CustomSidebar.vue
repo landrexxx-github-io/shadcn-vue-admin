@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { SidebarProps } from '.'
 import { cn } from '@/lib/utils'
-import { Sheet, SheetContent } from '@/components/ui/sheet'
-import SheetDescription from '@/components/ui/sheet/SheetDescription.vue'
-import SheetHeader from '@/components/ui/sheet/SheetHeader.vue'
-import SheetTitle from '@/components/ui/sheet/SheetTitle.vue'
-import { SIDEBAR_WIDTH_MOBILE, useSidebar } from './utils'
+// Removed Sheet imports since we no longer want the mobile drawer behavior
+import {
+  // SIDEBAR_WIDTH_MOBILE,
+  useSidebar,
+} from './utils'
 
 defineOptions({
   inheritAttrs: false,
@@ -14,10 +14,11 @@ defineOptions({
 const props = withDefaults(defineProps<SidebarProps>(), {
   side: 'left',
   variant: 'sidebar',
-  collapsible: 'icon', //offcanvas
+  collapsible: 'icon',
 })
 
-const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+// We no longer need openMobile or setOpenMobile
+const { isMobile, state } = useSidebar()
 </script>
 
 <template>
@@ -32,33 +33,12 @@ const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
     <slot />
   </div>
 
-  <Sheet v-else-if="isMobile" :open="openMobile" v-bind="$attrs" @update:open="setOpenMobile">
-    <SheetContent
-      data-sidebar="sidebar"
-      data-slot="sidebar"
-      data-mobile="true"
-      :side="side"
-      class="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
-      :style="{
-        '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
-      }"
-    >
-      <SheetHeader class="sr-only">
-        <SheetTitle>Sidebar</SheetTitle>
-        <SheetDescription>Displays the mobile sidebar.</SheetDescription>
-      </SheetHeader>
-      <div class="flex h-full w-full flex-col">
-        <slot />
-      </div>
-    </SheetContent>
-  </Sheet>
-
   <div
     v-else
-    class="group peer text-sidebar-foreground hidden md:block"
+    class="group peer text-sidebar-foreground block"
     data-slot="sidebar"
-    :data-state="state"
-    :data-collapsible="state === 'collapsed' ? collapsible : ''"
+    :data-state="isMobile ? 'collapsed' : state"
+    :data-collapsible="state === 'collapsed' || isMobile ? collapsible : ''"
     :data-variant="variant"
     :data-side="side"
   >
@@ -69,22 +49,22 @@ const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
           'group-data-[collapsible=offcanvas]:w-0',
           'group-data-[side=right]:rotate-180',
           variant === 'floating' || variant === 'inset'
-            ? 'group-data-[collapsible=icon]:w-[calc(6rem+(--spacing(4)))]'
-            : 'group-data-[collapsible=icon]:w-24!' /* FORCE 6rem WIDTH HERE */,
+            ? 'group-data-[collapsible=icon]:w-[calc(6rem+(--spacing(4)))]!'
+            : 'group-data-[collapsible=icon]:w-24!' /* Ensures our 6rem width is respected */,
         )
       "
     />
     <div
       :class="
         cn(
-          'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) ease-linear md:flex',
+          'fixed inset-y-0 z-10 h-svh w-(--sidebar-width) ease-linear flex', // Removed 'hidden md:flex'
           side === 'left'
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
           // Adjust the padding for floating and inset variants.
           variant === 'floating' || variant === 'inset'
-            ? 'p-2 group-data-[collapsible=icon]:w-[calc(6rem+(--spacing(4))+2px)]'
-            : 'group-data-[collapsible=icon]:w-24! group-data-[side=left]:border-r group-data-[side=right]:border-l' /* AND FORCE 6rem WIDTH HERE */,
+            ? 'p-2 group-data-[collapsible=icon]:w-[calc(6rem+(--spacing(4))+2px)]!'
+            : 'group-data-[collapsible=icon]:w-24! group-data-[side=left]:border-r group-data-[side=right]:border-l',
           props.class,
         )
       "

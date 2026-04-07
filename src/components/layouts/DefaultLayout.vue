@@ -5,16 +5,17 @@ export const containerClass = 'w-full h-full'
 </script>
 
 <script setup lang="ts">
-import AppSidebar from '@/components/app-sidebar/AppSidebar.vue'
-import NavUser from '../app-sidebar/NavUser.vue' // Adjust this import path if needed
+import AppSidebar from '@/components/custom/AppSidebar.vue'
+import NavUser from '@/components/custom/NavUser.vue'
+import SidebarTrigger from '@/components/ui/sidebar/SidebarTrigger.vue'
+import InputGroup from '@/components/ui/input-group/InputGroup.vue'
+import InputGroupInput from '@/components/ui/input-group/InputGroupInput.vue'
+import InputGroupAddon from '@/components/ui/input-group/InputGroupAddon.vue'
+
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
-import InputGroup from '../ui/input-group/InputGroup.vue'
-import InputGroupInput from '../ui/input-group/InputGroupInput.vue'
-import InputGroupAddon from '../ui/input-group/InputGroupAddon.vue'
 import { Search } from 'lucide-vue-next'
-import SidebarTrigger from '../ui/sidebar/SidebarTrigger.vue'
 
 const open = ref(true)
 
@@ -33,6 +34,7 @@ const data = ref({
 
 <template>
   <SidebarProvider :default-open="open" class="group/sidebar-wrapper">
+    <!-- Passed thhe menu object -->
     <AppSidebar />
     <SidebarInset>
       <header
