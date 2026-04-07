@@ -6,53 +6,20 @@ export const containerClass = 'w-full h-full'
 
 <script setup lang="ts">
 import AppSidebar from '@/components/custom/AppSidebar.vue'
-import NavUser from '@/components/custom/NavUser.vue'
-import SidebarTrigger from '@/components/ui/sidebar/SidebarTrigger.vue'
-import InputGroup from '@/components/ui/input-group/InputGroup.vue'
-import InputGroupInput from '@/components/ui/input-group/InputGroupInput.vue'
-import InputGroupAddon from '@/components/ui/input-group/InputGroupAddon.vue'
+import NavHeader from '@/components/custom/NavHeader.vue'
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
-import { ref } from 'vue'
 import { RouterView } from 'vue-router'
-import { Search } from 'lucide-vue-next'
+import { ref } from 'vue'
 
 const open = ref(true)
-
-// Mock user data so :user="data.user" doesn't error out
-// Replace this with your actual fetched user data later
-const data = ref({
-  user: {
-    name: 'Landrex Rebuera',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
-})
-
-// TODOS: fetch the menus of the logged in user passed it to the appSidebar
 </script>
 
 <template>
   <SidebarProvider :default-open="open" class="group/sidebar-wrapper">
-    <!-- Passed thhe menu object -->
     <AppSidebar />
     <SidebarInset>
-      <header
-        class="flex w-full px-4 h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear bg-linear-to-r from-blue-700 to-blue-950 text-white"
-      >
-        <div class="flex items-center gap-2">
-          <SidebarTrigger class="-ml-1" />
-          <InputGroup class="bg-white text-foreground">
-            <InputGroupInput placeholder="Search..." class="rounded-sm!" />
-            <InputGroupAddon align="inline-end">
-              <Search />
-            </InputGroupAddon>
-          </InputGroup>
-        </div>
-        <div class="flex">
-          <NavUser :user="data.user" />
-        </div>
-      </header>
+      <NavHeader />
       <div class="flex flex-1 flex-col gap-4 p-5">
         <RouterView />
       </div>

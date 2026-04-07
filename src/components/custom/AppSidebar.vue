@@ -113,6 +113,7 @@ const data = {
       title: 'Inventory Planning',
       url: '#',
       icon: FileBoxIcon,
+      actions: [],
       groups: [
         {
           label: 'Setup',
@@ -123,7 +124,6 @@ const data = {
         },
       ],
     },
-    // ... keep your other nav items here using the 'groups' structure if needed
   ],
 }
 </script>

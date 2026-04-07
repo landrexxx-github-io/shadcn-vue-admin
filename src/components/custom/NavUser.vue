@@ -36,14 +36,12 @@ const { isMobile } = useSidebar()
         <DropdownMenuTrigger as-child>
           <SidebarMenuButton
             size="lg"
-            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
           >
-            <Avatar class="h-8 w-8 rounded-lg flex items-center">
+            <Avatar class="h-8 w-8 rounded-lg flex items-center justify-center">
               <UserCircle2Icon />
-              <!-- <AvatarImage :src="user.avatar" :alt="user.name" /> -->
-              <!-- <AvatarFallback class="rounded-lg"> CN </AvatarFallback> -->
             </Avatar>
-            <div class="grid flex-1 text-left text-sm leading-tight">
+            <div class="grid text-left text-sm leading-tight">
               <span class="truncate font-medium">{{ props.user.name }}</span>
               <!-- <span class="truncate text-xs">{{ props.user.email }}</span> -->
             </div>

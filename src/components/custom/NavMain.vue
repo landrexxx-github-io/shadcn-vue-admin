@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import type { LucideIcon } from 'lucide-vue-next'
-import { DollarSign, List, RefreshCw, SquarePenIcon, X } from 'lucide-vue-next' // Import the Close icon
+
+import { ref } from 'vue'
+import { X } from 'lucide-vue-next' // Import the Close icon
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -9,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-// import Button from '../ui/button/Button.vue'
+
 import BoxButton from './BoxButton.vue'
 
 type MenuLink = {
@@ -22,12 +23,19 @@ type MenuGroup = {
   items: MenuLink[]
 }
 
+type MenuItemActions = {
+  title: string
+  icon: LucideIcon
+  url: string
+}
+
 type MenuItem = {
   title: string
   url: string
   icon?: LucideIcon
   isActive?: boolean
-  groups: MenuGroup[]
+  actions?: MenuItemActions[]
+  groups?: MenuGroup[]
 }
 
 defineProps<{
@@ -102,11 +110,15 @@ function handleToggleFlyout(item: MenuItem) {
               <h3 class="text-2xl font-bold text-slate-800">{{ item.title }}</h3>
             </div>
 
-            <div class="flex flex-wrap gap-3 mb-8 border-b pb-6">
-              <BoxButton name="New Journal Entry" :icon="SquarePenIcon" />
-              <BoxButton name="Account Summary" :icon="DollarSign" />
-              <BoxButton name="Account Details" :icon="List" />
-              <BoxButton name="Reclassify Journal Entries" :icon="RefreshCw" />
+            <div v-if="item.actions?.length">
+              <div class="flex flex-wrap gap-3 mb-8 border-b pb-6">
+                <BoxButton
+                  v-for="action in item.actions"
+                  :key="action.title"
+                  :name="action.title"
+                  :icon="action.icon"
+                />
+              </div>
             </div>
 
             <nav class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8">
