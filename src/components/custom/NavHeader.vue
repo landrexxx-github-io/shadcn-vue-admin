@@ -7,7 +7,7 @@
       <GlobalSearchInput />
     </div>
 
-    <div class="flex items-center justify-end gap-1">
+    <div class="flex items-center justify-end">
       <NavCalendar />
       <NavUser :user="data.user" />
     </div>

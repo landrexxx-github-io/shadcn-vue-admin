@@ -5,7 +5,7 @@
         <PopoverTrigger as-child>
           <SidebarMenuButton
             size="lg"
-            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer md:justify-center"
+            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer md:justify-center w-auto"
           >
             <Avatar class="h-8 w-8 rounded-lg flex items-center justify-center">
               <CalendarIcon />

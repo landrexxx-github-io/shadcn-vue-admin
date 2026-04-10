@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import type { SidebarProps } from '@/components/ui/sidebar'
+import type { SidebarFooter, SidebarProps } from '@/components/ui/sidebar'
 
 import {
   AudioWaveform,
+  Banknote,
   BookOpenText,
+  Calculator,
+  ChartColumnBig,
   Command,
   DollarSign,
   FileBoxIcon,
   GalleryVerticalEnd,
+  HandCoins,
   List,
   RefreshCw,
   SquarePenIcon,
+  Timer,
 } from 'lucide-vue-next'
 
 import NavMain from './NavMain.vue'
@@ -124,6 +129,111 @@ const data = {
         },
       ],
     },
+    {
+      title: 'Time and Expenses',
+      url: '#',
+      icon: Timer,
+      actions: [],
+      groups: [
+        {
+          label: 'Setup',
+          items: [
+            { title: 'Genesis Config', url: '#' },
+            { title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Finance',
+      url: '#',
+      icon: Calculator,
+      actions: [],
+      groups: [
+        {
+          label: 'Setup',
+          items: [
+            { title: 'Genesis Config', url: '#' },
+            { title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Banking',
+      url: '#',
+      icon: Banknote,
+      actions: [],
+      groups: [
+        {
+          label: 'Setup',
+          items: [
+            { title: 'Genesis Config', url: '#' },
+            { title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Receivables',
+      url: '#',
+      icon: HandCoins,
+      actions: [],
+      groups: [
+        {
+          label: 'Setup',
+          items: [
+            { title: 'Genesis Config', url: '#' },
+            { title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Payables',
+      url: '#',
+      icon: FileBoxIcon,
+      actions: [],
+      groups: [
+        {
+          label: 'Setup',
+          items: [
+            { title: 'Genesis Config', url: '#' },
+            { title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Sales Order',
+      url: '#',
+      icon: FileBoxIcon,
+      actions: [],
+      groups: [
+        {
+          label: 'Setup',
+          items: [
+            { title: 'Genesis Config', url: '#' },
+            { title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Dashboards',
+      url: '#',
+      icon: ChartColumnBig,
+      actions: [],
+      groups: [
+        {
+          label: 'Setup',
+          items: [
+            { title: 'Genesis Config', url: '#' },
+            { title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
   ],
 }
 </script>
@@ -137,5 +247,6 @@ const data = {
       <NavMain :items="data.navMain" :level="1" />
     </SidebarContent>
     <SidebarRail />
+    <SidebarFooter>Hello </SidebarFooter>
   </CustomSidebar>
 </template>

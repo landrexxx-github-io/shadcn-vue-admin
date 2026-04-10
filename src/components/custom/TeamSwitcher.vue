@@ -39,7 +39,7 @@ const activeTeam = ref(props.teams[0])
         <DropdownMenuTrigger as-child>
           <SidebarMenuButton
             size="lg"
-            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground group-data-[state=collapsed]:w-full! group-data-[state=collapsed]:justify-center! group-data-[state=collapsed]:px-0! group-data-[state=collapsed]:h-12!"
+            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground group-data-[state=collapsed]:w-full! group-data-[state=collapsed]:justify-center! group-data-[state=collapsed]:px-0! group-data-[state=collapsed]:h-12! cursor-pointer"
           >
             <div
               class="flex aspect-square size-8 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"

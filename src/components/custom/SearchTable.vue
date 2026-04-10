@@ -2,7 +2,6 @@
 import { ref, type Ref } from 'vue'
 import {
   ChevronRight,
-  Settings,
   ArrowUp,
   ArrowDown,
   RotateCw,
@@ -16,15 +15,6 @@ import {
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-// import {
-//   DropdownMenu,
-//   DropdownMenuCheckboxItem,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuLabel,
-//   DropdownMenuSeparator,
-//   DropdownMenuTrigger,
-// } from '@/components/ui/dropdown-menu'
 import {
   Table,
   TableBody,
@@ -280,10 +270,10 @@ const table = useVueTable({
                   class="flex items-center gap-1 cursor-pointer hover:text-foreground transition-colors overflow-hidden w-full"
                   @click="header.column.toggleSorting(header.column.getIsSorted() === 'asc')"
                 >
-                  <Settings
+                  <!-- <Settings
                     v-if="header.column.id === 'id'"
                     class="h-4 w-4 shrink-0 text-muted-foreground"
-                  />
+                  /> -->
 
                   <span class="truncate min-w-0">
                     <FlexRender
