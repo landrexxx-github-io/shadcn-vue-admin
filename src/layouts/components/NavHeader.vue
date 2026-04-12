@@ -15,17 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import SidebarTrigger from '../ui/sidebar/SidebarTrigger.vue'
-import GlobalSearchInput from './GlobalSearchInput.vue'
+import SidebarTrigger from '@/components/ui/sidebar/SidebarTrigger.vue'
+import GlobalSearchInput from '@/components/common/GlobalSearchInput.vue'
 import NavCalendar from './NavCalendar.vue'
 import NavUser from './NavUser.vue'
-
-const data = ref({
-  user: {
-    name: 'Landrex Rebuera',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
-})
+import { defaultSidebarData as data } from '@/constants/navigation'
 </script>

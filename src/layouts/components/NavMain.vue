@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { LucideIcon } from 'lucide-vue-next'
-
 import { ref } from 'vue'
 import { X } from 'lucide-vue-next' // Import the Close icon
 import {
@@ -11,41 +9,18 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 
-import BoxButton from './BoxButton.vue'
+import BoxButton from '@/components/common/BoxButton.vue'
 
-type MenuLink = {
-  title: string
-  url: string
-}
-
-type MenuGroup = {
-  label: string
-  items: MenuLink[]
-}
-
-type MenuItemActions = {
-  title: string
-  icon: LucideIcon
-  url: string
-}
-
-type MenuItem = {
-  title: string
-  url: string
-  icon?: LucideIcon
-  isActive?: boolean
-  actions?: MenuItemActions[]
-  groups?: MenuGroup[]
-}
+import type { NavItem } from '@/types'
 
 defineProps<{
-  items?: MenuItem[]
+  items?: NavItem[]
   level: number
 }>()
 
-const activeFlyout = ref<MenuItem | null>(null)
+const activeFlyout = ref<NavItem | null>(null)
 
-function handleToggleFlyout(item: MenuItem) {
+function handleToggleFlyout(item: NavItem) {
   if (item.groups && item.groups.length > 0) {
     activeFlyout.value = activeFlyout.value?.title === item.title ? null : item
   } else {

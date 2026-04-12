@@ -9,7 +9,7 @@ import SelectContent from '@/components/ui/select/SelectContent.vue'
 import SelectGroup from '@/components/ui/select/SelectGroup.vue'
 import SelectLabel from '@/components/ui/select/SelectLabel.vue'
 import SelectItem from '@/components/ui/select/SelectItem.vue'
-import InputSearch from '@/components/custom/InputSearch.vue'
+import InputSearch from '@/components/common/InputSearch.vue'
 </script>
 
 <template>

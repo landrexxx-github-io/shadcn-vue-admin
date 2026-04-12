@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import type { SidebarFooter, SidebarProps } from '@/components/ui/sidebar'
-
+import type { SidebarData } from '@/types'
 import {
   AudioWaveform,
   Banknote,
@@ -18,19 +16,9 @@ import {
   Timer,
 } from 'lucide-vue-next'
 
-import NavMain from './NavMain.vue'
-import TeamSwitcher from './TeamSwitcher.vue'
-
-import { SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
-import CustomSidebar from '../ui/sidebar/CustomSidebar.vue'
-
-const props = withDefaults(defineProps<SidebarProps>(), {
-  collapsible: 'icon',
-})
-
-const data = {
+export const defaultSidebarData: SidebarData = {
   user: {
-    name: 'Landrex',
+    name: 'Landrex Rebuera',
     email: 'm@example.com',
     avatar: '/avatars/shadcn.jpg',
   },
@@ -236,17 +224,3 @@ const data = {
     },
   ],
 }
-</script>
-
-<template>
-  <CustomSidebar v-bind="props" variant="sidebar">
-    <SidebarHeader class="bg-linear-to-r from-blue-700 to-blue-700 text-white">
-      <TeamSwitcher :teams="data.teams" />
-    </SidebarHeader>
-    <SidebarContent>
-      <NavMain :items="data.navMain" :level="1" />
-    </SidebarContent>
-    <SidebarRail />
-    <SidebarFooter>Hello </SidebarFooter>
-  </CustomSidebar>
-</template>

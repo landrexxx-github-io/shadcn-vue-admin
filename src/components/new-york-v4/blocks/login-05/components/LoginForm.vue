@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from 'vue'
 
 import { GalleryVerticalEnd } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils'
 import { Button } from '@/components/ui/button'
 import {
   Field,

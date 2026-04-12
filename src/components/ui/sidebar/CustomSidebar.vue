@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SidebarProps } from '.'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils'
 // Removed Sheet imports since we no longer want the mobile drawer behavior
 import {
   // SIDEBAR_WIDTH_MOBILE,

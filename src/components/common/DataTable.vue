@@ -10,8 +10,6 @@ import {
   ChevronsLeft,
   ChevronLeft,
   ChevronsRight,
-  // MoreHorizontal,
-  // Columns,
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -36,113 +34,10 @@ import {
   type VisibilityState,
 } from '@tanstack/vue-table'
 
-type AccountData = {
-  id: string
-  class: string
-  type: string
-  module: string
-  description: string
-  currency: string
-}
+import type { AccountData } from '@/types'
+import { accountsMockData } from '@/constants/mockData'
 
-const accounts = ref<AccountData[]>([
-  {
-    id: '10100',
-    class: 'CASHASSET',
-    type: 'Asset',
-    module: '',
-    description: 'Petty Cash',
-    currency: 'USD',
-  },
-  {
-    id: '10200',
-    class: 'CASHASSET',
-    type: 'Asset',
-    module: '',
-    description: 'Company Checking Account - HQ',
-    currency: 'USD',
-  },
-  {
-    id: '10250',
-    class: 'CASHASSET',
-    type: 'Asset',
-    module: '',
-    description: 'Company Merchant Account',
-    currency: 'USD',
-  },
-  {
-    id: '10300',
-    class: 'CASHASSET',
-    type: 'Asset',
-    module: '',
-    description: 'Company Savings Account',
-    currency: 'USD',
-  },
-  {
-    id: '10400',
-    class: 'CASHASSET',
-    type: 'Asset',
-    module: '',
-    description: 'Undeposited Funds',
-    currency: 'USD',
-  },
-  {
-    id: '10500',
-    class: 'CASHASSET',
-    type: 'Asset',
-    module: '',
-    description: 'Cash in Transit',
-    currency: 'EUR',
-  },
-  {
-    id: '10550',
-    class: 'CASHASSET',
-    type: 'Asset',
-    module: '',
-    description: 'Cash in Transit - old',
-    currency: 'USD',
-  },
-  {
-    id: '20100',
-    class: 'LIABILITY',
-    type: 'Liability',
-    module: 'AP',
-    description: 'Accounts Payable',
-    currency: 'USD',
-  },
-  {
-    id: '20200',
-    class: 'LIABILITY',
-    type: 'Liability',
-    module: '',
-    description: 'Accrued Expenses',
-    currency: 'USD',
-  },
-  {
-    id: '30100',
-    class: 'EQUITY',
-    type: 'Equity',
-    module: '',
-    description: 'Common Stock',
-    currency: 'USD',
-  },
-  {
-    id: '40100',
-    class: 'REVENUE',
-    type: 'Revenue',
-    module: 'AR',
-    description: 'Product Sales',
-    currency: 'USD',
-  },
-  {
-    id: '50100',
-    class: 'EXPENSE',
-    type: 'Expense',
-    module: '',
-    description: 'Office Supplies',
-    currency: 'USD',
-  },
-])
+const accounts = ref<AccountData[]>(accountsMockData)
 
 const sorting = ref<SortingState>([])
 const globalFilter = ref('')
@@ -210,28 +105,6 @@ const table = useVueTable({
         <Button variant="ghost" size="icon" class="h-8 w-8 text-muted-foreground">
           <RotateCw class="w-4 h-4" />
         </Button>
-
-        <!-- <DropdownMenu>
-          <DropdownMenuTrigger as-child>
-            <Button variant="outline" size="sm" class="h-8 flex items-center gap-2 text-xs">
-              <Columns class="w-4 h-4" />
-              View
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            <DropdownMenuLabel>Toggle Columns</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuCheckboxItem
-              v-for="column in table.getAllColumns().filter((col) => col.getCanHide())"
-              :key="column.id"
-              class="capitalize text-xs"
-              :checked="column.getIsVisible()"
-              @update:checked="(value: boolean) => column.toggleVisibility(value)"
-            >
-              {{ column.id }}
-            </DropdownMenuCheckboxItem>
-          </DropdownMenuContent>
-        </DropdownMenu> -->
       </div>
 
       <div class="flex items-center gap-2">
@@ -270,11 +143,6 @@ const table = useVueTable({
                   class="flex items-center gap-1 cursor-pointer hover:text-foreground transition-colors overflow-hidden w-full"
                   @click="header.column.toggleSorting(header.column.getIsSorted() === 'asc')"
                 >
-                  <!-- <Settings
-                    v-if="header.column.id === 'id'"
-                    class="h-4 w-4 shrink-0 text-muted-foreground"
-                  /> -->
-
                   <span class="truncate min-w-0">
                     <FlexRender
                       :render="header.column.columnDef.header"

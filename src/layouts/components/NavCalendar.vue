@@ -21,7 +21,7 @@
 
         <PopoverContent class="w-auto p-0" align="end">
           <Label class="p-3 border-b">Business Date:</Label>
-          <Calendar initial-focus v-model="calendarDate" layout="month-and-year" />
+          <Calendar initial-focus :model="calendarDate" layout="month-and-year" />
         </PopoverContent>
       </Popover>
     </SidebarMenuItem>
@@ -38,14 +38,14 @@ import { Calendar } from '@/components/ui/calendar'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
 import { Avatar } from '@/components/ui/avatar'
 
-import { type DateValue, getLocalTimeZone, now } from '@internationalized/date'
-import Label from '../ui/label/Label.vue'
+import { type DateValue, getLocalTimeZone, today } from '@internationalized/date'
+import Label from '@/components/ui/label/Label.vue'
 
 // --- Date & Time Logic ---
 const currentNativeTime = ref(new Date())
 let timer: ReturnType<typeof setInterval>
 
-const calendarDate = ref<DateValue>(now(getLocalTimeZone()))
+const calendarDate = ref<DateValue>(today(getLocalTimeZone()))
 
 onMounted(() => {
   timer = setInterval(() => {

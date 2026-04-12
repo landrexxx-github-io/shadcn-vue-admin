@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
-import type { LucideIcon } from 'lucide-vue-next'
 import TooltipProvider from '../ui/tooltip/TooltipProvider.vue'
 import Tooltip from '../ui/tooltip/Tooltip.vue'
 import TooltipTrigger from '../ui/tooltip/TooltipTrigger.vue'
 import TooltipContent from '../ui/tooltip/TooltipContent.vue'
+import type { Component, FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue'
 
 defineProps<{
   name: string
-  icon: LucideIcon
+  icon: FunctionalComponent<HTMLAttributes & VNodeProps> | Component
 }>()
 </script>
 

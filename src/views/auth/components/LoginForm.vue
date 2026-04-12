@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { GalleryVerticalEnd, Lock, Mail, User, User2 } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
+import { GalleryVerticalEnd, Lock, User2 } from 'lucide-vue-next'
+import { cn } from '@/utils'
 import { Button } from '@/components/ui/button'
 import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/components/ui/input-group'

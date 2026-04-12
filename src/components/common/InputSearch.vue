@@ -35,7 +35,7 @@
           </div>
 
           <div class="p-4 flex flex-col">
-            <SearchTable />
+            <Datatable />
           </div>
         </PopoverContent>
       </Popover>
@@ -52,7 +52,7 @@ import InputGroupButton from '../ui/input-group/InputGroupButton.vue'
 import InputGroupInput from '../ui/input-group/InputGroupInput.vue'
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
 import { PopoverClose } from 'reka-ui'
-import SearchTable from './SearchTable.vue'
+import Datatable from './DataTable.vue'
 
 const isExpanded = ref(false)
 </script>

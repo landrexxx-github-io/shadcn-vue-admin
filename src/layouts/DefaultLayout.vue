@@ -5,8 +5,8 @@ export const containerClass = 'w-full h-full'
 </script>
 
 <script setup lang="ts">
-import AppSidebar from '@/components/custom/AppSidebar.vue'
-import NavHeader from '@/components/custom/NavHeader.vue'
+import AppSidebar from './components/AppSidebar.vue'
+import NavHeader from './components/NavHeader.vue'
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { RouterView } from 'vue-router'

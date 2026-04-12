@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import NoMenuLayout from '@/components/layouts/NoMenuLayout.vue'
-import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
+import NoMenuLayout from '@/layouts/NoMenuLayout.vue'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
-import Login from '@/modules/auth/pages/SignInScreen.vue'
-import Overview from '@/modules/dashboard/pages/OverviewScreen.vue'
-import NotFoundScreen from '@/components/error/NotFoundScreen.vue'
+import Login from '@/views/auth/SignInView.vue'
+import Overview from '@/views/dashboard/OverviewView.vue'
+import NotFoundScreen from '@/views/error/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
