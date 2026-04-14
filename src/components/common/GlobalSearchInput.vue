@@ -25,8 +25,10 @@
       <div
         v-if="isSearchActive"
         :class="[
-          'fixed z-50 bg-white border-r p-8 right-0 top-16 h-[calc(100vh-4rem)] group-data-[state=collapsed]:left-24! shadow-[10px_0px_15px_-3px_rgba(0,0,0,0.1)] overflow-y-auto',
-          state === 'collapsed' ? 'w-[calc(100vw-6rem)]' : 'left-(--sidebar-width)',
+          'fixed z-50 bg-white border-r p-8 right-0 top-16 h-[calc(100vh-4rem)] shadow-[10px_0px_15px_-3px_rgba(0,0,0,0.1)] overflow-y-auto transition-all duration-200 ease-linear',
+          isSidebarCollapsed
+            ? 'left-24 w-[calc(100vw-6rem)]'
+            : 'left-(--sidebar-width) w-[calc(100vw-var(--sidebar-width))]',
         ]"
       >
         <button
@@ -149,7 +151,13 @@ import InputGroupAddon from '../ui/input-group/InputGroupAddon.vue'
 import { useSidebar } from '@/components/ui/sidebar'
 import Button from '../ui/button/Button.vue'
 
-const { state } = useSidebar()
+const sidebar = useSidebar()
+const isSidebarCollapsed = computed(() => {
+  return sidebar.isMobile.value || sidebar.state.value === 'collapsed'
+})
+
+console.log(sidebar)
+console.log('test')
 
 const searchQuery = ref('')
 const isSearchActive = ref(false)

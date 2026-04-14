@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import type { SidebarProps } from '.'
 import { cn } from '@/utils'
-// Removed Sheet imports since we no longer want the mobile drawer behavior
-import {
-  // SIDEBAR_WIDTH_MOBILE,
-  useSidebar,
-} from './utils'
+import { useSidebar } from './utils'
 
 defineOptions({
   inheritAttrs: false,
@@ -19,6 +15,9 @@ const props = withDefaults(defineProps<SidebarProps>(), {
 
 // We no longer need openMobile or setOpenMobile
 const { isMobile, state } = useSidebar()
+
+console.log(state)
+console.log(isMobile)
 </script>
 
 <template>
