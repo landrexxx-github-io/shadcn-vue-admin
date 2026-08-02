@@ -72,7 +72,7 @@ function handleToggleFlyout(item: NavItem) {
         >
           <div
             v-if="activeFlyout?.title === item.title && item.groups?.length"
-            class="fixed z-50 bg-white border-r p-8 transition-all w-[calc(100vw-6rem)] md:w-[calc(100vw-24rem)] top-16 h-[calc(100vh-4rem)] left-(--sidebar-width) group-data-[state=collapsed]:left-24! shadow-[10px_0px_15px_-3px_rgba(0,0,0,0.1)] overflow-y-auto"
+            class="fixed z-100 bg-white border-r p-8 transition-all w-[calc(100vw-6rem)] md:w-[calc(100vw-24rem)] top-16 h-[calc(100vh-4rem)] left-(--sidebar-width) group-data-[state=collapsed]:left-24! shadow-[10px_0px_15px_-3px_rgba(0,0,0,0.1)] overflow-y-auto"
           >
             <button
               @click="activeFlyout = null"
