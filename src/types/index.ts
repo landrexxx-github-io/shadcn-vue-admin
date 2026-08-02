@@ -40,6 +40,7 @@ export type NavSubItem = {
 }
 
 export type NavGroup = {
+  seq_no: number
   label: string
   items: NavSubItem[]
 }

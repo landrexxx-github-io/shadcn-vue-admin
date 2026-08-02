@@ -20,7 +20,7 @@ const open = ref(true)
     <AppSidebar />
     <SidebarInset>
       <NavHeader />
-      <div class="flex flex-1 flex-col gap-4 p-5">
+      <div class="flex flex-1 flex-col gap-4 p-2">
         <RouterView />
       </div>
     </SidebarInset>

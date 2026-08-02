@@ -12,6 +12,7 @@ import {
   HandCoins,
   List,
   RefreshCw,
+  SearchIcon,
   SquarePenIcon,
   Timer,
 } from 'lucide-vue-next'
@@ -29,35 +30,36 @@ export const defaultSidebarData: SidebarData = {
   ],
   navMain: [
     {
-      title: 'Accounting',
+      title: 'Sourcenet',
       url: '/accounting',
       icon: BookOpenText,
       isActive: false,
       actions: [
         {
-          title: 'Journal Transactions',
-          icon: SquarePenIcon,
+          title: 'Part no. Search',
+          icon: SearchIcon,
           url: '#',
         },
-        {
-          title: 'Account Summary',
-          icon: DollarSign,
-          url: '#',
-        },
-        {
-          title: 'Account Details',
-          icon: List,
-          url: '#',
-        },
-        {
-          title: 'Reclassify Journal Entries',
-          icon: RefreshCw,
-          url: '#',
-        },
+        // {
+        //   title: 'Account Summary',
+        //   icon: DollarSign,
+        //   url: '#',
+        // },
+        // {
+        //   title: 'Account Details',
+        //   icon: List,
+        //   url: '#',
+        // },
+        // {
+        //   title: 'Reclassify Journal Entries',
+        //   icon: RefreshCw,
+        //   url: '#',
+        // },
       ],
       groups: [
         {
-          label: 'Transactions',
+          seq_no: 1,
+          label: 'Enquiry',
           items: [
             { title: 'Journal Transactions', url: '#' },
             { title: 'Disbursement Voucher', url: '#' },
@@ -65,7 +67,8 @@ export const defaultSidebarData: SidebarData = {
           ],
         },
         {
-          label: 'Processes',
+          seq_no: 2,
+          label: 'Quotations',
           items: [
             { title: 'Run Allocations', url: '#' },
             { title: 'Reclassify Transactions', url: '#' },
@@ -74,7 +77,8 @@ export const defaultSidebarData: SidebarData = {
           ],
         },
         {
-          label: 'Reports',
+          seq_no: 3,
+          label: 'Invoices',
           items: [
             { title: 'Trial Balance Summary', url: '#' },
             { title: 'Transactions for Period', url: '#' },
@@ -82,6 +86,7 @@ export const defaultSidebarData: SidebarData = {
           ],
         },
         {
+          seq_no: 4,
           label: 'Financial Statements',
           items: [
             { title: 'Balance Sheet', url: '#' },
@@ -92,6 +97,7 @@ export const defaultSidebarData: SidebarData = {
           ],
         },
         {
+          seq_no: 5,
           label: 'Profiles',
           items: [
             { title: 'Master Financial Calendar', url: '#' },
@@ -102,111 +108,111 @@ export const defaultSidebarData: SidebarData = {
         },
       ],
     },
-    {
-      title: 'Inventory Planning',
-      url: '#',
-      icon: FileBoxIcon,
-      actions: [],
-      groups: [
-        {
-          label: 'Setup',
-          items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Time and Expenses',
-      url: '#',
-      icon: Timer,
-      actions: [],
-      groups: [
-        {
-          label: 'Setup',
-          items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Finance',
-      url: '#',
-      icon: Calculator,
-      actions: [],
-      groups: [
-        {
-          label: 'Setup',
-          items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Banking',
-      url: '#',
-      icon: Banknote,
-      actions: [],
-      groups: [
-        {
-          label: 'Setup',
-          items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Receivables',
-      url: '#',
-      icon: HandCoins,
-      actions: [],
-      groups: [
-        {
-          label: 'Setup',
-          items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Payables',
-      url: '#',
-      icon: FileBoxIcon,
-      actions: [],
-      groups: [
-        {
-          label: 'Setup',
-          items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Sales Order',
-      url: '#',
-      icon: FileBoxIcon,
-      actions: [],
-      groups: [
-        {
-          label: 'Setup',
-          items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
-          ],
-        },
-      ],
-    },
+    // {
+    //   title: 'Inventory Planning',
+    //   url: '#',
+    //   icon: FileBoxIcon,
+    //   actions: [],
+    //   groups: [
+    //     {
+    //       label: 'Setup',
+    //       items: [
+    //         { title: 'Genesis Config', url: '#' },
+    //         { title: 'Explorer Options', url: '#' },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: 'Time and Expenses',
+    //   url: '#',
+    //   icon: Timer,
+    //   actions: [],
+    //   groups: [
+    //     {
+    //       label: 'Setup',
+    //       items: [
+    //         { title: 'Genesis Config', url: '#' },
+    //         { title: 'Explorer Options', url: '#' },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: 'Finance',
+    //   url: '#',
+    //   icon: Calculator,
+    //   actions: [],
+    //   groups: [
+    //     {
+    //       label: 'Setup',
+    //       items: [
+    //         { title: 'Genesis Config', url: '#' },
+    //         { title: 'Explorer Options', url: '#' },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: 'Banking',
+    //   url: '#',
+    //   icon: Banknote,
+    //   actions: [],
+    //   groups: [
+    //     {
+    //       label: 'Setup',
+    //       items: [
+    //         { title: 'Genesis Config', url: '#' },
+    //         { title: 'Explorer Options', url: '#' },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: 'Receivables',
+    //   url: '#',
+    //   icon: HandCoins,
+    //   actions: [],
+    //   groups: [
+    //     {
+    //       label: 'Setup',
+    //       items: [
+    //         { title: 'Genesis Config', url: '#' },
+    //         { title: 'Explorer Options', url: '#' },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: 'Payables',
+    //   url: '#',
+    //   icon: FileBoxIcon,
+    //   actions: [],
+    //   groups: [
+    //     {
+    //       label: 'Setup',
+    //       items: [
+    //         { title: 'Genesis Config', url: '#' },
+    //         { title: 'Explorer Options', url: '#' },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: 'Sales Order',
+    //   url: '#',
+    //   icon: FileBoxIcon,
+    //   actions: [],
+    //   groups: [
+    //     {
+    //       label: 'Setup',
+    //       items: [
+    //         { title: 'Genesis Config', url: '#' },
+    //         { title: 'Explorer Options', url: '#' },
+    //       ],
+    //     },
+    //   ],
+    // },
     {
       title: 'Dashboards',
       url: '#',
@@ -214,6 +220,7 @@ export const defaultSidebarData: SidebarData = {
       actions: [],
       groups: [
         {
+          seq_no: 1,
           label: 'Setup',
           items: [
             { title: 'Genesis Config', url: '#' },

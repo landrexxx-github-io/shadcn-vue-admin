@@ -15,13 +15,13 @@ const props = withDefaults(defineProps<SidebarProps>(), {
 
 <template>
   <CustomSidebar v-bind="props" variant="sidebar">
-    <SidebarHeader class="bg-linear-to-r from-blue-700 to-blue-700 text-white">
+    <SidebarHeader class="from-blue-700 to-blue-700 bg-linear-to-r text-white">
       <TeamSwitcher :teams="data.teams" />
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" :level="1" />
     </SidebarContent>
     <SidebarRail />
-    <SidebarFooter>Hello</SidebarFooter>
+    <SidebarFooter> </SidebarFooter>
   </CustomSidebar>
 </template>
