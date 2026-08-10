@@ -1,22 +1,22 @@
-<template>
-  <InputGroup>
-    <InputGroupInput placeholder="Search for part number..." />
-    <InputGroupAddon>
-      <SearchIcon />
-    </InputGroupAddon>
-  </InputGroup>
-</template>
-
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Search, Maximize, Minimize, X, SearchIcon } from 'lucide-vue-next'
-import InputGroup from '../ui/input-group/InputGroup.vue'
-import InputGroupAddon from '../ui/input-group/InputGroupAddon.vue'
-import InputGroupButton from '../ui/input-group/InputGroupButton.vue'
-import InputGroupInput from '../ui/input-group/InputGroupInput.vue'
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
-import { PopoverClose } from 'reka-ui'
-import Datatable from './DataTable.vue'
+import { SearchIcon } from 'lucide-vue-next'
 
-const isExpanded = ref(false)
+const model = defineModel<string>({
+  default: '',
+})
 </script>
+
+<template>
+  <div class="relative w-full min-w-0">
+    <SearchIcon
+      class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+    />
+
+    <input
+      v-model="model"
+      v-bind="$attrs"
+      type="search"
+      class="flex h-9 w-full rounded-md border border-input bg-background py-1 pl-9 pr-3 text-sm outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
+    />
+  </div>
+</template>

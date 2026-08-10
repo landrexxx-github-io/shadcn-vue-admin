@@ -20,9 +20,18 @@ const open = ref(true)
     <AppSidebar />
     <SidebarInset>
       <NavHeader />
-      <div class="flex flex-1 flex-col gap-4 p-2">
-        <RouterView />
+      <div
+        class="flex h-full w-full min-h-0 min-w-0 max-w-full flex-col overflow-hidden bg-muted/20"
+      >
+        <div class="h-full w-full min-w-0 overflow-x-hidden overflow-y-auto">
+          <div class="mx-auto w-full max-w-450 p-3 sm:p-4">
+            <RouterView />
+          </div>
+        </div>
       </div>
+      <!-- <div class="flex flex-1 flex-col gap-4 p-2">
+        <RouterView />
+      </div> -->
     </SidebarInset>
   </SidebarProvider>
 </template>

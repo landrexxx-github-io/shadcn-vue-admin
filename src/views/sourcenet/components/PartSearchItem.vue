@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ExternalLinkIcon, SearchIcon } from 'lucide-vue-next'
+import { computed, ref } from 'vue'
 
-import { Button } from '@/components/ui/button'
 import { Item } from '@/components/ui/item'
-
 import {
   Select,
   SelectContent,
@@ -16,8 +13,25 @@ import {
 } from '@/components/ui/select'
 
 import InputSearch from '@/components/common/InputSearch.vue'
+import Label from '@/components/ui/label/Label.vue'
+
+const props = withDefaults(
+  defineProps<{
+    searchTerm?: string
+    category?: string
+    partRemark?: string
+  }>(),
+  {
+    searchTerm: '',
+    category: 'ct-parts',
+    partRemark: 'de',
+  },
+)
 
 const emit = defineEmits<{
+  'update:searchTerm': [value: string]
+  'update:category': [value: string]
+  'update:partRemark': [value: string]
   search: [
     filters: {
       searchTerm: string
@@ -27,11 +41,22 @@ const emit = defineEmits<{
   ]
 }>()
 
-const searchTerm = ref('')
-const selectedCategory = ref('ct-parts')
-const selectedPartRemark = ref('de')
+const searchTermModel = computed({
+  get: () => props.searchTerm,
+  set: (value: string) => emit('update:searchTerm', value),
+})
 
-const recentSearchTerms = ref(['7S3206', '1R-0750', '4P-0710', '8N-7005'])
+const categoryModel = computed({
+  get: () => props.category,
+  set: (value: string) => emit('update:category', value),
+})
+
+const partRemarkModel = computed({
+  get: () => props.partRemark,
+  set: (value: string) => emit('update:partRemark', value),
+})
+
+const recentSearchTerms = ref(['5722761', '7S3206', '1R-0750', '4P-0710'])
 
 const categories = [
   { value: 'ct-parts', label: 'CT Parts' },
@@ -46,11 +71,6 @@ const partRemarks = [
   { value: 'replacement', label: 'Replacement' },
   { value: 'alternate', label: 'Alternate' },
 ]
-
-function selectRecentSearch(term: string): void {
-  searchTerm.value = term
-  handleSearch()
-}
 
 function saveRecentSearch(term: string): void {
   const normalizedTerm = term.trim()
@@ -68,14 +88,15 @@ function saveRecentSearch(term: string): void {
 }
 
 function handleSearch(): void {
-  const normalizedSearchTerm = searchTerm.value.trim()
+  const normalizedSearchTerm = searchTermModel.value.trim()
 
+  searchTermModel.value = normalizedSearchTerm
   saveRecentSearch(normalizedSearchTerm)
 
   emit('search', {
     searchTerm: normalizedSearchTerm,
-    category: selectedCategory.value,
-    partRemark: selectedPartRemark.value,
+    category: categoryModel.value,
+    partRemark: partRemarkModel.value,
   })
 }
 </script>
@@ -87,83 +108,52 @@ function handleSearch(): void {
       class="w-full min-w-0 rounded-lg border-blue-200 bg-blue-50 p-3 shadow-sm dark:border-blue-900 dark:bg-blue-950/30"
     >
       <form
-        class="grid w-full min-w-0 grid-cols-1 items-start gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-cols-[minmax(15rem,2fr)_minmax(10rem,1fr)_minmax(9rem,0.8fr)]"
+        class="grid w-full min-w-0 grid-cols-1 gap-2.5 sm:grid-cols-2"
         @submit.prevent="handleSearch"
       >
-        <!-- Part-number search and recent searches -->
-        <div class="min-w-0 sm:col-span-3 lg:col-span-1">
-          <label for="part-search" class="sr-only"> Search part number </label>
-
+        <div class="min-w-0 sm:col-span-2">
+          <Label for="part-search" class="sr-only">Search part number</Label>
           <InputSearch
             id="part-search"
-            v-model="searchTerm"
+            v-model="searchTermModel"
             class="w-full min-w-0"
-            placeholder="Search part number"
+            placeholder="Search for part number..."
           />
-
-          <!-- <div
-            v-if="recentSearchTerms.length"
-            class="mt-2 flex min-w-0 flex-wrap items-center gap-1.5"
-          >
-            <span class="mr-0.5 text-xs text-muted-foreground">
-              Recent:
-            </span>
-
-            <button
-              v-for="term in recentSearchTerms"
-              :key="term"
-              type="button"
-              class="max-w-32 truncate rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              :title="`Search for ${term}`"
-              @click="selectRecentSearch(term)"
-            >
-              {{ term }}
-            </button>
-          </div> -->
         </div>
 
-        <!-- Category -->
         <div class="min-w-0">
-          <label for="category-filter" class="sr-only"> Category </label>
-
-          <Select v-model="selectedCategory">
-            <SelectTrigger id="category-filter" class="h-9 w-full min-w-0">
+          <Label for="category-filter" class="sr-only">Category</Label>
+          <Select v-model="categoryModel">
+            <SelectTrigger id="category-filter" class="h-9 w-full min-w-0 rounded-md bg-background">
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
-
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Categories</SelectLabel>
-
+                <SelectLabel><a href="#">Categories</a></SelectLabel>
                 <SelectItem
                   v-for="category in categories"
                   :key="category.value"
                   :value="category.value"
                 >
-                  <span class="flex w-full min-w-0 items-center justify-between gap-3">
-                    <span class="truncate">
-                      {{ category.label }}
-                    </span>
-                  </span>
+                  {{ category.label }}
                 </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
 
-        <!-- Part remark -->
         <div class="min-w-0">
-          <label for="part-remark-filter" class="sr-only"> Part remark </label>
-
-          <Select v-model="selectedPartRemark">
-            <SelectTrigger id="part-remark-filter" class="h-9 w-full min-w-0">
+          <label for="part-remark-filter" class="sr-only">Part remark</label>
+          <Select v-model="partRemarkModel">
+            <SelectTrigger
+              id="part-remark-filter"
+              class="h-9 w-full min-w-0 rounded-md bg-background"
+            >
               <SelectValue placeholder="Select part remark" />
             </SelectTrigger>
-
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Part remarks</SelectLabel>
-
                 <SelectItem v-for="remark in partRemarks" :key="remark.value" :value="remark.value">
                   {{ remark.label }}
                 </SelectItem>

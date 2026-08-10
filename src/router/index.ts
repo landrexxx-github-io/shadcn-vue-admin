@@ -6,6 +6,10 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import Login from '@/views/auth/SignInView.vue'
 import Overview from '@/views/dashboard/OverviewView.vue'
 import NotFoundScreen from '@/views/error/NotFoundView.vue'
+import SourcenetPartsWorkspace from '@/views/sourcenet/SourcenetPartsWorkspace.vue'
+import SourcenetPartsWorkspace2 from '@/views/sourcenet2/SourcenetPartsWorkspace2.vue'
+import OnlineCustomerEnquiry from '@/views/sourcenet2/enquiry/OnlineCustomerEnquiry.vue'
+import LocalCustomerEnquiry from '@/views/sourcenet2/enquiry/LocalCustomerEnquiry.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +33,38 @@ const router = createRouter({
           path: '',
           name: 'overview',
           component: Overview,
+        },
+      ],
+    },
+    {
+      path: '/sourcenet',
+      component: DefaultLayout,
+      children: [
+        {
+          path: '',
+          name: 'sourcenet',
+          component: SourcenetPartsWorkspace,
+        },
+      ],
+    },
+    {
+      path: '/sourcenet2',
+      component: DefaultLayout,
+      children: [
+        {
+          path: 'part-search',
+          name: 'part-search',
+          component: SourcenetPartsWorkspace2,
+        },
+        {
+          path: 'online-enquiry',
+          name: 'online-enquiry',
+          component: OnlineCustomerEnquiry,
+        },
+        {
+          path: 'local-enquiry',
+          name: 'local-enquiry',
+          component: LocalCustomerEnquiry,
         },
       ],
     },
