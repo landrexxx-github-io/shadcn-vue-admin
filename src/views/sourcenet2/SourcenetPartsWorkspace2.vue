@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import {
   CheckIcon,
   BarChart3Icon,
@@ -22,6 +22,8 @@ import {
 import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from 'reka-ui'
 
 import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   Dialog,
   DialogContent,
@@ -40,6 +42,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import Badge from '@/components/ui/badge/Badge.vue'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import PartSearchItem from './components/PartSearchItem.vue'
 
 interface MenuItem {
@@ -133,6 +143,19 @@ interface PartSearchFilters {
   category: string
   partRemark: string
 }
+
+const props = withDefaults(
+  defineProps<{
+    partNumber?: string
+    category?: string
+    partRemark?: string
+  }>(),
+  {
+    partNumber: '5722761',
+    category: 'ct-parts',
+    partRemark: 'de',
+  },
+)
 
 interface EnquiryFormData {
   customerCode: string
@@ -491,7 +514,11 @@ const partCatalog = ref<Record<string, PartWorkspaceData>>({
         stock: 85,
       },
     ],
-    reorderLevels: { maximumStock: 180, minimumStock: 45, reorderQuantity: 100 },
+    reorderLevels: {
+      maximumStock: 180,
+      minimumStock: 45,
+      reorderQuantity: 100,
+    },
   },
   '1R-0750': {
     partDetails: [
@@ -835,10 +862,10 @@ const enquiryRecords: EnquiryRecord[] = [
 
 const selectedMenuValue = ref('web-online-basket')
 const selectedEnquiryId = ref<number | null>(1)
-const activePartNumber = ref('5722761')
-const partSearchTerm = ref('5722761')
-const selectedPartCategory = ref('ct-parts')
-const selectedPartRemark = ref('de')
+const activePartNumber = ref(props.partNumber)
+const partSearchTerm = ref(props.partNumber)
+const selectedPartCategory = ref(props.category)
+const selectedPartRemark = ref(props.partRemark)
 const showOnlyPrioritySuppliers = ref(false)
 
 const activePart = computed(() => {
@@ -967,6 +994,17 @@ function handlePartSearch(filters: PartSearchFilters): void {
   }
 }
 
+watch(
+  () => [props.partNumber, props.category, props.partRemark] as const,
+  ([partNumber, category, partRemark]) => {
+    partSearchTerm.value = partNumber
+    selectedPartCategory.value = category
+    selectedPartRemark.value = partRemark
+    activatePart(partNumber)
+  },
+  { immediate: true },
+)
+
 function formatMoney(value: number, currency = 'AED'): string {
   return new Intl.NumberFormat('en-AE', {
     style: 'currency',
@@ -979,7 +1017,7 @@ function formatMoney(value: number, currency = 'AED'): string {
 <template>
   <div class="flex h-full w-full min-h-0 min-w-0 max-w-full flex-col overflow-hidden bg-muted/20">
     <div class="h-full w-full min-w-0 overflow-x-hidden overflow-y-auto">
-      <div class="">
+      <div class="space-y-4 p-1">
         <!-- First row: part workspace / stock / orders and suppliers -->
         <div
           class="grid min-w-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 xl:grid-cols-[minmax(0,3fr)_minmax(0,4fr)_minmax(0,3fr)]"
@@ -994,21 +1032,21 @@ function formatMoney(value: number, currency = 'AED'): string {
                 @search="handlePartSearch"
               />
             </div>
-            <article
+            <Card
               class="min-w-0 overflow-hidden rounded-lg border border-primary/20 bg-card shadow-sm"
             >
-              <header
+              <CardHeader
                 class="flex flex-wrap items-center justify-between gap-2 border-b border-primary/10 bg-primary/4 px-4 py-2.5"
               >
                 <div class="flex min-w-0 items-center gap-2">
                   <span class="flex size-7 items-center justify-center rounded-md bg-primary/10">
                     <PackageSearchIcon class="size-4 shrink-0 text-primary" />
                   </span>
-                  <h2 class="truncate text-sm font-semibold">Part overview</h2>
+                  <CardTitle class="truncate text-sm font-semibold">Part overview</CardTitle>
                 </div>
 
                 <Badge variant="secondary">P&amp;A: 2 days</Badge>
-              </header>
+              </CardHeader>
 
               <div
                 class="grid gap-x-5 gap-y-2 px-4 py-3 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3"
@@ -1035,54 +1073,54 @@ function formatMoney(value: number, currency = 'AED'): string {
                   </span>
                 </div>
               </div>
-            </article>
-            <article class="min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
-              <header class="flex items-center gap-2 border-b px-4 py-3">
+            </Card>
+            <Card class="min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
+              <CardHeader class="flex items-center gap-2 border-b px-4 py-3">
                 <Layers3Icon class="size-4 text-primary" />
-                <h2 class="text-sm font-semibold">Alternate and other sources</h2>
-              </header>
+                <CardTitle class="text-sm font-semibold">Alternate and other sources</CardTitle>
+              </CardHeader>
 
               <div class="hidden sm:block">
-                <table class="text-left text-xs">
-                  <thead class="bg-muted/60 text-muted-foreground">
-                    <tr>
-                      <th class="px-3 py-2.5 font-medium">Type</th>
-                      <th class="px-3 py-2.5 text-center font-medium">M</th>
-                      <th class="px-3 py-2.5 text-center font-medium">SM</th>
-                      <th class="px-3 py-2.5 text-center font-medium">Gen</th>
-                      <th class="px-3 py-2.5 font-medium">New part no.</th>
-                      <th class="px-3 py-2.5 font-medium">Description</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Qty</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Stock</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="source in alternateSources" :key="source.newPartNumber">
-                      <td class="px-3 py-2.5 font-medium">
+                <Table class="text-left text-xs">
+                  <TableHeader class="bg-muted/60 text-muted-foreground">
+                    <TableRow>
+                      <TableHead class="px-3 py-2.5 font-medium">Type</TableHead>
+                      <TableHead class="px-3 py-2.5 text-center font-medium">M</TableHead>
+                      <TableHead class="px-3 py-2.5 text-center font-medium">SM</TableHead>
+                      <TableHead class="px-3 py-2.5 text-center font-medium">Gen</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">New part no.</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Description</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Qty</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Stock</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow v-for="source in alternateSources" :key="source.newPartNumber">
+                      <TableCell class="px-3 py-2.5 font-medium">
                         {{ source.type }}
-                      </td>
-                      <td class="px-3 py-2.5 text-center">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-center">
                         {{ source.movement ? 'Yes' : 'No' }}
-                      </td>
-                      <td class="px-3 py-2.5 text-center">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-center">
                         {{ source.salesMovement ? 'Yes' : 'No' }}
-                      </td>
-                      <td class="px-3 py-2.5 text-center">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-center">
                         {{ source.generic ? 'Yes' : 'No' }}
-                      </td>
-                      <td class="px-3 py-2.5 font-medium">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 font-medium">
                         {{ source.newPartNumber }}
-                      </td>
-                      <td class="px-3 py-2.5">{{ source.description }}</td>
-                      <td class="px-3 py-2.5 text-right">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5">{{ source.description }}</TableCell>
+                      <TableCell class="px-3 py-2.5 text-right">
                         {{ source.quantity }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right">
                         {{ source.stock }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </div>
 
               <div class="p-3 sm:hidden">
@@ -1108,22 +1146,22 @@ function formatMoney(value: number, currency = 'AED'): string {
                   </p>
                 </div>
               </div>
-            </article>
+            </Card>
           </section>
 
           <!-- Center column: stock by location -->
           <section class="min-w-0 lg:col-span-2 xl:col-span-1 xl:h-full">
-            <article
+            <Card
               class="min-w-0 overflow-hidden rounded-lg border border-emerald-500/25 bg-card shadow-sm xl:h-full"
             >
-              <header
+              <CardHeader
                 class="flex items-center justify-between gap-3 border-b bg-emerald-500/[0.04] px-4 py-3"
               >
                 <div class="flex min-w-0 items-center gap-2">
                   <span class="flex size-7 items-center justify-center rounded-md bg-primary/10">
                     <WarehouseIcon class="size-4 shrink-0 text-emerald-700 dark:text-emerald-400" />
                   </span>
-                  <h2 class="truncate text-sm font-semibold">Stock by location</h2>
+                  <CardTitle class="truncate text-sm font-semibold">Stock by location</CardTitle>
                 </div>
                 <Badge
                   variant="outline"
@@ -1131,51 +1169,51 @@ function formatMoney(value: number, currency = 'AED'): string {
                 >
                   {{ totalStock }} total
                 </Badge>
-              </header>
+              </CardHeader>
 
               <div class="hidden overflow-auto md:block">
-                <table class="w-full text-left text-xs">
-                  <thead class="sticky top-0 bg-muted text-muted-foreground">
-                    <tr>
-                      <th class="px-3 py-2.5 font-medium">Location</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Qty</th>
-                      <th class="px-3 py-2.5 font-medium">Bin</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Allocated</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Transit</th>
-                      <th class="px-3 py-2.5 text-right font-medium">WIP</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Warranty</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y">
-                    <tr
+                <Table class="w-full text-left text-xs">
+                  <TableHeader class="sticky top-0 bg-muted text-muted-foreground">
+                    <TableRow>
+                      <TableHead class="px-3 py-2.5 font-medium">Location</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Qty</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Bin</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Allocated</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Transit</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">WIP</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Warranty</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody class="divide-y">
+                    <TableRow
                       v-for="stock in stockLocations"
                       :key="stock.location"
                       class="hover:bg-muted/30"
                     >
-                      <td class="px-3 py-2.5 font-medium">
+                      <TableCell class="px-3 py-2.5 font-medium">
                         {{ stock.location }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ stock.quantity }}
-                      </td>
-                      <td class="px-3 py-2.5">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5">
                         {{ stock.binLocation }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ stock.allocated }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ stock.inTransit }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ stock.workInProgress }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ stock.warranty }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </div>
 
               <div class="divide-y md:hidden">
@@ -1231,20 +1269,20 @@ function formatMoney(value: number, currency = 'AED'): string {
                   </div>
                 </div>
               </div>
-            </article>
+            </Card>
           </section>
 
           <!-- Right column: orders and supplier inventory -->
           <section class="min-w-0 space-y-3">
-            <article
+            <Card
               class="min-w-0 overflow-hidden rounded-lg border border-amber-500/20 bg-card shadow-sm xl:h-[250px]"
             >
-              <header
+              <CardHeader
                 class="flex items-center justify-between gap-3 border-b bg-amber-500/[0.04] px-4 py-3"
               >
                 <div class="flex min-w-0 items-center gap-2">
                   <ShoppingCartIcon class="size-4 shrink-0 text-amber-700 dark:text-amber-400" />
-                  <h2 class="truncate text-sm font-semibold">Orders</h2>
+                  <CardTitle class="truncate text-sm font-semibold">Orders</CardTitle>
                 </div>
                 <Badge
                   variant="outline"
@@ -1252,57 +1290,57 @@ function formatMoney(value: number, currency = 'AED'): string {
                 >
                   {{ orders.length }} open · {{ pendingOrderQuantity }} pending
                 </Badge>
-              </header>
+              </CardHeader>
 
               <div class="hidden overflow-auto md:block xl:max-h-[196px]">
-                <table class="w-full min-w-[860px] text-left text-xs">
-                  <thead class="sticky top-0 z-[1] bg-muted text-muted-foreground">
-                    <tr>
-                      <th class="px-3 py-2.5 font-medium">Part</th>
-                      <th class="px-3 py-2.5 font-medium">Order date</th>
-                      <th class="px-3 py-2.5 font-medium">Supplier</th>
-                      <th class="px-3 py-2.5 font-medium">Order no.</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Ordered</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Expected</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Pending</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Price</th>
-                      <th class="px-3 py-2.5 font-medium">Freight</th>
-                      <th class="px-3 py-2.5 font-medium">ETA</th>
-                      <th class="px-3 py-2.5 font-medium">Remark</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y">
-                    <tr
+                <Table class="w-full min-w-[860px] text-left text-xs">
+                  <TableHeader class="sticky top-0 z-[1] bg-muted text-muted-foreground">
+                    <TableRow>
+                      <TableHead class="px-3 py-2.5 font-medium">Part</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Order date</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Supplier</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Order no.</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Ordered</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Expected</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Pending</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Price</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Freight</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">ETA</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Remark</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody class="divide-y">
+                    <TableRow
                       v-for="order in orders"
                       :key="`${order.orderNumber}-${order.partNumber}`"
                       class="hover:bg-muted/30"
                     >
-                      <td class="px-3 py-2.5 font-medium">
+                      <TableCell class="px-3 py-2.5 font-medium">
                         {{ order.partNumber }}
-                      </td>
-                      <td class="whitespace-nowrap px-3 py-2.5">
+                      </TableCell>
+                      <TableCell class="whitespace-nowrap px-3 py-2.5">
                         {{ order.orderDate }}
-                      </td>
-                      <td class="px-3 py-2.5">{{ order.supplier }}</td>
-                      <td class="px-3 py-2.5">{{ order.orderNumber }}</td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5">{{ order.supplier }}</TableCell>
+                      <TableCell class="px-3 py-2.5">{{ order.orderNumber }}</TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ order.orderedQuantity }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ order.expectedQuantity }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ order.pendingQuantity }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right font-medium tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right font-medium tabular-nums">
                         {{ formatMoney(order.price) }}
-                      </td>
-                      <td class="px-3 py-2.5">{{ order.freight }}</td>
-                      <td class="px-3 py-2.5">{{ order.eta }}</td>
-                      <td class="px-3 py-2.5">{{ order.remark }}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5">{{ order.freight }}</TableCell>
+                      <TableCell class="px-3 py-2.5">{{ order.eta }}</TableCell>
+                      <TableCell class="px-3 py-2.5">{{ order.remark }}</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </div>
 
               <div class="divide-y md:hidden">
@@ -1345,66 +1383,71 @@ function formatMoney(value: number, currency = 'AED'): string {
                   </div>
                 </div>
               </div>
-            </article>
-            <article
+            </Card>
+            <Card
               class="min-w-0 overflow-hidden rounded-lg border border-primary/20 bg-card shadow-sm xl:h-[250px]"
             >
-              <header
+              <CardHeader
                 class="flex flex-wrap items-center justify-between gap-3 border-b bg-primary/[0.04] px-4 py-3"
               >
                 <div class="flex min-w-0 items-center gap-2">
                   <TruckIcon class="size-4 shrink-0 text-primary" />
-                  <h2 class="truncate text-sm font-semibold">Supplier inventory</h2>
+                  <CardTitle class="truncate text-sm font-semibold">Supplier inventory</CardTitle>
                   <span class="text-[10px] text-muted-foreground">
                     {{ totalSupplierStock }} units available
                   </span>
                 </div>
 
-                <label class="flex cursor-pointer items-center gap-2 text-xs text-muted-foreground">
-                  <input
-                    v-model="showOnlyPrioritySuppliers"
-                    type="checkbox"
-                    class="size-4 rounded border-border accent-primary"
+                <div class="flex items-center gap-2">
+                  <Checkbox
+                    id="priority-suppliers"
+                    :checked="showOnlyPrioritySuppliers"
+                    @update:checked="showOnlyPrioritySuppliers = Boolean($event)"
                   />
-                  Priority only
-                </label>
-              </header>
+                  <label
+                    for="priority-suppliers"
+                    class="cursor-pointer text-xs font-medium text-muted-foreground"
+                  >
+                    Priority only
+                  </label>
+                </div>
+              </CardHeader>
 
               <div class="hidden overflow-auto md:block xl:max-h-[196px]">
-                <table class="w-full min-w-[610px] text-left text-xs">
-                  <thead class="sticky top-0 z-[1] bg-muted text-muted-foreground">
-                    <tr>
-                      <th class="px-3 py-2.5 font-medium">Supplier ID</th>
-                      <th class="px-3 py-2.5 font-medium">Code</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Stock</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Price</th>
-                      <th class="px-3 py-2.5 font-medium">Currency</th>
-                      <th class="px-3 py-2.5 font-medium">Updated</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y">
-                    <tr
+                <Table class="w-full min-w-[610px] text-left text-xs">
+                  <TableHeader class="sticky top-0 z-[1] bg-muted text-muted-foreground">
+                    <TableRow>
+                      <TableHead class="px-3 py-2.5 font-medium">Supplier ID</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Code</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Stock</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Price</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Currency</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Updated</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody class="divide-y">
+                    <TableRow
                       v-for="supplier in visibleSupplierInventory"
                       :key="`${supplier.supplierId}-${supplier.code}`"
                       class="hover:bg-muted/30"
                     >
-                      <td class="px-3 py-2.5 font-medium">
+                      <TableCell class="px-3 py-2.5 font-medium">
                         {{ supplier.supplierId }}
-                      </td>
-                      <td class="px-3 py-2.5">{{ supplier.code }}</td>
-                      <td class="px-3 py-2.5 text-right tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5">{{ supplier.code }}</TableCell>
+                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
                         {{ supplier.stock }}
-                      </td>
-                      <td class="px-3 py-2.5 text-right font-semibold tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5 text-right font-semibold tabular-nums">
                         {{ supplier.price.toFixed(2) }}
-                      </td>
-                      <td class="px-3 py-2.5">{{ supplier.currency }}</td>
-                      <td class="whitespace-nowrap px-3 py-2.5">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5">{{ supplier.currency }}</TableCell>
+                      <TableCell class="whitespace-nowrap px-3 py-2.5">
                         {{ supplier.updatedAt }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </div>
 
               <div class="divide-y md:hidden">
@@ -1434,7 +1477,7 @@ function formatMoney(value: number, currency = 'AED'): string {
                   </div>
                 </div>
               </div>
-            </article>
+            </Card>
           </section>
         </div>
 
@@ -1442,17 +1485,19 @@ function formatMoney(value: number, currency = 'AED'): string {
         <section
           class="mt-3 grid min-w-0 grid-cols-1 items-stretch gap-3 lg:grid-cols-2 2xl:grid-cols-4"
         >
-          <article
+          <Card
             class="min-w-0 overflow-hidden rounded-lg border border-blue-500/20 bg-card shadow-sm"
           >
             <div class="min-w-0 overflow-hidden">
-              <header class="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-3">
+              <CardHeader
+                class="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-3"
+              >
                 <div class="flex items-center gap-2">
                   <span class="flex size-7 items-center justify-center rounded-md bg-primary/10">
                     <TrendingUpIcon class="size-4 text-primary" />
                   </span>
                   <div>
-                    <h2 class="text-sm font-semibold">Movements</h2>
+                    <CardTitle class="text-sm font-semibold">Movements</CardTitle>
                     <p class="text-[10px] text-muted-foreground">
                       Annual sales and direct movement
                     </p>
@@ -1468,7 +1513,7 @@ function formatMoney(value: number, currency = 'AED'): string {
                     Direct
                   </span>
                 </div>
-              </header>
+              </CardHeader>
 
               <div class="p-3">
                 <svg
@@ -1533,19 +1578,21 @@ function formatMoney(value: number, currency = 'AED'): string {
                 </svg>
               </div>
             </div>
-          </article>
+          </Card>
 
-          <article
+          <Card
             class="min-w-0 overflow-hidden rounded-lg border border-violet-500/20 bg-card shadow-sm"
           >
             <div class="min-w-0 overflow-hidden">
-              <header class="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-3">
+              <CardHeader
+                class="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-3"
+              >
                 <div class="flex items-center gap-2">
                   <span class="flex size-7 items-center justify-center rounded-md bg-primary/10">
                     <BarChart3Icon class="size-4 text-primary" />
                   </span>
                   <div>
-                    <h2 class="text-sm font-semibold">Branch-wise sales</h2>
+                    <CardTitle class="text-sm font-semibold">Branch-wise sales</CardTitle>
                     <p class="text-[10px] text-muted-foreground">
                       This year compared with last year
                     </p>
@@ -1561,7 +1608,7 @@ function formatMoney(value: number, currency = 'AED'): string {
                     Last year
                   </span>
                 </div>
-              </header>
+              </CardHeader>
 
               <div class="space-y-4 p-4">
                 <div
@@ -1596,9 +1643,9 @@ function formatMoney(value: number, currency = 'AED'): string {
                 </div>
               </div>
             </div>
-          </article>
+          </Card>
 
-          <article
+          <Card
             class="min-w-0 overflow-hidden rounded-lg border border-emerald-500/20 bg-card shadow-sm"
           >
             <div class="p-4">
@@ -1607,7 +1654,7 @@ function formatMoney(value: number, currency = 'AED'): string {
                   <ClipboardListIcon class="size-4 text-primary" />
                 </span>
                 <div>
-                  <h2 class="text-sm font-semibold">Reorder levels</h2>
+                  <CardTitle class="text-sm font-semibold">Reorder levels</CardTitle>
                   <p class="text-[10px] text-muted-foreground">
                     Stock thresholds for replenishment planning
                   </p>
@@ -1640,9 +1687,9 @@ function formatMoney(value: number, currency = 'AED'): string {
                 </div>
               </dl>
             </div>
-          </article>
+          </Card>
 
-          <article
+          <Card
             class="min-w-0 overflow-hidden rounded-lg border border-amber-500/20 bg-card shadow-sm"
           >
             <div class="p-4">
@@ -1651,38 +1698,38 @@ function formatMoney(value: number, currency = 'AED'): string {
                   <CircleDollarSignIcon class="size-4 text-primary" />
                 </span>
                 <div>
-                  <h2 class="text-sm font-semibold">Purchase history</h2>
+                  <CardTitle class="text-sm font-semibold">Purchase history</CardTitle>
                   <p class="text-[10px] text-muted-foreground">Recent supplier purchase prices</p>
                 </div>
               </div>
               <div class="overflow-hidden rounded-lg border">
-                <table class="w-full text-left text-xs">
-                  <thead class="bg-muted/60 text-muted-foreground">
-                    <tr>
-                      <th class="px-3 py-2.5 font-medium">Supplier</th>
-                      <th class="px-3 py-2.5 font-medium">Code</th>
-                      <th class="px-3 py-2.5 text-right font-medium">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y">
-                    <tr
+                <Table class="w-full text-left text-xs">
+                  <TableHeader class="bg-muted/60 text-muted-foreground">
+                    <TableRow>
+                      <TableHead class="px-3 py-2.5 font-medium">Supplier</TableHead>
+                      <TableHead class="px-3 py-2.5 font-medium">Code</TableHead>
+                      <TableHead class="px-3 py-2.5 text-right font-medium">Price</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody class="divide-y">
+                    <TableRow
                       v-for="(purchase, index) in purchaseRecords"
                       :key="index"
                       class="hover:bg-muted/30"
                     >
-                      <td class="px-3 py-2.5 font-medium">
+                      <TableCell class="px-3 py-2.5 font-medium">
                         {{ purchase.supplier }}
-                      </td>
-                      <td class="px-3 py-2.5">{{ purchase.code }}</td>
-                      <td class="px-3 py-2.5 text-right font-semibold tabular-nums">
+                      </TableCell>
+                      <TableCell class="px-3 py-2.5">{{ purchase.code }}</TableCell>
+                      <TableCell class="px-3 py-2.5 text-right font-semibold tabular-nums">
                         {{ formatMoney(purchase.price) }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </div>
             </div>
-          </article>
+          </Card>
         </section>
       </div>
     </div>

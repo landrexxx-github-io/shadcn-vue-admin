@@ -10,6 +10,8 @@ import SourcenetPartsWorkspace from '@/views/sourcenet/SourcenetPartsWorkspace.v
 import SourcenetPartsWorkspace2 from '@/views/sourcenet2/SourcenetPartsWorkspace2.vue'
 import OnlineCustomerEnquiry from '@/views/sourcenet2/enquiry/OnlineCustomerEnquiry.vue'
 import LocalCustomerEnquiry from '@/views/sourcenet2/enquiry/LocalCustomerEnquiry.vue'
+import CustomerQuotation from '@/views/sourcenet2/quotation/CustomerQuotation.vue'
+import CreateCustomerQuotation from '@/views/sourcenet2/quotation/CreateCustomerQuotation.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,6 +67,16 @@ const router = createRouter({
           path: 'local-enquiry',
           name: 'local-enquiry',
           component: LocalCustomerEnquiry,
+        },
+        {
+          path: 'quotation',
+          name: 'quotation',
+          component: CustomerQuotation,
+        },
+        {
+          path: 'quotation/new',
+          name: 'quotation-new',
+          component: CreateCustomerQuotation,
         },
       ],
     },

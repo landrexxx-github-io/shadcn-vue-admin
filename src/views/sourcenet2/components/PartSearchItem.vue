@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
+import { Button } from '@/components/ui/button'
 import { Item } from '@/components/ui/item'
+import { Label } from '@/components/ui/label'
 import {
   Select,
   SelectContent,
@@ -12,8 +14,10 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import InputSearch from '@/components/common/InputSearch.vue'
-import Label from '@/components/ui/label/Label.vue'
+import InputGroup from '@/components/ui/input-group/InputGroup.vue'
+import InputGroupInput from '@/components/ui/input-group/InputGroupInput.vue'
+import { Search } from 'lucide-vue-next'
+import InputGroupAddon from '@/components/ui/input-group/InputGroupAddon.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -68,8 +72,12 @@ const categories = [
 const partRemarks = [
   { value: 'de', label: 'DE' },
   { value: 'oem', label: 'OEM' },
-  { value: 'replacement', label: 'Replacement' },
-  { value: 'alternate', label: 'Alternate' },
+  { value: 'reb', label: 'REB' },
+  // { value: 'used', label: 'USED' },
+  // { value: 'ipd', label: 'IPD' },
+  // { value: 'trk', label: 'TRK' },
+  // { value: 'bq', label: 'BQ' },
+  // { value: 'dsg', label: 'DSG' },
 ]
 
 function saveRecentSearch(term: string): void {
@@ -99,67 +107,88 @@ function handleSearch(): void {
     partRemark: partRemarkModel.value,
   })
 }
+
+function selectPartRemark(value: string): void {
+  partRemarkModel.value = value
+}
 </script>
 
 <template>
   <div class="w-full min-w-0">
-    <Item
-      variant="outline"
-      class="w-full min-w-0 rounded-lg border-blue-200 bg-blue-50 p-3 shadow-sm dark:border-blue-900 dark:bg-blue-950/30"
-    >
+    <Item variant="outline" class="w-full min-w-0 rounded-xl bg-card p-3 shadow-sm sm:p-4">
       <form
-        class="grid w-full min-w-0 grid-cols-1 gap-2.5 sm:grid-cols-2"
+        class="grid w-full min-w-0 grid-cols-1 gap-4 xl:grid-cols-[minmax(0,3fr)_minmax(180px,1fr)]"
         @submit.prevent="handleSearch"
       >
-        <div class="min-w-0 sm:col-span-2">
-          <Label for="part-search" class="sr-only">Search part number</Label>
-          <InputSearch
-            id="part-search"
-            v-model="searchTermModel"
-            class="w-full min-w-0"
-            placeholder="Search for part number..."
-          />
+        <!-- Category and part-number search -->
+        <div class="grid min-w-0 grid-cols-1 gap-3 lg:grid-cols-2 xl:grid-cols-1">
+          <div class="grid min-w-0 gap-1.5">
+            <div class="flex justify-between">
+              <Label for="category-filter"> Category </Label>
+              <Label for="category-filter"> </Label>
+            </div>
+
+            <Select v-model="categoryModel">
+              <SelectTrigger id="category-filter" class="w-full min-w-0">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Categories</SelectLabel>
+                  <SelectItem
+                    v-for="category in categories"
+                    :key="category.value"
+                    :value="category.value"
+                  >
+                    {{ category.label }}
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div class="grid min-w-0 gap-1.5">
+            <Label for="part-search"> Part number </Label>
+            <InputGroup>
+              <InputGroupInput
+                id="part-search"
+                v-model="searchTermModel"
+                class="w-full min-w-0"
+                placeholder="Enter a part number"
+              />
+              <InputGroupAddon>
+                <Search />
+              </InputGroupAddon>
+            </InputGroup>
+          </div>
         </div>
 
-        <div class="min-w-0">
-          <Label for="category-filter" class="sr-only">Category</Label>
-          <Select v-model="categoryModel">
-            <SelectTrigger id="category-filter" class="h-9 w-full min-w-0 rounded-md bg-background">
-              <SelectValue placeholder="Select category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel><a href="#">Categories</a></SelectLabel>
-                <SelectItem
-                  v-for="category in categories"
-                  :key="category.value"
-                  :value="category.value"
-                >
-                  {{ category.label }}
-                </SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </div>
+        <!-- Part remarks -->
+        <div class="min-w-0 border-t pt-4 xl:border-l xl:border-t-0 xl:pl-4 xl:pt-0">
+          <div class="mb-2">
+            <Label>Part remark</Label>
+          </div>
 
-        <div class="min-w-0">
-          <label for="part-remark-filter" class="sr-only">Part remark</label>
-          <Select v-model="partRemarkModel">
-            <SelectTrigger
-              id="part-remark-filter"
-              class="h-9 w-full min-w-0 rounded-md bg-background"
+          <div
+            class="grid grid-cols-4 gap-1.5 sm:grid-cols-8 xl:grid-cols-2"
+            role="radiogroup"
+            aria-label="Part remark"
+          >
+            <Button
+              v-for="remark in partRemarks"
+              :key="remark.value"
+              type="button"
+              size="sm"
+              :variant="partRemarkModel === remark.value ? 'default' : 'outline'"
+              class="h-8 min-w-0 px-1.5 text-xs"
+              role="radio"
+              :aria-checked="partRemarkModel === remark.value"
+              @click="selectPartRemark(remark.value)"
             >
-              <SelectValue placeholder="Select part remark" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Part remarks</SelectLabel>
-                <SelectItem v-for="remark in partRemarks" :key="remark.value" :value="remark.value">
-                  {{ remark.label }}
-                </SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+              {{ remark.label }}
+            </Button>
+          </div>
         </div>
       </form>
     </Item>

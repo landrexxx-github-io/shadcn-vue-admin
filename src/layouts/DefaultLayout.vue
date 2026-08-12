@@ -16,22 +16,15 @@ const open = ref(true)
 </script>
 
 <template>
-  <SidebarProvider :default-open="open" class="group/sidebar-wrapper">
+  <SidebarProvider :default-open="open" class="group/sidebar-wrapper h-svh min-h-0 overflow-hidden">
     <AppSidebar />
-    <SidebarInset>
-      <NavHeader />
-      <div
-        class="flex h-full w-full min-h-0 min-w-0 max-w-full flex-col overflow-hidden bg-muted/20"
-      >
-        <div class="h-full w-full min-w-0 overflow-x-hidden overflow-y-auto">
-          <div class="mx-auto w-full max-w-450 p-3 sm:p-4">
-            <RouterView />
-          </div>
+    <SidebarInset class="h-svh min-h-0 overflow-hidden">
+      <NavHeader class="shrink-0" />
+      <div class="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto bg-muted/20">
+        <div class="mx-auto w-full max-w-450 p-3 pb-8 sm:p-4 sm:pb-10">
+          <RouterView />
         </div>
       </div>
-      <!-- <div class="flex flex-1 flex-col gap-4 p-2">
-        <RouterView />
-      </div> -->
     </SidebarInset>
   </SidebarProvider>
 </template>
