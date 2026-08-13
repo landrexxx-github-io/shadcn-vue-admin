@@ -469,196 +469,212 @@ function toWorkspaceRemark(remarkCode: string): string {
 
       <!-- Lower panel -->
       <SplitterPanel :default-size="50" :min-size="30" class="min-h-0 overflow-hidden">
-        <div class="flex h-full min-h-0 overflow-y-auto p-4">
+        <div class="flex h-full min-h-0 overflow-y-auto p-2 sm:p-4">
           <Accordion type="single" collapsible class="w-full" default-value="item-1">
             <AccordionItem value="item-1">
               <AccordionTrigger>Quotation Information</AccordionTrigger>
               <AccordionContent>
-                <form class="grid gap-4 pb-6 xl:grid-cols-2" @submit.prevent>
-                  <div class="flex justify-end xl:col-span-2">
-                    <Button type="submit" class="min-w-36">Save quotation</Button>
-                  </div>
-                  <Card>
-                    <CardHeader class="pb-4"
-                      ><CardTitle class="text-base">Customer Information</CardTitle></CardHeader
+                <form class="pb-6" @submit.prevent>
+                  <Card class="overflow-hidden">
+                    <CardHeader
+                      class="flex flex-col gap-3 border-b sm:flex-row sm:items-center sm:justify-between"
                     >
-                    <CardContent>
-                      <div class="grid gap-4">
-                        <div class="grid gap-2 sm:grid-cols-[140px_1fr] sm:items-center">
-                          <Label for="organization">Organization</Label>
-                          <Select v-model="quotationInformation.organization"
-                            ><SelectTrigger id="organization" class="w-full"
-                              ><SelectValue /></SelectTrigger
-                            ><SelectContent
-                              ><SelectItem value="Dahbashi Group of Companies"
-                                >Dahbashi Group of Companies</SelectItem
-                              ><SelectItem value="Dahbashi Engineering"
-                                >Dahbashi Engineering</SelectItem
-                              ></SelectContent
-                            ></Select
-                          >
-                        </div>
-                        <div class="grid gap-2 sm:grid-cols-[140px_1fr] sm:items-center">
-                          <Label for="quotation-location">Location</Label>
-                          <Select v-model="quotationInformation.location"
-                            ><SelectTrigger id="quotation-location" class="w-full"
-                              ><SelectValue /></SelectTrigger
-                            ><SelectContent
-                              ><SelectItem value="Head Office">Head Office</SelectItem
-                              ><SelectItem value="Abu Dhabi">Abu Dhabi</SelectItem
-                              ><SelectItem value="Dubai">Dubai</SelectItem></SelectContent
-                            ></Select
-                          >
-                        </div>
-                        <div class="grid gap-2 sm:grid-cols-[140px_1fr] sm:items-center">
-                          <Label for="quotation-customer">Customer</Label
-                          ><Input
-                            id="quotation-customer"
-                            v-model="quotationInformation.customer"
-                            placeholder="Search or enter customer"
-                          />
-                        </div>
-                        <div class="grid gap-2 sm:grid-cols-[140px_1fr]">
-                          <Label for="address-1" class="pt-2">Address</Label>
-                          <Input
-                            id="address-1"
-                            v-model="quotationInformation.addressLine1"
-                            placeholder="Street, city, and country"
-                          />
-                        </div>
-                        <div class="grid gap-4 sm:grid-cols-2">
-                          <div class="grid gap-2">
-                            <Label for="telephone">Telephone</Label
-                            ><Input id="telephone" v-model="quotationInformation.telephone" />
-                          </div>
-                          <div class="grid gap-2">
-                            <Label for="fax">Fax</Label
-                            ><Input id="fax" v-model="quotationInformation.fax" />
-                          </div>
-                        </div>
-                        <div class="grid gap-2">
-                          <Label for="kind-attention">Kind Attention</Label
-                          ><Input
-                            id="kind-attention"
-                            v-model="quotationInformation.kindAttention"
-                          />
-                        </div>
-                        <div class="grid gap-2">
-                          <Label for="quotation-header">Header</Label
-                          ><Textarea
-                            id="quotation-header"
-                            v-model="quotationInformation.header"
-                            rows="3"
-                          />
-                        </div>
-                        <div class="grid gap-2">
-                          <Label for="quotation-footer">Footer</Label
-                          ><Textarea
-                            id="quotation-footer"
-                            v-model="quotationInformation.footer"
-                            rows="3"
-                          />
-                        </div>
+                      <div>
+                        <CardTitle class="text-base">Quotation Information</CardTitle>
+                        <p class="mt-1 text-sm text-muted-foreground">
+                          Customer details, quotation terms, and equipment information
+                        </p>
                       </div>
-                    </CardContent>
-                  </Card>
+                      <Button type="submit" class="w-full sm:w-auto sm:min-w-36">
+                        Save quotation
+                      </Button>
+                    </CardHeader>
+                    <CardContent class="pt-6">
+                      <div class="grid gap-6 grid-cols-2">
+                        <section class="grid min-w-0 content-start gap-4">
+                          <CardTitle class="text-sm">Customer Information</CardTitle>
+                          <div class="grid gap-4">
+                            <div class="grid gap-2 sm:grid-cols-[140px_1fr] sm:items-center">
+                              <Label for="organization">Organization</Label>
+                              <Select v-model="quotationInformation.organization"
+                                ><SelectTrigger id="organization" class="w-full"
+                                  ><SelectValue /></SelectTrigger
+                                ><SelectContent
+                                  ><SelectItem value="Dahbashi Group of Companies"
+                                    >Dahbashi Group of Companies</SelectItem
+                                  ><SelectItem value="Dahbashi Engineering"
+                                    >Dahbashi Engineering</SelectItem
+                                  ></SelectContent
+                                ></Select
+                              >
+                            </div>
+                            <div class="grid gap-2 sm:grid-cols-[140px_1fr] sm:items-center">
+                              <Label for="quotation-location">Location</Label>
+                              <Select v-model="quotationInformation.location"
+                                ><SelectTrigger id="quotation-location" class="w-full"
+                                  ><SelectValue /></SelectTrigger
+                                ><SelectContent
+                                  ><SelectItem value="Head Office">Head Office</SelectItem
+                                  ><SelectItem value="Abu Dhabi">Abu Dhabi</SelectItem
+                                  ><SelectItem value="Dubai">Dubai</SelectItem></SelectContent
+                                ></Select
+                              >
+                            </div>
+                            <div class="grid gap-2 sm:grid-cols-[140px_1fr] sm:items-center">
+                              <Label for="quotation-customer">Customer</Label
+                              ><Input
+                                id="quotation-customer"
+                                v-model="quotationInformation.customer"
+                                placeholder="Search or enter customer"
+                              />
+                            </div>
+                            <div class="grid gap-2 sm:grid-cols-[140px_1fr]">
+                              <Label for="address-1" class="pt-2">Address</Label>
+                              <Input
+                                id="address-1"
+                                v-model="quotationInformation.addressLine1"
+                                placeholder="Street, city, and country"
+                              />
+                            </div>
+                            <div class="grid gap-4 sm:grid-cols-2">
+                              <div class="grid gap-2">
+                                <Label for="telephone">Telephone</Label
+                                ><Input id="telephone" v-model="quotationInformation.telephone" />
+                              </div>
+                              <div class="grid gap-2">
+                                <Label for="fax">Fax</Label
+                                ><Input id="fax" v-model="quotationInformation.fax" />
+                              </div>
+                            </div>
+                            <div class="grid gap-2">
+                              <Label for="kind-attention">Kind Attention</Label
+                              ><Input
+                                id="kind-attention"
+                                v-model="quotationInformation.kindAttention"
+                              />
+                            </div>
+                            <div class="grid gap-2">
+                              <Label for="quotation-header">Header</Label
+                              ><Textarea
+                                id="quotation-header"
+                                v-model="quotationInformation.header"
+                                rows="3"
+                              />
+                            </div>
+                            <div class="grid gap-2">
+                              <Label for="quotation-footer">Footer</Label
+                              ><Textarea
+                                id="quotation-footer"
+                                v-model="quotationInformation.footer"
+                                rows="3"
+                              />
+                            </div>
+                          </div>
+                        </section>
 
-                  <Card>
-                    <CardHeader class="pb-4"
-                      ><CardTitle class="text-base">Quotation Details</CardTitle></CardHeader
-                    >
-                    <CardContent>
-                      <div class="grid gap-4">
-                        <div class="grid gap-4 sm:grid-cols-2">
-                          <div class="grid gap-2">
-                            <Label for="customer-reference">Customer Reference</Label
-                            ><Input
-                              id="customer-reference"
-                              v-model="quotationInformation.customerReference"
-                            />
+                        <section
+                          class="grid min-w-0 content-start gap-4 border-t pt-6 2xl:border-l 2xl:border-t-0 2xl:pl-8 2xl:pt-0"
+                        >
+                          <CardTitle class="text-sm">Quotation Details</CardTitle>
+                          <div class="grid gap-4">
+                            <div class="grid gap-4 sm:grid-cols-2">
+                              <div class="grid gap-2">
+                                <Label for="customer-reference">Customer Reference</Label
+                                ><Input
+                                  id="customer-reference"
+                                  v-model="quotationInformation.customerReference"
+                                />
+                              </div>
+                              <div class="grid gap-2">
+                                <Label for="reference-date">Reference Date</Label
+                                ><Input
+                                  id="reference-date"
+                                  v-model="quotationInformation.referenceDate"
+                                  type="date"
+                                />
+                              </div>
+                            </div>
+                            <div class="grid gap-4 sm:grid-cols-2">
+                              <div class="grid gap-2">
+                                <Label for="make">Make</Label
+                                ><Input id="make" v-model="quotationInformation.make" />
+                              </div>
+                              <div class="grid gap-2">
+                                <Label for="model">Model</Label
+                                ><Input id="model" v-model="quotationInformation.model" />
+                              </div>
+                            </div>
+                            <div class="grid gap-2">
+                              <Label for="serial-number">Serial Number</Label
+                              ><Input
+                                id="serial-number"
+                                v-model="quotationInformation.serialNumber"
+                              />
+                            </div>
+                            <div class="grid gap-4">
+                              <div class="grid gap-2">
+                                <Label for="validity">Validity</Label
+                                ><Select v-model="quotationInformation.validity"
+                                  ><SelectTrigger id="validity" class="w-full"
+                                    ><SelectValue /></SelectTrigger
+                                  ><SelectContent
+                                    ><SelectItem value="7 Days">7 Days</SelectItem
+                                    ><SelectItem value="15 Days">15 Days</SelectItem
+                                    ><SelectItem value="30 Days">30 Days</SelectItem></SelectContent
+                                  ></Select
+                                >
+                              </div>
+                            </div>
+                            <div class="grid gap-2">
+                              <Label for="payment-terms">Payment Terms</Label
+                              ><Select v-model="quotationInformation.paymentTerms"
+                                ><SelectTrigger id="payment-terms" class="w-full"
+                                  ><SelectValue /></SelectTrigger
+                                ><SelectContent
+                                  ><SelectItem value="Cash">Cash</SelectItem
+                                  ><SelectItem value="Credit">Credit</SelectItem
+                                  ><SelectItem value="Bank Transfer"
+                                    >Bank Transfer</SelectItem
+                                  ></SelectContent
+                                ></Select
+                              >
+                            </div>
+                            <div class="grid gap-2">
+                              <Label for="availability">Availability</Label
+                              ><Input
+                                id="availability"
+                                v-model="quotationInformation.availability"
+                              />
+                            </div>
+                            <div class="grid gap-4 sm:grid-cols-2">
+                              <div class="grid gap-2">
+                                <Label for="warranty">Warranty</Label
+                                ><Input id="warranty" v-model="quotationInformation.warranty" />
+                              </div>
+                              <div class="grid gap-2">
+                                <Label for="country-origin">Country of Origin</Label
+                                ><Input
+                                  id="country-origin"
+                                  v-model="quotationInformation.countryOfOrigin"
+                                />
+                              </div>
+                            </div>
+                            <div class="grid gap-4 sm:grid-cols-2">
+                              <div class="grid gap-2">
+                                <Label for="currency">Currency</Label
+                                ><Select v-model="quotationInformation.currency"
+                                  ><SelectTrigger id="currency" class="w-full"
+                                    ><SelectValue /></SelectTrigger
+                                  ><SelectContent
+                                    ><SelectItem value="AED">AED</SelectItem
+                                    ><SelectItem value="USD">USD</SelectItem
+                                    ><SelectItem value="EUR">EUR</SelectItem></SelectContent
+                                  ></Select
+                                >
+                              </div>
+                            </div>
                           </div>
-                          <div class="grid gap-2">
-                            <Label for="reference-date">Reference Date</Label
-                            ><Input
-                              id="reference-date"
-                              v-model="quotationInformation.referenceDate"
-                              type="date"
-                            />
-                          </div>
-                        </div>
-                        <div class="grid gap-4 sm:grid-cols-2">
-                          <div class="grid gap-2">
-                            <Label for="make">Make</Label
-                            ><Input id="make" v-model="quotationInformation.make" />
-                          </div>
-                          <div class="grid gap-2">
-                            <Label for="model">Model</Label
-                            ><Input id="model" v-model="quotationInformation.model" />
-                          </div>
-                        </div>
-                        <div class="grid gap-2">
-                          <Label for="serial-number">Serial Number</Label
-                          ><Input id="serial-number" v-model="quotationInformation.serialNumber" />
-                        </div>
-                        <div class="grid gap-4">
-                          <div class="grid gap-2">
-                            <Label for="validity">Validity</Label
-                            ><Select v-model="quotationInformation.validity"
-                              ><SelectTrigger id="validity" class="w-full"
-                                ><SelectValue /></SelectTrigger
-                              ><SelectContent
-                                ><SelectItem value="7 Days">7 Days</SelectItem
-                                ><SelectItem value="15 Days">15 Days</SelectItem
-                                ><SelectItem value="30 Days">30 Days</SelectItem></SelectContent
-                              ></Select
-                            >
-                          </div>
-                        </div>
-                        <div class="grid gap-2">
-                          <Label for="payment-terms">Payment Terms</Label
-                          ><Select v-model="quotationInformation.paymentTerms"
-                            ><SelectTrigger id="payment-terms" class="w-full"
-                              ><SelectValue /></SelectTrigger
-                            ><SelectContent
-                              ><SelectItem value="Cash">Cash</SelectItem
-                              ><SelectItem value="Credit">Credit</SelectItem
-                              ><SelectItem value="Bank Transfer"
-                                >Bank Transfer</SelectItem
-                              ></SelectContent
-                            ></Select
-                          >
-                        </div>
-                        <div class="grid gap-2">
-                          <Label for="availability">Availability</Label
-                          ><Input id="availability" v-model="quotationInformation.availability" />
-                        </div>
-                        <div class="grid gap-4 sm:grid-cols-2">
-                          <div class="grid gap-2">
-                            <Label for="warranty">Warranty</Label
-                            ><Input id="warranty" v-model="quotationInformation.warranty" />
-                          </div>
-                          <div class="grid gap-2">
-                            <Label for="country-origin">Country of Origin</Label
-                            ><Input
-                              id="country-origin"
-                              v-model="quotationInformation.countryOfOrigin"
-                            />
-                          </div>
-                        </div>
-                        <div class="grid gap-4 sm:grid-cols-2">
-                          <div class="grid gap-2">
-                            <Label for="currency">Currency</Label
-                            ><Select v-model="quotationInformation.currency"
-                              ><SelectTrigger id="currency" class="w-full"
-                                ><SelectValue /></SelectTrigger
-                              ><SelectContent
-                                ><SelectItem value="AED">AED</SelectItem
-                                ><SelectItem value="USD">USD</SelectItem
-                                ><SelectItem value="EUR">EUR</SelectItem></SelectContent
-                              ></Select
-                            >
-                          </div>
-                        </div>
+                        </section>
                       </div>
                     </CardContent>
                   </Card>
@@ -668,13 +684,19 @@ function toWorkspaceRemark(remarkCode: string): string {
             <AccordionItem value="item-2">
               <AccordionTrigger>Quotation Line Items</AccordionTrigger>
               <AccordionContent>
-                <div class="grid gap-4 pb-6 xl:grid-cols-[minmax(0,3fr)_minmax(260px,1fr)]">
-                  <div class="grid min-w-0 content-start gap-4">
-                    <Card>
-                      <CardHeader class="flex flex-row items-center justify-between gap-3 pb-3">
-                        <div>
-                          <div class="flex items-center gap-1.5">
-                            <CardTitle class="text-base">{{
+                <div
+                  class="grid w-full min-w-0 gap-4 pb-6 min-[1440px]:grid-cols-[minmax(0,1fr)_minmax(300px,360px)] min-[1440px]:items-start"
+                >
+                  <div
+                    class="contents min-[1440px]:order-1 min-[1440px]:grid min-[1440px]:min-w-0 min-[1440px]:content-start min-[1440px]:gap-4"
+                  >
+                    <Card class="order-1 min-w-0 overflow-hidden">
+                      <CardHeader
+                        class="flex flex-col items-stretch gap-3 pb-3 sm:flex-row sm:items-center sm:justify-between"
+                      >
+                        <div class="min-w-0">
+                          <div class="flex min-w-0 items-start gap-1.5">
+                            <CardTitle class="min-w-0 wrap-break-word text-base">{{
                               currentPartMetadata.description
                             }}</CardTitle>
                             <Button
@@ -691,11 +713,12 @@ function toWorkspaceRemark(remarkCode: string): string {
                             </Button>
                           </div>
                           <p class="mt-1 text-xs text-muted-foreground">
-                            Weight: {{ currentPartMetadata.weight.toFixed(3) }} kg
+                            Weight:
+                            {{ currentPartMetadata.weight.toFixed(3) }} kg
                           </p>
                         </div>
-                        <div class="flex shrink-0 items-center gap-2">
-                          <Button form="line-item-form" type="submit">{{
+                        <div class="flex w-full shrink-0 items-center gap-2 sm:w-auto">
+                          <Button form="line-item-form" type="submit" class="flex-1 sm:flex-none">{{
                             editingLineItemId ? 'Update item' : 'Add item'
                           }}</Button>
                           <Button
@@ -712,12 +735,14 @@ function toWorkspaceRemark(remarkCode: string): string {
                       <CardContent>
                         <form id="line-item-form" class="grid gap-5" @submit.prevent="saveLineItem">
                           <div
-                            class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-[90px_minmax(130px,1fr)_minmax(130px,1fr)_110px_90px_120px_130px]"
+                            class="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 min-[1200px]:grid-cols-4 min-[1440px]:grid-cols-[auto_minmax(160px,1fr)_minmax(160px,1fr)_auto_72px_104px_auto] min-[1440px]:items-end"
                           >
-                            <div class="grid min-w-0 gap-1.5">
+                            <div class="grid min-w-0 gap-1.5 min-[1440px]:w-auto">
                               <Label for="line-category">Category</Label
                               ><Select v-model="lineItemForm.category"
-                                ><SelectTrigger id="line-category" class="w-full 2xl:w-auto"
+                                ><SelectTrigger
+                                  id="line-category"
+                                  class="w-full min-[1440px]:w-auto"
                                   ><SelectValue /></SelectTrigger
                                 ><SelectContent
                                   ><SelectItem value="CT">CT</SelectItem
@@ -725,9 +750,9 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 ></Select
                               >
                             </div>
-                            <div class="grid min-w-0 gap-1.5">
+                            <div class="grid min-w-0 gap-1.5 min-[1440px]:min-w-[160px]">
                               <Label for="line-part-number"
-                                >Part Number <span class="text-destructive">*</span></Label
+                                >Part no. <span class="text-destructive">*</span></Label
                               ><Input
                                 id="line-part-number"
                                 v-model="lineItemForm.partNumber"
@@ -736,8 +761,8 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 placeholder="e.g. 7S3206"
                               />
                             </div>
-                            <div class="grid min-w-0 gap-1.5">
-                              <Label for="line-replaced-number">Replaced Number</Label
+                            <div class="grid min-w-0 gap-1.5 min-[1440px]:min-w-[160px]">
+                              <Label for="line-replaced-number">Replaced no.</Label
                               ><Input
                                 id="line-replaced-number"
                                 v-model="lineItemForm.replacedNumber"
@@ -745,10 +770,10 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 placeholder="Optional"
                               />
                             </div>
-                            <div class="grid min-w-0 gap-1.5">
+                            <div class="grid min-w-0 gap-1.5 min-[1440px]:w-auto">
                               <Label for="line-remark">Part Remark</Label
                               ><Select v-model="lineItemForm.partRemark"
-                                ><SelectTrigger id="line-remark" class="w-full 2xl:w-auto"
+                                ><SelectTrigger id="line-remark" class="w-full min-[1440px]:w-auto"
                                   ><SelectValue /></SelectTrigger
                                 ><SelectContent
                                   ><SelectItem value="DE">DE</SelectItem
@@ -762,7 +787,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 </SelectContent></Select
                               >
                             </div>
-                            <div class="grid min-w-0 gap-1.5">
+                            <div class="grid min-w-0 gap-1.5 min-[1440px]:w-full">
                               <Label for="line-quantity">Quantity</Label
                               ><Input
                                 id="line-quantity"
@@ -772,9 +797,10 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 max="9999"
                                 step="1"
                                 inputmode="numeric"
+                                class=""
                               />
                             </div>
-                            <div class="grid min-w-0 gap-1.5">
+                            <div class="grid min-w-0 gap-1.5 min-[1440px]:w-full">
                               <Label for="line-price">Unit Price</Label
                               ><Input
                                 id="line-price"
@@ -786,10 +812,12 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 inputmode="decimal"
                               />
                             </div>
-                            <div class="grid min-w-0 gap-1.5">
+                            <div class="grid min-w-0 gap-1.5 min-[1440px]:w-auto">
                               <Label for="line-delivery">Delivery Option</Label
                               ><Select v-model="lineItemForm.deliveryOption"
-                                ><SelectTrigger id="line-delivery" class="w-full 2xl:w-auto"
+                                ><SelectTrigger
+                                  id="line-delivery"
+                                  class="w-full min-[1440px]:w-auto"
                                   ><SelectValue /></SelectTrigger
                                 ><SelectContent
                                   ><SelectItem value="Ex-Stock">Ex-Stock</SelectItem
@@ -814,9 +842,11 @@ function toWorkspaceRemark(remarkCode: string): string {
                       </CardContent>
                     </Card>
 
-                    <Card>
-                      <CardHeader class="flex flex-row items-center justify-between gap-3 p-3">
-                        <div>
+                    <Card class="order-3 min-w-0 overflow-hidden">
+                      <CardHeader
+                        class="flex flex-col items-stretch gap-3 p-3 sm:flex-row sm:items-center sm:justify-between"
+                      >
+                        <div class="min-w-0">
                           <p class="text-xs text-muted-foreground">Total Value of the Parts</p>
                           <CardTitle class="mt-0.5 text-lg tabular-nums">{{
                             formatMoney(totalPartsValue)
@@ -827,6 +857,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                           type="button"
                           variant="destructive"
                           size="sm"
+                          class="w-full sm:w-auto"
                           @click="deleteSelectedLineItems"
                         >
                           <Trash2Icon class="mr-2 size-4" />
@@ -834,8 +865,8 @@ function toWorkspaceRemark(remarkCode: string): string {
                         </Button>
                       </CardHeader>
                       <CardContent class="p-0">
-                        <div class="overflow-x-auto">
-                          <Table>
+                        <div class="w-full max-w-full overflow-x-auto">
+                          <Table class="w-full min-w-[1100px]">
                             <TableHeader
                               ><TableRow
                                 ><TableHead class="w-10">
@@ -922,13 +953,13 @@ function toWorkspaceRemark(remarkCode: string): string {
                     </Card>
                   </div>
 
-                  <div class="grid content-start gap-4">
-                    <Card>
-                      <CardContent class="grid gap-4">
+                  <div class="order-2 grid min-w-0 content-start gap-4">
+                    <Card class="min-w-0 overflow-hidden">
+                      <CardContent class="grid min-w-0 gap-4">
                         <section class="grid gap-3">
-                          <Label class="text-sm font-semibold">Item Source</Label>
-                          <div class="grid gap-3">
-                            <div class="grid gap-1.5">
+                          <Label class="text-sm font-semibold">Additional Information</Label>
+                          <div class="grid min-w-0 grid-cols-1 gap-3 min-[1440px]:grid-cols-1">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="item-source" class="text-xs text-muted-foreground"
                                 >Source</Label
                               >
@@ -941,7 +972,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 ></Select
                               >
                             </div>
-                            <div class="grid gap-1.5">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="source-from" class="text-xs text-muted-foreground"
                                 >From</Label
                               >
@@ -958,7 +989,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 ></Select
                               >
                             </div>
-                            <div class="grid gap-1.5">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="supplier-price" class="text-xs text-muted-foreground"
                                 >Supplier Price</Label
                               ><Input
@@ -970,7 +1001,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 step="0.01"
                               />
                             </div>
-                            <div class="grid gap-1.5">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="item-origin" class="text-xs text-muted-foreground"
                                 >Origin</Label
                               >
@@ -993,9 +1024,9 @@ function toWorkspaceRemark(remarkCode: string): string {
                         <Separator />
 
                         <section class="grid gap-3">
-                          <Label class="text-sm font-semibold">Discounts</Label>
-                          <div class="grid grid-cols-2 gap-3">
-                            <div class="grid gap-1.5">
+                          <!-- <Label class="text-sm font-semibold">Discounts</Label> -->
+                          <div class="grid min-w-0 grid-cols-2 gap-3">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="discount-rate" class="text-xs text-muted-foreground"
                                 >Discount Rate (%)</Label
                               ><Input
@@ -1007,7 +1038,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 step="0.01"
                               />
                             </div>
-                            <div class="grid gap-1.5">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="discount-amount" class="text-xs text-muted-foreground"
                                 >Discount Amount</Label
                               ><Input
@@ -1023,9 +1054,9 @@ function toWorkspaceRemark(remarkCode: string): string {
                         <Separator />
 
                         <section class="grid gap-3">
-                          <Label class="text-sm font-semibold">VAT</Label>
-                          <div class="grid grid-cols-2 gap-3">
-                            <div class="grid gap-1.5">
+                          <!-- <Label class="text-sm font-semibold">VAT</Label> -->
+                          <div class="grid min-w-0 grid-cols-2 gap-3">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="vat-rate" class="text-xs text-muted-foreground"
                                 >VAT Rate (%)</Label
                               ><Input
@@ -1037,7 +1068,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 step="0.01"
                               />
                             </div>
-                            <div class="grid gap-1.5">
+                            <div class="grid min-w-0 gap-1.5">
                               <Label for="vat-amount" class="text-xs text-muted-foreground"
                                 >VAT Amount</Label
                               ><Input
@@ -1054,7 +1085,9 @@ function toWorkspaceRemark(remarkCode: string): string {
                             >
                               Grand Total
                             </p>
-                            <p class="mt-1 text-2xl font-bold tabular-nums text-primary">
+                            <p
+                              class="mt-1 break-words text-xl font-bold tabular-nums text-primary sm:text-2xl"
+                            >
                               {{ formatMoney(currentGrandTotal) }}
                             </p>
                           </div>
