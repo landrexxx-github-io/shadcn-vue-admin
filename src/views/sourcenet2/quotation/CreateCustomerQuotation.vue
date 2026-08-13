@@ -735,10 +735,11 @@ function toWorkspaceRemark(remarkCode: string): string {
                       <CardContent>
                         <form id="line-item-form" class="grid gap-5" @submit.prevent="saveLineItem">
                           <div
-                            class="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 min-[1200px]:grid-cols-4 min-[1440px]:grid-cols-[auto_minmax(160px,1fr)_minmax(160px,1fr)_auto_72px_104px_auto] min-[1440px]:items-end"
+                            class="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5 min-[1200px]:grid-cols-4 min-[1440px]:grid-cols-[auto_150px_150px_auto_50px_150px_auto] min-[1440px]:items-end min-[1440px]:justify-start"
                           >
                             <div class="grid min-w-0 gap-1.5 min-[1440px]:w-auto">
-                              <Label for="line-category">Category</Label
+                              <Label for="line-category" class="text-xs text-muted-foreground"
+                                >Category</Label
                               ><Select v-model="lineItemForm.category"
                                 ><SelectTrigger
                                   id="line-category"
@@ -750,19 +751,23 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 ></Select
                               >
                             </div>
-                            <div class="grid min-w-0 gap-1.5 min-[1440px]:min-w-[160px]">
-                              <Label for="line-part-number"
-                                >Part no. <span class="text-destructive">*</span></Label
+                            <div class="grid min-w-0 gap-1.5 w-auto">
+                              <Label for="line-part-number" class="text-xs text-muted-foreground"
+                                >Part number <span class="text-destructive">*</span></Label
                               ><Input
                                 id="line-part-number"
                                 v-model="lineItemForm.partNumber"
                                 required
                                 class="uppercase"
                                 placeholder="e.g. 7S3206"
+                                size="xs"
                               />
                             </div>
-                            <div class="grid min-w-0 gap-1.5 min-[1440px]:min-w-[160px]">
-                              <Label for="line-replaced-number">Replaced no.</Label
+                            <div class="grid min-w-0 gap-1.5 w-auto">
+                              <Label
+                                for="line-replaced-number"
+                                class="text-xs text-muted-foreground"
+                                >Replaced number</Label
                               ><Input
                                 id="line-replaced-number"
                                 v-model="lineItemForm.replacedNumber"
@@ -771,7 +776,8 @@ function toWorkspaceRemark(remarkCode: string): string {
                               />
                             </div>
                             <div class="grid min-w-0 gap-1.5 min-[1440px]:w-auto">
-                              <Label for="line-remark">Part Remark</Label
+                              <Label for="line-remark" class="text-xs text-muted-foreground"
+                                >Part Remark</Label
                               ><Select v-model="lineItemForm.partRemark"
                                 ><SelectTrigger id="line-remark" class="w-full min-[1440px]:w-auto"
                                   ><SelectValue /></SelectTrigger
@@ -787,8 +793,9 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 </SelectContent></Select
                               >
                             </div>
-                            <div class="grid min-w-0 gap-1.5 min-[1440px]:w-full">
-                              <Label for="line-quantity">Quantity</Label
+                            <div class="grid min-w-0 gap-1.5 w-auto">
+                              <Label for="line-quantity" class="text-xs text-muted-foreground"
+                                >Quantity</Label
                               ><Input
                                 id="line-quantity"
                                 v-model.number="lineItemForm.quantity"
@@ -797,11 +804,12 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 max="9999"
                                 step="1"
                                 inputmode="numeric"
-                                class=""
+                                class="w-full px-2"
                               />
                             </div>
-                            <div class="grid min-w-0 gap-1.5 min-[1440px]:w-full">
-                              <Label for="line-price">Unit Price</Label
+                            <div class="grid min-w-0 gap-1.5 w-auto">
+                              <Label for="line-price" class="text-xs text-muted-foreground"
+                                >Unit Price</Label
                               ><Input
                                 id="line-price"
                                 v-model.number="lineItemForm.unitPrice"
@@ -813,7 +821,8 @@ function toWorkspaceRemark(remarkCode: string): string {
                               />
                             </div>
                             <div class="grid min-w-0 gap-1.5 min-[1440px]:w-auto">
-                              <Label for="line-delivery">Delivery Option</Label
+                              <Label for="line-delivery" class="text-xs text-muted-foreground"
+                                >Delivery Option</Label
                               ><Select v-model="lineItemForm.deliveryOption"
                                 ><SelectTrigger
                                   id="line-delivery"
@@ -840,10 +849,10 @@ function toWorkspaceRemark(remarkCode: string): string {
                           {{ lineItemMessage }}
                         </p>
                       </CardContent>
-                    </Card>
 
-                    <Card class="order-3 min-w-0 overflow-hidden">
-                      <CardHeader
+                      <!-- <Separator /> -->
+
+                      <!-- <div
                         class="flex flex-col items-stretch gap-3 p-3 sm:flex-row sm:items-center sm:justify-between"
                       >
                         <div class="min-w-0">
@@ -863,27 +872,45 @@ function toWorkspaceRemark(remarkCode: string): string {
                           <Trash2Icon class="mr-2 size-4" />
                           Delete selected ({{ selectedLineItemCount }})
                         </Button>
-                      </CardHeader>
-                      <CardContent class="p-0">
-                        <div class="w-full max-w-full overflow-x-auto">
-                          <Table class="w-full min-w-[1100px]">
+                      </div> -->
+
+                      <div class="border-t">
+                        <div
+                          class="w-full max-w-full overflow-x-auto min-[1440px]:overflow-x-hidden"
+                        >
+                          <Table
+                            class="w-full min-w-[1040px] text-xs text-muted-foreground min-[1440px]:min-w-0 min-[1440px]:table-fixed"
+                          >
                             <TableHeader
                               ><TableRow
-                                ><TableHead class="w-10">
+                                class="bg-muted text-xs font-semibold text-muted-foreground"
+                                ><TableHead class="w-9 px-2">
                                   <Checkbox
                                     :checked="allLineItemsSelected"
                                     aria-label="Select all part items"
                                     @update:checked="toggleAllLineItems"
                                   /> </TableHead
-                                ><TableHead>Category</TableHead><TableHead>Part Number</TableHead
-                                ><TableHead>Replaced Number</TableHead><TableHead>Remark</TableHead
-                                ><TableHead>Description</TableHead
-                                ><TableHead class="text-right">Weight</TableHead
-                                ><TableHead class="text-right">Qty</TableHead
-                                ><TableHead class="text-right">Unit Price</TableHead
-                                ><TableHead>Delivery</TableHead
-                                ><TableHead class="text-right">Grand Total</TableHead
-                                ><TableHead class="w-24 text-right">Actions</TableHead></TableRow
+                                ><TableHead class="w-16 whitespace-normal px-2">Category</TableHead
+                                ><TableHead class="w-[92px] whitespace-normal px-2"
+                                  >Part no.</TableHead
+                                ><TableHead class="w-[90px] whitespace-normal px-2"
+                                  >Replaced no.</TableHead
+                                ><TableHead class="w-[60px] whitespace-normal px-2"
+                                  >Remark</TableHead
+                                ><TableHead class="whitespace-normal px-2">Description</TableHead
+                                ><TableHead class="w-[60px] whitespace-normal px-2 text-right"
+                                  >Weight</TableHead
+                                ><TableHead class="w-[46px] whitespace-normal px-2 text-right"
+                                  >Qty</TableHead
+                                ><TableHead class="w-[88px] whitespace-normal px-2 text-right"
+                                  >Unit Price</TableHead
+                                ><TableHead class="w-[82px] whitespace-normal px-2"
+                                  >Delivery</TableHead
+                                ><TableHead class="w-[100px] whitespace-normal px-2 text-right"
+                                  >Grand Total</TableHead
+                                ><TableHead class="w-[70px] px-2 text-right"
+                                  >Actions</TableHead
+                                ></TableRow
                               ></TableHeader
                             >
                             <TableBody>
@@ -899,39 +926,46 @@ function toWorkspaceRemark(remarkCode: string): string {
                                 :key="item.id"
                                 :class="editingLineItemId === item.id ? 'bg-muted/60' : ''"
                               >
-                                <TableCell>
+                                <TableCell class="px-2 py-2">
                                   <Checkbox
                                     :checked="selectedLineItemIds.includes(item.id)"
                                     :aria-label="`Select ${item.partNumber}`"
                                     @update:checked="toggleLineItem(item.id, $event)"
                                   /> </TableCell
-                                ><TableCell
+                                ><TableCell class="px-2 py-2"
                                   ><Badge variant="outline">{{ item.category }}</Badge></TableCell
-                                ><TableCell class="font-medium">{{ item.partNumber }}</TableCell
-                                ><TableCell>{{ item.replacedNumber || '—' }}</TableCell
-                                ><TableCell>{{ item.partRemark }}</TableCell
-                                ><TableCell class="min-w-44">{{
+                                ><TableCell class="break-all px-2 py-2 font-medium">{{
+                                  item.partNumber
+                                }}</TableCell
+                                ><TableCell class="break-all px-2 py-2">{{
+                                  item.replacedNumber || '—'
+                                }}</TableCell
+                                ><TableCell class="px-2 py-2">{{ item.partRemark }}</TableCell
+                                ><TableCell class="whitespace-normal break-words px-2 py-2">{{
                                   item.description || '—'
                                 }}</TableCell
-                                ><TableCell class="text-right tabular-nums">{{
+                                ><TableCell class="px-2 py-2 text-right tabular-nums">{{
                                   item.weight.toFixed(3)
                                 }}</TableCell
-                                ><TableCell class="text-right tabular-nums">{{
+                                ><TableCell class="px-2 py-2 text-right tabular-nums">{{
                                   item.quantity
                                 }}</TableCell
-                                ><TableCell class="text-right tabular-nums">{{
+                                ><TableCell class="px-2 py-2 text-right tabular-nums">{{
                                   formatMoney(item.unitPrice)
                                 }}</TableCell
-                                ><TableCell>{{ item.deliveryOption }}</TableCell
-                                ><TableCell class="text-right font-medium tabular-nums">{{
+                                ><TableCell class="whitespace-normal break-words px-2 py-2">{{
+                                  item.deliveryOption
+                                }}</TableCell
+                                ><TableCell class="px-2 py-2 text-right font-medium tabular-nums">{{
                                   formatMoney(calculateLineGrandTotal(item))
                                 }}</TableCell>
-                                <TableCell
+                                <TableCell class="px-2 py-2"
                                   ><div class="flex justify-end gap-1">
                                     <Button
                                       type="button"
                                       variant="ghost"
                                       size="icon"
+                                      class="size-7"
                                       title="Edit item"
                                       @click="editLineItem(item)"
                                       ><PencilIcon class="size-4" /></Button
@@ -939,7 +973,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                                       type="button"
                                       variant="ghost"
                                       size="icon"
-                                      class="text-destructive hover:text-destructive"
+                                      class="size-7 text-destructive hover:text-destructive"
                                       title="Delete item"
                                       @click="deleteLineItem(item.id)"
                                       ><Trash2Icon class="size-4"
@@ -949,7 +983,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                             </TableBody>
                           </Table>
                         </div>
-                      </CardContent>
+                      </div>
                     </Card>
                   </div>
 
