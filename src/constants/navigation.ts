@@ -40,179 +40,92 @@ export const defaultSidebarData: SidebarData = {
           icon: SearchIcon,
           url: '#',
         },
-        // {
-        //   title: 'Account Summary',
-        //   icon: DollarSign,
-        //   url: '#',
-        // },
-        // {
-        //   title: 'Account Details',
-        //   icon: List,
-        //   url: '#',
-        // },
-        // {
-        //   title: 'Reclassify Journal Entries',
-        //   icon: RefreshCw,
-        //   url: '#',
-        // },
       ],
       groups: [
         {
           seq_no: 1,
           label: 'Enquiry',
           items: [
-            { title: 'Journal Transactions', url: '#' },
-            { title: 'Disbursement Voucher', url: '#' },
-            { title: 'Journal Entry Voucher', url: '#' },
+            { title: 'Enquiry Parts', url: '#' },
+            { title: 'Enquiry Query', url: '#' },
+            // { title: 'Journal Entry Voucher', url: '#' },
           ],
         },
         {
           seq_no: 2,
           label: 'Quotations',
           items: [
-            { title: 'Run Allocations', url: '#' },
-            { title: 'Reclassify Transactions', url: '#' },
-            { title: 'Import Consolidation Data', url: '#' },
-            { title: 'Manage Financial Periods', url: '#' },
+            { title: 'Quotation Parts', url: '#' },
+            { title: 'Quotation General', url: '#' },
+            { title: 'Quotation Service', url: '#' },
+            { title: 'Quotation Query', url: '#' },
           ],
         },
         {
           seq_no: 3,
           label: 'Invoices',
           items: [
-            { title: 'Trial Balance Summary', url: '#' },
-            { title: 'Transactions for Period', url: '#' },
-            { title: 'Transactions for Account', url: '#' },
+            { title: 'Invoice Parts', url: '#' },
+            { title: 'Invoice General', url: '#' },
+            { title: 'Invoice Service', url: '#' },
           ],
         },
         {
           seq_no: 4,
-          label: 'Financial Statements',
+          label: 'Lost Sales',
           items: [
-            { title: 'Balance Sheet', url: '#' },
-            { title: 'Profit & Loss', url: '#' },
-            { title: 'Cash Flow Statement', url: '#' },
-            { title: 'Profit & Loss Quarterly', url: '#' },
-            { title: 'Balance Sheet EU Consolidation', url: '#' },
+            { title: 'Lost Sale Entry', url: '#' },
+            { title: 'Lost Sale Modify', url: '#' },
+            { title: 'Lost Sale Query', url: '#' },
+            { title: 'Lost Sale HO Feedback', url: '#' },
+            // { title: 'Balance Sheet EU Consolidation', url: '#' },
           ],
         },
         {
           seq_no: 5,
-          label: 'Profiles',
+          label: 'Transfer',
           items: [
-            { title: 'Master Financial Calendar', url: '#' },
-            { title: 'Allocations', url: '#' },
-            { title: 'Chart of Accounts', url: '#' },
-            { title: 'Subaccounts', url: '#' },
+            { title: 'Request for Parts', url: '#' },
+            { title: 'Transfer Stock Update', url: '#' },
+            { title: 'Transfer Query', url: '#' },
+          ],
+        },
+        {
+          seq_no: 6,
+          label: 'Utilities',
+          items: [
+            { title: 'Convert', url: '#' },
+            { title: 'Import Data to Quotation', url: '#' },
+          ],
+        },
+        {
+          seq_no: 7,
+          label: 'Stock Transaction List',
+          items: [
+            { title: 'Transaction List', url: '#' },
+          ],
+        },
+        {
+          seq_no: 8,
+          label: 'Quick Reference Guide',
+          items: [
+            { title: 'Part Sales Kit', url: '#' },
+            { title: 'Information Bulletin', url: '#' }
+          ],
+        },
+        {
+          seq_no: 9,
+          label: 'Options',
+          items: [
+            { title: 'Bin Locations', url: '#' },
+            { title: 'Daily Sales Report (DSR) Update', url: '#' },
+            { title: 'Price and Availability (P & A)', url: '#' },
+            { title: 'P & A to Order', url: '#' },
+            { title: 'Web to Quote', url: '#' },
           ],
         },
       ],
     },
-    // {
-    //   title: 'Inventory Planning',
-    //   url: '#',
-    //   icon: FileBoxIcon,
-    //   actions: [],
-    //   groups: [
-    //     {
-    //       label: 'Setup',
-    //       items: [
-    //         { title: 'Genesis Config', url: '#' },
-    //         { title: 'Explorer Options', url: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: 'Time and Expenses',
-    //   url: '#',
-    //   icon: Timer,
-    //   actions: [],
-    //   groups: [
-    //     {
-    //       label: 'Setup',
-    //       items: [
-    //         { title: 'Genesis Config', url: '#' },
-    //         { title: 'Explorer Options', url: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: 'Finance',
-    //   url: '#',
-    //   icon: Calculator,
-    //   actions: [],
-    //   groups: [
-    //     {
-    //       label: 'Setup',
-    //       items: [
-    //         { title: 'Genesis Config', url: '#' },
-    //         { title: 'Explorer Options', url: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: 'Banking',
-    //   url: '#',
-    //   icon: Banknote,
-    //   actions: [],
-    //   groups: [
-    //     {
-    //       label: 'Setup',
-    //       items: [
-    //         { title: 'Genesis Config', url: '#' },
-    //         { title: 'Explorer Options', url: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: 'Receivables',
-    //   url: '#',
-    //   icon: HandCoins,
-    //   actions: [],
-    //   groups: [
-    //     {
-    //       label: 'Setup',
-    //       items: [
-    //         { title: 'Genesis Config', url: '#' },
-    //         { title: 'Explorer Options', url: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: 'Payables',
-    //   url: '#',
-    //   icon: FileBoxIcon,
-    //   actions: [],
-    //   groups: [
-    //     {
-    //       label: 'Setup',
-    //       items: [
-    //         { title: 'Genesis Config', url: '#' },
-    //         { title: 'Explorer Options', url: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: 'Sales Order',
-    //   url: '#',
-    //   icon: FileBoxIcon,
-    //   actions: [],
-    //   groups: [
-    //     {
-    //       label: 'Setup',
-    //       items: [
-    //         { title: 'Genesis Config', url: '#' },
-    //         { title: 'Explorer Options', url: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
     {
       title: 'Dashboards',
       url: '#',

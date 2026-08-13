@@ -735,7 +735,7 @@ function toWorkspaceRemark(remarkCode: string): string {
                       <CardContent>
                         <form id="line-item-form" class="grid gap-5" @submit.prevent="saveLineItem">
                           <div
-                            class="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5 min-[1200px]:grid-cols-4 min-[1440px]:grid-cols-[auto_150px_150px_auto_50px_150px_auto] min-[1440px]:items-end min-[1440px]:justify-start"
+                            class="grid min-w-0 grid-cols-1 gap-3 min-[1200px]:grid-cols-5 min-[1441px]:grid-cols-7 min-[1440px]:items-end min-[1440px]:justify-start"
                           >
                             <div class="grid min-w-0 gap-1.5 min-[1440px]:w-auto">
                               <Label for="line-category" class="text-xs text-muted-foreground"
@@ -883,32 +883,30 @@ function toWorkspaceRemark(remarkCode: string): string {
                           >
                             <TableHeader
                               ><TableRow
-                                class="bg-muted text-xs font-semibold text-muted-foreground"
+                                class="bg-muted text-xs font-extrabold text-muted-foreground"
                                 ><TableHead class="w-9 px-2">
                                   <Checkbox
                                     :checked="allLineItemsSelected"
                                     aria-label="Select all part items"
                                     @update:checked="toggleAllLineItems"
                                   /> </TableHead
-                                ><TableHead class="w-16 whitespace-normal px-2">Category</TableHead
-                                ><TableHead class="w-[92px] whitespace-normal px-2"
-                                  >Part no.</TableHead
-                                ><TableHead class="w-[90px] whitespace-normal px-2"
+                                ><TableHead class="w-17 whitespace-normal px-2">Category</TableHead
+                                ><TableHead class="w-25 whitespace-normal px-2">Part no.</TableHead
+                                ><TableHead class="w-25 whitespace-normal px-2"
                                   >Replaced no.</TableHead
-                                ><TableHead class="w-[60px] whitespace-normal px-2"
-                                  >Remark</TableHead
-                                ><TableHead class="whitespace-normal px-2">Description</TableHead
-                                ><TableHead class="w-[60px] whitespace-normal px-2 text-right"
+                                ><TableHead class="w-17 whitespace-normal px-2">Remark</TableHead
+                                ><TableHead class="whitespace-normal px-2 text-nowrap"
+                                  >Description</TableHead
+                                ><TableHead class="w-20 whitespace-normal px-2 text-right"
                                   >Weight</TableHead
-                                ><TableHead class="w-[46px] whitespace-normal px-2 text-right"
+                                ><TableHead class="w-12 whitespace-normal px-2 text-right"
                                   >Qty</TableHead
-                                ><TableHead class="w-[88px] whitespace-normal px-2 text-right"
+                                ><TableHead class="w-22 whitespace-normal px-2 text-right"
                                   >Unit Price</TableHead
-                                ><TableHead class="w-[82px] whitespace-normal px-2"
-                                  >Delivery</TableHead
-                                ><TableHead class="w-[100px] whitespace-normal px-2 text-right"
+                                ><TableHead class="w-20 whitespace-normal px-2">Delivery</TableHead
+                                ><TableHead class="w-25 whitespace-normal px-2 text-right"
                                   >Grand Total</TableHead
-                                ><TableHead class="w-[70px] px-2 text-right"
+                                ><TableHead class="w-17 px-2 text-right"
                                   >Actions</TableHead
                                 ></TableRow
                               ></TableHeader
