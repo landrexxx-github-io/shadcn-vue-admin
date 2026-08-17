@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { X } from 'lucide-vue-next' // Import the Close icon
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -8,16 +6,19 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { X } from 'lucide-vue-next' // Import the Close icon
+import { ref } from 'vue'
 
 import BoxButton from '@/components/common/BoxButton.vue'
 
 import type { NavItem } from '@/types'
+import { useRouter } from 'vue-router'
 
 defineProps<{
   items?: NavItem[]
-  level: number
 }>()
 
+const router = useRouter()
 const activeFlyout = ref<NavItem | null>(null)
 
 function handleToggleFlyout(item: NavItem) {
@@ -27,12 +28,26 @@ function handleToggleFlyout(item: NavItem) {
     activeFlyout.value = null
   }
 }
+
+function getSortedGroups(item: NavItem) {
+  if (!item.groups) return []
+
+  return [...item.groups].sort((a, b) => a.seq_no - b.seq_no)
+}
+
+function navigateToPage(url: string) {
+  activeFlyout.value = null
+
+  if (!url || url === '#') return
+
+  router.push(url)
+}
 </script>
 
 <template>
   <SidebarGroup class="relative">
     <SidebarGroupLabel class="text-sm transition-all group-data-[state=collapsed]:hidden">
-      Platform
+      Workspaces
     </SidebarGroupLabel>
 
     <SidebarMenu>
@@ -92,28 +107,35 @@ function handleToggleFlyout(item: NavItem) {
                   :key="action.title"
                   :name="action.title"
                   :icon="action.icon"
+                  :url="action.url"
+                  @click="activeFlyout = null"
                 />
               </div>
             </div>
 
-            <nav class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8">
+            <nav
+              class="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            >
               <div
-                v-for="group in item.groups"
-                :key="group.label"
-                class="flex flex-col gap-3 break-inside-avoid mb-8"
+                v-for="group in getSortedGroups(item)"
+                :key="group.seq_no"
+                class="flex min-w-0 flex-col gap-3"
               >
-                <h4 class="text-lg font-normal text-slate-900 mb-1">
+                <h4 class="font-semibold text-slate-900">
                   {{ group.label }}
                 </h4>
+
                 <div class="flex flex-col gap-2">
-                  <a
+                  <Button
                     v-for="subItem in group.items"
                     :key="subItem.title"
-                    :href="subItem.url"
-                    class="text-[15px] text-blue-500 hover:text-blue-800 transition-colors inline-block w-fit"
+                    type="button"
+                    variant="link"
+                    class="h-auto w-fit cursor-pointer justify-start p-0 text-left text-[15px] text-blue-500! no-underline hover:text-blue-800! hover:no-underline"
+                    @click="navigateToPage(subItem.url)"
                   >
                     {{ subItem.title }}
-                  </a>
+                  </Button>
                 </div>
               </div>
             </nav>

@@ -1,20 +1,11 @@
 import type { SidebarData } from '@/types'
 import {
   AudioWaveform,
-  Banknote,
-  BookOpenText,
-  Calculator,
   ChartColumnBig,
   Command,
-  DollarSign,
-  FileBoxIcon,
+  DatabaseSearch,
   GalleryVerticalEnd,
-  HandCoins,
-  List,
-  RefreshCw,
-  SearchIcon,
-  SquarePenIcon,
-  Timer,
+  SearchIcon
 } from 'lucide-vue-next'
 
 export const defaultSidebarData: SidebarData = {
@@ -32,13 +23,13 @@ export const defaultSidebarData: SidebarData = {
     {
       title: 'Sourcenet',
       url: '/accounting',
-      icon: BookOpenText,
+      icon: DatabaseSearch,
       isActive: false,
       actions: [
         {
           title: 'Part no. Search',
           icon: SearchIcon,
-          url: '#',
+          url: '/sourcenet2/part-search',
         },
       ],
       groups: [
@@ -46,38 +37,37 @@ export const defaultSidebarData: SidebarData = {
           seq_no: 1,
           label: 'Enquiry',
           items: [
-            { title: 'Enquiry Parts', url: '#' },
-            { title: 'Enquiry Query', url: '#' },
-            // { title: 'Journal Entry Voucher', url: '#' },
+            { seq_no: 1, title: 'Enquiry Parts', url: '#' },
+            { seq_no: 2, title: 'Enquiry Query', url: '#' },
           ],
         },
         {
           seq_no: 2,
           label: 'Quotations',
           items: [
-            { title: 'Quotation Parts', url: '#' },
-            { title: 'Quotation General', url: '#' },
-            { title: 'Quotation Service', url: '#' },
-            { title: 'Quotation Query', url: '#' },
+            { seq_no: 1, title: 'Quotation Parts', url: '/sourcenet2/quotation' },
+            { seq_no: 2, title: 'Quotation General', url: '#' },
+            { seq_no: 3, title: 'Quotation Service', url: '#' },
+            { seq_no: 4, title: 'Quotation Query', url: '#' },
           ],
         },
         {
           seq_no: 3,
           label: 'Invoices',
           items: [
-            { title: 'Invoice Parts', url: '#' },
-            { title: 'Invoice General', url: '#' },
-            { title: 'Invoice Service', url: '#' },
+            { seq_no: 1, title: 'Invoice Parts', url: '#' },
+            { seq_no: 2, title: 'Invoice General', url: '#' },
+            { seq_no: 3, title: 'Invoice Service', url: '#' },
           ],
         },
         {
           seq_no: 4,
           label: 'Lost Sales',
           items: [
-            { title: 'Lost Sale Entry', url: '#' },
-            { title: 'Lost Sale Modify', url: '#' },
-            { title: 'Lost Sale Query', url: '#' },
-            { title: 'Lost Sale HO Feedback', url: '#' },
+            { seq_no: 1, title: 'Lost Sale Entry', url: '#' },
+            { seq_no: 2, title: 'Lost Sale Modify', url: '#' },
+            { seq_no: 3, title: 'Lost Sale Query', url: '#' },
+            { seq_no: 4, title: 'Lost Sale HO Feedback', url: '#' },
             // { title: 'Balance Sheet EU Consolidation', url: '#' },
           ],
         },
@@ -85,43 +75,43 @@ export const defaultSidebarData: SidebarData = {
           seq_no: 5,
           label: 'Transfer',
           items: [
-            { title: 'Request for Parts', url: '#' },
-            { title: 'Transfer Stock Update', url: '#' },
-            { title: 'Transfer Query', url: '#' },
+            { seq_no: 1, title: 'Request for Parts', url: '#' },
+            { seq_no: 2, title: 'Transfer Stock Update', url: '#' },
+            { seq_no: 3, title: 'Transfer Query', url: '#' },
           ],
         },
         {
           seq_no: 6,
           label: 'Utilities',
           items: [
-            { title: 'Convert', url: '#' },
-            { title: 'Import Data to Quotation', url: '#' },
+            { seq_no: 1, title: 'Convert', url: '#' },
+            { seq_no: 2, title: 'Import Data to Quotation', url: '#' },
           ],
         },
         {
           seq_no: 7,
           label: 'Stock Transaction List',
           items: [
-            { title: 'Transaction List', url: '#' },
+            { seq_no: 1, title: 'Transaction List', url: '#' },
           ],
         },
         {
           seq_no: 8,
           label: 'Quick Reference Guide',
           items: [
-            { title: 'Part Sales Kit', url: '#' },
-            { title: 'Information Bulletin', url: '#' }
+            { seq_no: 1, title: 'Part Sales Kit', url: '#' },
+            { seq_no: 2, title: 'Information Bulletin', url: '#' }
           ],
         },
         {
           seq_no: 9,
           label: 'Options',
           items: [
-            { title: 'Bin Locations', url: '#' },
-            { title: 'Daily Sales Report (DSR) Update', url: '#' },
-            { title: 'Price and Availability (P & A)', url: '#' },
-            { title: 'P & A to Order', url: '#' },
-            { title: 'Web to Quote', url: '#' },
+            { seq_no: 1, title: 'Bin Locations', url: '#' },
+            { seq_no: 2, title: 'Daily Sales Report (DSR) Update', url: '#' },
+            { seq_no: 3, title: 'Price and Availability (P & A)', url: '#' },
+            { seq_no: 4, title: 'P & A to Order', url: '#' },
+            { seq_no: 5, title: 'Web to Quote', url: '#' },
           ],
         },
       ],
@@ -136,8 +126,8 @@ export const defaultSidebarData: SidebarData = {
           seq_no: 1,
           label: 'Setup',
           items: [
-            { title: 'Genesis Config', url: '#' },
-            { title: 'Explorer Options', url: '#' },
+            { seq_no: 1, title: 'Genesis Config', url: '#' },
+            { seq_no: 2, title: 'Explorer Options', url: '#' },
           ],
         },
       ],

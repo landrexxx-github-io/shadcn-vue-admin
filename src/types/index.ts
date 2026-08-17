@@ -1,4 +1,4 @@
-import type { FunctionalComponent, HTMLAttributes, VNodeProps, Component } from 'vue'
+import type { Component, FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue'
 
 export type AccountData = {
   id: string
@@ -35,6 +35,7 @@ export type NavAction = {
 }
 
 export type NavSubItem = {
+  seq_no: number
   title: string
   url: string
 }

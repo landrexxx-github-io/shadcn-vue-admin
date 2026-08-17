@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { SidebarHeader, SidebarFooter, type SidebarProps } from '@/components/ui/sidebar'
+import { SidebarFooter, SidebarHeader, type SidebarProps } from '@/components/ui/sidebar'
 import CustomSidebar from '@/components/ui/sidebar/CustomSidebar.vue'
 
-import { defaultSidebarData as data } from '@/constants/navigation'
-import TeamSwitcher from './TeamSwitcher.vue'
 import SidebarContent from '@/components/ui/sidebar/SidebarContent.vue'
-import NavMain from './NavMain.vue'
 import SidebarRail from '@/components/ui/sidebar/SidebarRail.vue'
+import NavMain from './NavMain.vue'
+import TeamSwitcher from './TeamSwitcher.vue'
+
+import { defaultSidebarData as data } from '@/constants/navigation'
 
 const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: 'icon',
@@ -19,9 +20,9 @@ const props = withDefaults(defineProps<SidebarProps>(), {
       <TeamSwitcher :teams="data.teams" />
     </SidebarHeader>
     <SidebarContent>
-      <NavMain :items="data.navMain" :level="1" />
+      <NavMain :items="data.navMain" />
     </SidebarContent>
     <SidebarRail />
-    <SidebarFooter> </SidebarFooter>
+    <SidebarFooter></SidebarFooter>
   </CustomSidebar>
 </template>

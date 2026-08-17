@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ExternalLinkIcon, SearchIcon } from 'lucide-vue-next'
 
-import { Button } from '@/components/ui/button'
 import { Item } from '@/components/ui/item'
 
 import {
@@ -46,11 +44,6 @@ const partRemarks = [
   { value: 'replacement', label: 'Replacement' },
   { value: 'alternate', label: 'Alternate' },
 ]
-
-function selectRecentSearch(term: string): void {
-  searchTerm.value = term
-  handleSearch()
-}
 
 function saveRecentSearch(term: string): void {
   const normalizedTerm = term.trim()

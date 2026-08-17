@@ -1,47 +1,19 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
 import {
-  CheckIcon,
   BarChart3Icon,
-  ChevronDownIcon,
   CircleDollarSignIcon,
   ClipboardListIcon,
   Layers3Icon,
-  MailIcon,
-  Maximize2Icon,
-  Minimize2Icon,
   PackageSearchIcon,
-  PlusIcon,
   ShoppingCartIcon,
   TrendingUpIcon,
   TruckIcon,
   WarehouseIcon,
-  XIcon,
 } from 'lucide-vue-next'
+import { computed, ref, watch } from 'vue'
 
-import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from 'reka-ui'
-
-import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import Badge from '@/components/ui/badge/Badge.vue'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Table,
   TableBody,
@@ -51,14 +23,6 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import PartSearchItem from './components/PartSearchItem.vue'
-
-interface MenuItem {
-  value: string
-  label: string
-  count?: number
-  title: string
-  description: string
-}
 
 interface StockLocation {
   location: string
@@ -157,82 +121,12 @@ const props = withDefaults(
   },
 )
 
-interface EnquiryFormData {
-  customerCode: string
-  partNumber: string
-  description: string
-  enquiryQuantity: number
-  targetPrice: number
-  warehouse: string
-  remarks: string
-  assignedTo: string
-  status: EnquiryRecord['status']
-}
-
-const menuItems: MenuItem[] = [
-  {
-    value: 'web-online-basket',
-    label: 'Online Enquiry',
-    count: 4,
-    title: 'Web Online Basket',
-    description: 'Customer web enquiries for the selected part.',
-  },
-  {
-    value: 'enquiry',
-    label: 'Enquiry',
-    title: 'Enquiry',
-    description: 'Customer enquiry records will appear here.',
-  },
-  {
-    value: 'quotation',
-    label: 'Quotation',
-    title: 'Quotation',
-    description: 'Quotation records will appear here.',
-  },
-  {
-    value: 'invoice',
-    label: 'Invoice',
-    title: 'Invoice',
-    description: 'Invoice records will appear here.',
-  },
-  {
-    value: 'lost-sale',
-    label: 'Lost Sale',
-    title: 'Lost Sale',
-    description: 'Lost-sale records will appear here.',
-  },
-  {
-    value: 'branch-transfer',
-    label: 'Branch Transfer',
-    title: 'Branch Transfer',
-    description: 'Branch-transfer records will appear here.',
-  },
-  {
-    value: 'store-transfer',
-    label: 'Store Transfer',
-    title: 'Store Transfer',
-    description: 'Store-transfer records will appear here.',
-  },
-  {
-    value: 'transfers',
-    label: 'Transfers',
-    title: 'Transfers',
-    description: 'Transfer records will appear here.',
-  },
-  {
-    value: 'order',
-    label: 'Order',
-    title: 'Order',
-    description: 'Order records will appear here.',
-  },
-]
-
 const partCatalog = ref<Record<string, PartWorkspaceData>>({
   '5722761': {
     partDetails: [
-      { label: 'Category', value: 'CT Parts' },
-      { label: 'Part number', value: '5722761' },
-      { label: 'Part remark', value: 'DE' },
+      // { label: 'Category', value: 'CT Parts' },
+      // { label: 'Part number', value: '5722761' },
+      // { label: 'Part remark', value: 'DE' },
       { label: 'Description', value: 'GASKET KIT' },
       { label: 'Weight', value: '1.270 kg' },
       { label: 'DE number', value: '02X21Y' },
@@ -248,14 +142,14 @@ const partCatalog = ref<Record<string, PartWorkspaceData>>({
       {
         location: 'DE',
         quantity: 2,
-        binLocation: 'A-01-08',
+        binLocation: 'A0108',
         allocated: 0,
         inTransit: 6,
         workInProgress: 0,
         warranty: 0,
       },
       {
-        location: 'ADH',
+        location: 'SHJ',
         quantity: 1,
         binLocation: 'H6B',
         allocated: 0,
@@ -264,7 +158,7 @@ const partCatalog = ref<Record<string, PartWorkspaceData>>({
         warranty: 0,
       },
       {
-        location: 'DIC',
+        location: 'ADH',
         quantity: 1,
         binLocation: 'PC05P1',
         allocated: 0,
@@ -273,7 +167,169 @@ const partCatalog = ref<Record<string, PartWorkspaceData>>({
         warranty: 0,
       },
       {
-        location: 'SHJ',
+        location: 'ALN',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'DIC',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'CCS',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'DOH',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'DH2',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'KUW',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'BAH',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'MCT',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'OMN',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'RYD',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'DAM',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'JED',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'TAN',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'FAR',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'HYD',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'ODH',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'DER',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'DED',
+        quantity: 0,
+        binLocation: '—',
+        allocated: 0,
+        inTransit: 2,
+        workInProgress: 0,
+        warranty: 0,
+      },
+      {
+        location: 'DEJ',
         quantity: 0,
         binLocation: '—',
         allocated: 0,
@@ -784,11 +840,6 @@ const partCatalog = ref<Record<string, PartWorkspaceData>>({
   },
 })
 
-const customers = [
-  { code: 'AL MA', name: 'AL MAHA HEAVY EQUIPMENT PARTS' },
-  { code: 'AL RO', name: 'AL RODHA HEAVY EQUIP SPARE PARTS TR. LLC' },
-]
-
 const enquiryRecords: EnquiryRecord[] = [
   {
     id: 1,
@@ -860,7 +911,6 @@ const enquiryRecords: EnquiryRecord[] = [
   },
 ]
 
-const selectedMenuValue = ref('web-online-basket')
 const selectedEnquiryId = ref<number | null>(1)
 const activePartNumber = ref(props.partNumber)
 const partSearchTerm = ref(props.partNumber)
@@ -883,6 +933,17 @@ const purchaseRecords = computed(() => activePart.value.purchaseRecords)
 const alternateSources = computed(() => activePart.value.alternateSources)
 const reorderLevels = computed(() => activePart.value.reorderLevels)
 
+const workspaceActions = [
+  { label: 'Alternate Can Sell', icon: PackageSearchIcon },
+  { label: 'Classic & YMPart', icon: WarehouseIcon },
+  { label: 'Enquiry List', icon: ShoppingCartIcon },
+  { label: 'Image', icon: TruckIcon },
+  { label: 'Invoice List', icon: Layers3Icon },
+  { label: 'Kit List', icon: Layers3Icon },
+  { label: 'Model List ', icon: Layers3Icon },
+  { label: 'Invoice List', icon: Layers3Icon },
+]
+
 const visibleSupplierInventory = computed(() => {
   if (!showOnlyPrioritySuppliers.value) {
     return supplierInventory.value
@@ -891,17 +952,17 @@ const visibleSupplierInventory = computed(() => {
   return supplierInventory.value.filter((item) => item.priority)
 })
 
-const totalStock = computed(() => {
-  return stockLocations.value.reduce((total, item) => total + item.quantity, 0)
-})
+// const totalStock = computed(() => {
+//   return stockLocations.value.reduce((total, item) => total + item.quantity, 0)
+// })
 
-const totalSupplierStock = computed(() => {
-  return visibleSupplierInventory.value.reduce((total, item) => total + item.stock, 0)
-})
+// const totalSupplierStock = computed(() => {
+//   return visibleSupplierInventory.value.reduce((total, item) => total + item.stock, 0)
+// })
 
-const pendingOrderQuantity = computed(() => {
-  return orders.value.reduce((total, item) => total + item.pendingQuantity, 0)
-})
+// const pendingOrderQuantity = computed(() => {
+//   return orders.value.reduce((total, item) => total + item.pendingQuantity, 0)
+// })
 
 const movementChart = computed(() => {
   const ordered = [...movements.value].reverse()
@@ -957,10 +1018,6 @@ function branchBarWidth(value: number): string {
 
   return `${Math.max((value / branchChartMaximum.value) * 100, 8)}%`
 }
-
-const hasLowerTable = computed(() => {
-  return selectedMenuValue.value === 'web-online-basket' || selectedMenuValue.value === 'enquiry'
-})
 
 function normalizePartNumber(value: string): string {
   return value.trim().toUpperCase()
@@ -1020,9 +1077,9 @@ function formatMoney(value: number, currency = 'AED'): string {
       <div class="space-y-4 p-1">
         <!-- First row: part workspace / stock / orders and suppliers -->
         <div
-          class="grid min-w-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 xl:grid-cols-[minmax(0,3fr)_minmax(0,4fr)_minmax(0,3fr)]"
+          class="grid min-w-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 xl:grid-cols-[minmax(0,3fr)_minmax(0,3fr)_minmax(0,5fr)_95px]"
         >
-          <!-- Left column: search, overview, and alternate sources -->
+          <!-- First column: part search and overview -->
           <section class="min-w-0 space-y-3">
             <div class="min-w-0 rounded-lg">
               <PartSearchItem
@@ -1032,266 +1089,168 @@ function formatMoney(value: number, currency = 'AED'): string {
                 @search="handlePartSearch"
               />
             </div>
-            <Card
-              class="min-w-0 overflow-hidden rounded-lg border border-primary/20 bg-card shadow-sm"
-            >
-              <CardHeader
-                class="flex flex-wrap items-center justify-between gap-2 border-b border-primary/10 bg-primary/4 px-4 py-2.5"
-              >
-                <div class="flex min-w-0 items-center gap-2">
-                  <span class="flex size-7 items-center justify-center rounded-md bg-primary/10">
-                    <PackageSearchIcon class="size-4 shrink-0 text-primary" />
-                  </span>
-                  <CardTitle class="truncate text-sm font-semibold">Part overview</CardTitle>
-                </div>
 
-                <Badge variant="secondary">P&amp;A: 2 days</Badge>
-              </CardHeader>
-
-              <div
-                class="grid gap-x-5 gap-y-2 px-4 py-3 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3"
-              >
-                <div v-for="detail in partDetails" :key="detail.label" class="min-w-0">
-                  <p class="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-                    {{ detail.label }}
-                  </p>
-                  <p class="mt-0.5 truncate text-sm font-medium" :title="detail.value">
-                    {{ detail.value }}
-                  </p>
-                </div>
-              </div>
-
-              <div class="grid border-t sm:grid-cols-2">
-                <div
-                  v-for="price in partPrices"
-                  :key="price.label"
-                  class="flex items-center justify-between gap-3 border-b px-4 py-2 sm:border-b-0 sm:last:border-r-0"
-                >
-                  <span class="text-xs text-muted-foreground">{{ price.label }}</span>
-                  <span class="whitespace-nowrap text-sm font-semibold tabular-nums">
-                    {{ formatMoney(price.value, price.currency) }}
-                  </span>
-                </div>
-              </div>
-            </Card>
-            <Card class="min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
-              <CardHeader class="flex items-center gap-2 border-b px-4 py-3">
-                <Layers3Icon class="size-4 text-primary" />
-                <CardTitle class="text-sm font-semibold">Alternate and other sources</CardTitle>
-              </CardHeader>
-
-              <div class="hidden sm:block">
-                <Table class="text-left text-xs">
-                  <TableHeader class="bg-muted/60 text-muted-foreground">
-                    <TableRow>
-                      <TableHead class="px-3 py-2.5 font-medium">Type</TableHead>
-                      <TableHead class="px-3 py-2.5 text-center font-medium">M</TableHead>
-                      <TableHead class="px-3 py-2.5 text-center font-medium">SM</TableHead>
-                      <TableHead class="px-3 py-2.5 text-center font-medium">Gen</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">New part no.</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Description</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Qty</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Stock</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow v-for="source in alternateSources" :key="source.newPartNumber">
-                      <TableCell class="px-3 py-2.5 font-medium">
-                        {{ source.type }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-center">
-                        {{ source.movement ? 'Yes' : 'No' }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-center">
-                        {{ source.salesMovement ? 'Yes' : 'No' }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-center">
-                        {{ source.generic ? 'Yes' : 'No' }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 font-medium">
-                        {{ source.newPartNumber }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5">{{ source.description }}</TableCell>
-                      <TableCell class="px-3 py-2.5 text-right">
-                        {{ source.quantity }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right">
-                        {{ source.stock }}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-
-              <div class="p-3 sm:hidden">
-                <div
-                  v-for="source in alternateSources"
-                  :key="source.newPartNumber"
-                  class="rounded-lg border bg-muted/20 p-3"
-                >
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <p class="text-sm font-semibold">
-                        {{ source.newPartNumber }}
+            <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm">
+              <Item variant="outline">
+                <div class="grid min-w-0 gap-2">
+                  <div
+                    class="grid gap-x-5 gap-y-2 px-4 py-3 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3"
+                  >
+                    <div v-for="detail in partDetails" :key="detail.label" class="min-w-0">
+                      <p
+                        class="text-[11px] font-medium uppercase tracking-wide text-muted-foreground"
+                      >
+                        {{ detail.label }}
                       </p>
-                      <p class="text-xs text-muted-foreground">
-                        {{ source.description }}
+                      <p class="mt-0.5 truncate text-sm font-medium" :title="detail.value">
+                        {{ detail.value }}
                       </p>
                     </div>
-                    <Badge variant="outline">Type {{ source.type }}</Badge>
                   </div>
-                  <p class="mt-3 text-xs text-muted-foreground">
-                    Quantity {{ source.quantity }} · Stock
-                    {{ source.stock }}
-                  </p>
+
+                  <div class="grid border-t sm:grid-cols-2">
+                    <div
+                      v-for="price in partPrices"
+                      :key="price.label"
+                      class="flex items-center justify-between gap-3 border-b px-4 py-2 sm:border-b-0 sm:last:border-r-0"
+                    >
+                      <span class="text-xs text-muted-foreground">{{ price.label }}</span>
+                      <span class="whitespace-nowrap text-sm font-semibold tabular-nums">
+                        {{ formatMoney(price.value, price.currency) }}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Item>
+            </div>
           </section>
 
           <!-- Center column: stock by location -->
           <section class="min-w-0 lg:col-span-2 xl:col-span-1 xl:h-full">
-            <Card
-              class="min-w-0 overflow-hidden rounded-lg border border-emerald-500/25 bg-card shadow-sm xl:h-full"
-            >
-              <CardHeader
-                class="flex items-center justify-between gap-3 border-b bg-emerald-500/[0.04] px-4 py-3"
-              >
-                <div class="flex min-w-0 items-center gap-2">
-                  <span class="flex size-7 items-center justify-center rounded-md bg-primary/10">
-                    <WarehouseIcon class="size-4 shrink-0 text-emerald-700 dark:text-emerald-400" />
-                  </span>
-                  <CardTitle class="truncate text-sm font-semibold">Stock by location</CardTitle>
+            <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm">
+              <Item variant="outline">
+                <div class="grid min-w-0 gap-2 px-4 py-3">
+                  <Label class="text-sm">Stock by Location</Label>
+                  <Table class="w-full">
+                    <TableHeader class="sticky top-0 bg-gray-600 h-7 text-xs">
+                      <TableRow class="">
+                        <TableHead class="font-bold border border-l-0 px-2 py-0.5 text-white"
+                          >LOC</TableHead
+                        >
+                        <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                          >QTY</TableHead
+                        >
+                        <TableHead class="font-bold border text-white px-2 py-0.5">BIN</TableHead>
+                        <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                          >ALLOC</TableHead
+                        >
+                        <TableHead class="text-right font-bold border text-white px-2 py-0.5"
+                          >TNST</TableHead
+                        >
+                        <TableHead class="text-right font-bold border text-white px-2 py-0.5"
+                          >WIP</TableHead
+                        >
+                        <TableHead
+                          class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                          >WAR</TableHead
+                        >
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody class="divide-y">
+                      <TableRow
+                        v-for="stock in stockLocations"
+                        :key="stock.location"
+                        class="hover:bg-accent/80 h-6"
+                      >
+                        <TableCell class="border border-l-0 px-2 py-0.5">
+                          {{ stock.location }}
+                        </TableCell>
+                        <TableCell class="border text-center px-2 py-0.5 tabular-nums">
+                          {{ stock.quantity }}
+                        </TableCell>
+                        <TableCell class="border px-2 py-0.5">
+                          {{ stock.binLocation }}
+                        </TableCell>
+                        <TableCell class="border text-center px-2 py-0.5 tabular-nums">
+                          {{ stock.allocated }}
+                        </TableCell>
+                        <TableCell class="border text-center px-2 py-0.5">
+                          {{ stock.inTransit }}
+                        </TableCell>
+                        <TableCell class="border text-center px-2 py-0.5 tabular-nums">
+                          {{ stock.workInProgress }}
+                        </TableCell>
+                        <TableCell class="border border-r-0 text-center px-2 py-0.5 tabular-nums">
+                          {{ stock.warranty }}
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </div>
-                <Badge
-                  variant="outline"
-                  class="border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
-                >
-                  {{ totalStock }} total
-                </Badge>
-              </CardHeader>
-
-              <div class="hidden overflow-auto md:block">
-                <Table class="w-full text-left text-xs">
-                  <TableHeader class="sticky top-0 bg-muted text-muted-foreground">
-                    <TableRow>
-                      <TableHead class="px-3 py-2.5 font-medium">Location</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Qty</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Bin</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Allocated</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Transit</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">WIP</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Warranty</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody class="divide-y">
-                    <TableRow
-                      v-for="stock in stockLocations"
-                      :key="stock.location"
-                      class="hover:bg-muted/30"
-                    >
-                      <TableCell class="px-3 py-2.5 font-medium">
-                        {{ stock.location }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ stock.quantity }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5">
-                        {{ stock.binLocation }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ stock.allocated }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ stock.inTransit }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ stock.workInProgress }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ stock.warranty }}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-
-              <div class="divide-y md:hidden">
-                <div v-for="stock in stockLocations" :key="stock.location" class="p-3">
-                  <div class="flex items-center justify-between gap-3">
-                    <p class="text-sm font-semibold">
-                      {{ stock.location }}
-                    </p>
-                    <Badge
-                      variant="outline"
-                      class="border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
-                    >
-                      {{ stock.quantity }} in stock
-                    </Badge>
-                  </div>
-                  <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                    <div class="rounded-md bg-muted/50 p-2">
-                      <span class="block text-[10px] text-muted-foreground">Quantity</span>
-                      <span class="mt-1 block text-xs font-medium tabular-nums">
-                        {{ stock.quantity }}
-                      </span>
-                    </div>
-                    <div class="rounded-md bg-muted/50 p-2">
-                      <span class="block text-[10px] text-muted-foreground">Bin</span>
-                      <span class="mt-1 block text-xs font-medium">
-                        {{ stock.binLocation }}
-                      </span>
-                    </div>
-                    <div class="rounded-md bg-muted/50 p-2">
-                      <span class="block text-[10px] text-muted-foreground">Allocated</span>
-                      <span class="mt-1 block text-xs font-medium tabular-nums">
-                        {{ stock.allocated }}
-                      </span>
-                    </div>
-                    <div class="rounded-md bg-muted/50 p-2">
-                      <span class="block text-[10px] text-muted-foreground">Transit</span>
-                      <span class="mt-1 block text-xs font-medium tabular-nums">
-                        {{ stock.inTransit }}
-                      </span>
-                    </div>
-                    <div class="rounded-md bg-muted/50 p-2">
-                      <span class="block text-[10px] text-muted-foreground">WIP</span>
-                      <span class="mt-1 block text-xs font-medium tabular-nums">
-                        {{ stock.workInProgress }}
-                      </span>
-                    </div>
-                    <div class="rounded-md bg-muted/50 p-2">
-                      <span class="block text-[10px] text-muted-foreground">Warranty</span>
-                      <span class="mt-1 block text-xs font-medium tabular-nums">
-                        {{ stock.warranty }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Card>
+              </Item>
+            </div>
           </section>
 
           <!-- Right column: orders and supplier inventory -->
           <section class="min-w-0 space-y-3">
-            <Card
+            <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm">
+              <Item variant="outline">
+                <div class="grid min-w-0 gap-2 px-4 py-3">
+                  <Label class="text-sm">Orders</Label>
+                  <Table class="w-full text-left text-xs">
+                    <TableHeader class="sticky top-0 bg-muted text-muted-foreground">
+                      <TableRow>
+                        <TableHead class="px-3 py-2.5 font-medium">Part</TableHead>
+                        <TableHead class="px-3 py-2.5 font-medium">Order date</TableHead>
+                        <TableHead class="px-3 py-2.5 font-medium">Supplier</TableHead>
+                        <TableHead class="px-3 py-2.5 font-medium">Order no.</TableHead>
+                        <TableHead class="px-3 py-2.5 text-center font-medium">Ordered</TableHead>
+                        <TableHead class="px-3 py-2.5 text-center font-medium">Expected</TableHead>
+                        <TableHead class="px-3 py-2.5 text-center font-medium">Pending</TableHead>
+                        <TableHead class="px-3 py-2.5 text-center font-medium">Price</TableHead>
+                        <TableHead class="px-3 py-2.5 font-medium">Freight</TableHead>
+                        <TableHead class="px-3 py-2.5 font-medium">ETA</TableHead>
+                        <TableHead class="px-3 py-2.5 font-medium">Remark</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody class="divide-y">
+                      <TableRow
+                        v-for="order in orders"
+                        :key="`${order.orderNumber}-${order.partNumber}`"
+                        class="hover:bg-muted/30 h-7"
+                      >
+                        <TableCell class="font-medium">
+                          {{ order.partNumber }}
+                        </TableCell>
+                        <TableCell class="whitespace-nowrap">
+                          {{ order.orderDate }}
+                        </TableCell>
+                        <TableCell class="">{{ order.supplier }}</TableCell>
+                        <TableCell class="">{{ order.orderNumber }}</TableCell>
+                        <TableCell class="text-right tabular-nums">
+                          {{ order.orderedQuantity }}
+                        </TableCell>
+                        <TableCell class="text-right tabular-nums">
+                          {{ order.expectedQuantity }}
+                        </TableCell>
+                        <TableCell class="text-right tabular-nums">
+                          {{ order.pendingQuantity }}
+                        </TableCell>
+                        <TableCell class="text-right font-medium tabular-nums">
+                          {{ formatMoney(order.price) }}
+                        </TableCell>
+                        <TableCell class="">{{ order.freight }}</TableCell>
+                        <TableCell class="">{{ order.eta }}</TableCell>
+                        <TableCell class="">{{ order.remark }}</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </Item>
+            </div>
+            <!-- <Card
               class="min-w-0 overflow-hidden rounded-lg border border-amber-500/20 bg-card shadow-sm xl:h-[250px]"
             >
-              <CardHeader
-                class="flex items-center justify-between gap-3 border-b bg-amber-500/[0.04] px-4 py-3"
-              >
-                <div class="flex min-w-0 items-center gap-2">
-                  <ShoppingCartIcon class="size-4 shrink-0 text-amber-700 dark:text-amber-400" />
-                  <CardTitle class="truncate text-sm font-semibold">Orders</CardTitle>
-                </div>
-                <Badge
-                  variant="outline"
-                  class="border-amber-500/20 bg-amber-500/10 text-amber-700 dark:text-amber-400"
-                >
-                  {{ orders.length }} open · {{ pendingOrderQuantity }} pending
-                </Badge>
-              </CardHeader>
-
               <div class="hidden overflow-auto md:block xl:max-h-[196px]">
                 <Table class="w-full min-w-[860px] text-left text-xs">
                   <TableHeader class="sticky top-0 z-[1] bg-muted text-muted-foreground">
@@ -1300,10 +1259,10 @@ function formatMoney(value: number, currency = 'AED'): string {
                       <TableHead class="px-3 py-2.5 font-medium">Order date</TableHead>
                       <TableHead class="px-3 py-2.5 font-medium">Supplier</TableHead>
                       <TableHead class="px-3 py-2.5 font-medium">Order no.</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Ordered</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Expected</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Pending</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Price</TableHead>
+                      <TableHead class="px-3 py-2.5 text-center font-medium">Ordered</TableHead>
+                      <TableHead class="px-3 py-2.5 text-center font-medium">Expected</TableHead>
+                      <TableHead class="px-3 py-2.5 text-center font-medium">Pending</TableHead>
+                      <TableHead class="px-3 py-2.5 text-center font-medium">Price</TableHead>
                       <TableHead class="px-3 py-2.5 font-medium">Freight</TableHead>
                       <TableHead class="px-3 py-2.5 font-medium">ETA</TableHead>
                       <TableHead class="px-3 py-2.5 font-medium">Remark</TableHead>
@@ -1383,36 +1342,10 @@ function formatMoney(value: number, currency = 'AED'): string {
                   </div>
                 </div>
               </div>
-            </Card>
+            </Card> -->
             <Card
               class="min-w-0 overflow-hidden rounded-lg border border-primary/20 bg-card shadow-sm xl:h-[250px]"
             >
-              <CardHeader
-                class="flex flex-wrap items-center justify-between gap-3 border-b bg-primary/[0.04] px-4 py-3"
-              >
-                <div class="flex min-w-0 items-center gap-2">
-                  <TruckIcon class="size-4 shrink-0 text-primary" />
-                  <CardTitle class="truncate text-sm font-semibold">Supplier inventory</CardTitle>
-                  <span class="text-[10px] text-muted-foreground">
-                    {{ totalSupplierStock }} units available
-                  </span>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <Checkbox
-                    id="priority-suppliers"
-                    :checked="showOnlyPrioritySuppliers"
-                    @update:checked="showOnlyPrioritySuppliers = Boolean($event)"
-                  />
-                  <label
-                    for="priority-suppliers"
-                    class="cursor-pointer text-xs font-medium text-muted-foreground"
-                  >
-                    Priority only
-                  </label>
-                </div>
-              </CardHeader>
-
               <div class="hidden overflow-auto md:block xl:max-h-[196px]">
                 <Table class="w-full min-w-[610px] text-left text-xs">
                   <TableHeader class="sticky top-0 z-[1] bg-muted text-muted-foreground">
@@ -1479,7 +1412,61 @@ function formatMoney(value: number, currency = 'AED'): string {
               </div>
             </Card>
           </section>
+
+          <!-- Fourth column: fixed-width minimized-sidebar style menu -->
+          <aside
+            class="sticky top-3 hidden h-[calc(100vh-5rem)] w-[95px] self-start overflow-hidden rounded-lg border bg-sidebar text-sidebar-foreground shadow-sm xl:block"
+            aria-label="Workspace shortcuts"
+          >
+            <nav class="flex flex-col items-center gap-1 p-1.5">
+              <button
+                v-for="action in workspaceActions"
+                :key="action.label"
+                type="button"
+                class="flex h-[68px] w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-md px-1 text-center text-[10px] font-medium leading-tight transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
+              >
+                <component :is="action.icon" class="size-5 shrink-0 text-primary" />
+                <span class="line-clamp-2 w-full">{{ action.label }}</span>
+              </button>
+            </nav>
+          </aside>
         </div>
+
+        <!-- Alternate sources remain available below the four-column workspace -->
+        <Card class="min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
+          <Table class="w-full text-left text-xs">
+            <TableHeader class="bg-muted/60 text-muted-foreground">
+              <TableRow>
+                <TableHead class="px-3 py-2 font-medium">Type</TableHead>
+                <TableHead class="px-3 py-2 text-center font-medium">M</TableHead>
+                <TableHead class="px-3 py-2 text-center font-medium">SM</TableHead>
+                <TableHead class="px-3 py-2 text-center font-medium">Gen</TableHead>
+                <TableHead class="px-3 py-2 font-medium">New part no.</TableHead>
+                <TableHead class="px-3 py-2 font-medium">Description</TableHead>
+                <TableHead class="px-3 py-2 text-right font-medium">Qty</TableHead>
+                <TableHead class="px-3 py-2 text-right font-medium">Stock</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow v-for="source in alternateSources" :key="source.newPartNumber">
+                <TableCell class="px-3 py-2 font-medium">{{ source.type }}</TableCell>
+                <TableCell class="px-3 py-2 text-center">
+                  {{ source.movement ? 'Yes' : 'No' }}
+                </TableCell>
+                <TableCell class="px-3 py-2 text-center">
+                  {{ source.salesMovement ? 'Yes' : 'No' }}
+                </TableCell>
+                <TableCell class="px-3 py-2 text-center">
+                  {{ source.generic ? 'Yes' : 'No' }}
+                </TableCell>
+                <TableCell class="px-3 py-2 font-medium">{{ source.newPartNumber }}</TableCell>
+                <TableCell class="px-3 py-2">{{ source.description }}</TableCell>
+                <TableCell class="px-3 py-2 text-right">{{ source.quantity }}</TableCell>
+                <TableCell class="px-3 py-2 text-right">{{ source.stock }}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Card>
 
         <!-- Second row: four independent operational cards -->
         <section
