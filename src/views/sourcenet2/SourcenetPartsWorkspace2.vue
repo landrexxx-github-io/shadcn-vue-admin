@@ -1,19 +1,8 @@
 <script setup lang="ts">
-import {
-  BarChart3Icon,
-  CircleDollarSignIcon,
-  ClipboardListIcon,
-  Layers3Icon,
-  PackageSearchIcon,
-  ShoppingCartIcon,
-  TrendingUpIcon,
-  TruckIcon,
-  WarehouseIcon,
-} from 'lucide-vue-next'
+import { Image, LayoutList, PackageSearchIcon, Shapes, ShoppingCartIcon } from 'lucide-vue-next'
 import { computed, ref, watch } from 'vue'
 
-import Badge from '@/components/ui/badge/Badge.vue'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import Checkbox from '@/components/ui/checkbox/Checkbox.vue'
 import {
   Table,
   TableBody,
@@ -22,6 +11,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import Tabs from '@/components/ui/tabs/Tabs.vue'
+import TabsContent from '@/components/ui/tabs/TabsContent.vue'
+import TabsList from '@/components/ui/tabs/TabsList.vue'
+import TabsTrigger from '@/components/ui/tabs/TabsTrigger.vue'
 import PartSearchItem from './components/PartSearchItem.vue'
 
 interface StockLocation {
@@ -220,33 +213,33 @@ const partCatalog = ref<Record<string, PartWorkspaceData>>({
         workInProgress: 0,
         warranty: 0,
       },
-      {
-        location: 'BAH',
-        quantity: 0,
-        binLocation: '—',
-        allocated: 0,
-        inTransit: 2,
-        workInProgress: 0,
-        warranty: 0,
-      },
-      {
-        location: 'MCT',
-        quantity: 0,
-        binLocation: '—',
-        allocated: 0,
-        inTransit: 2,
-        workInProgress: 0,
-        warranty: 0,
-      },
-      {
-        location: 'OMN',
-        quantity: 0,
-        binLocation: '—',
-        allocated: 0,
-        inTransit: 2,
-        workInProgress: 0,
-        warranty: 0,
-      },
+      // {
+      //   location: 'BAH',
+      //   quantity: 0,
+      //   binLocation: '—',
+      //   allocated: 0,
+      //   inTransit: 2,
+      //   workInProgress: 0,
+      //   warranty: 0,
+      // },
+      // {
+      //   location: 'MCT',
+      //   quantity: 0,
+      //   binLocation: '—',
+      //   allocated: 0,
+      //   inTransit: 2,
+      //   workInProgress: 0,
+      //   warranty: 0,
+      // },
+      // {
+      //   location: 'OMN',
+      //   quantity: 0,
+      //   binLocation: '—',
+      //   allocated: 0,
+      //   inTransit: 2,
+      //   workInProgress: 0,
+      //   warranty: 0,
+      // },
       {
         location: 'RYD',
         quantity: 0,
@@ -365,6 +358,110 @@ const partCatalog = ref<Record<string, PartWorkspaceData>>({
         eta: '10/08/2026',
         remark: 'C',
       },
+      {
+        partNumber: '5722761',
+        orderDate: '29/07/2026',
+        supplier: '037',
+        orderNumber: '75641',
+        orderedQuantity: 2,
+        expectedQuantity: 2,
+        pendingQuantity: 2,
+        price: 75,
+        freight: '—',
+        eta: '10/08/2026',
+        remark: 'C',
+      },
+      {
+        partNumber: '5722761',
+        orderDate: '29/07/2026',
+        supplier: '037',
+        orderNumber: '75641',
+        orderedQuantity: 2,
+        expectedQuantity: 2,
+        pendingQuantity: 2,
+        price: 75,
+        freight: '—',
+        eta: '10/08/2026',
+        remark: 'C',
+      },
+      {
+        partNumber: '5722761',
+        orderDate: '29/07/2026',
+        supplier: '037',
+        orderNumber: '75641',
+        orderedQuantity: 2,
+        expectedQuantity: 2,
+        pendingQuantity: 2,
+        price: 75,
+        freight: '—',
+        eta: '10/08/2026',
+        remark: 'C',
+      },
+      {
+        partNumber: '5722761',
+        orderDate: '29/07/2026',
+        supplier: '037',
+        orderNumber: '75641',
+        orderedQuantity: 2,
+        expectedQuantity: 2,
+        pendingQuantity: 2,
+        price: 75,
+        freight: '—',
+        eta: '10/08/2026',
+        remark: 'C',
+      },
+      // {
+      //   partNumber: '5722761',
+      //   orderDate: '29/07/2026',
+      //   supplier: '037',
+      //   orderNumber: '75641',
+      //   orderedQuantity: 2,
+      //   expectedQuantity: 2,
+      //   pendingQuantity: 2,
+      //   price: 75,
+      //   freight: '—',
+      //   eta: '10/08/2026',
+      //   remark: 'C',
+      // },
+      // {
+      //   partNumber: '5722761',
+      //   orderDate: '29/07/2026',
+      //   supplier: '037',
+      //   orderNumber: '75641',
+      //   orderedQuantity: 2,
+      //   expectedQuantity: 2,
+      //   pendingQuantity: 2,
+      //   price: 75,
+      //   freight: '—',
+      //   eta: '10/08/2026',
+      //   remark: 'C',
+      // },
+      // {
+      //   partNumber: '5722761',
+      //   orderDate: '29/07/2026',
+      //   supplier: '037',
+      //   orderNumber: '75641',
+      //   orderedQuantity: 2,
+      //   expectedQuantity: 2,
+      //   pendingQuantity: 2,
+      //   price: 75,
+      //   freight: '—',
+      //   eta: '10/08/2026',
+      //   remark: 'C',
+      // },
+      // {
+      //   partNumber: '5722761',
+      //   orderDate: '29/07/2026',
+      //   supplier: '037',
+      //   orderNumber: '75641',
+      //   orderedQuantity: 2,
+      //   expectedQuantity: 2,
+      //   pendingQuantity: 2,
+      //   price: 75,
+      //   freight: '—',
+      //   eta: '10/08/2026',
+      //   remark: 'C',
+      // },
     ],
     movements: [
       { year: 2026, sales: 8, direct: 3 },
@@ -927,21 +1024,23 @@ const partPrices = computed(() => activePart.value.partPrices)
 const stockLocations = computed(() => activePart.value.stockLocations)
 const orders = computed(() => activePart.value.orders)
 const movements = computed(() => activePart.value.movements)
-const branchWise = computed(() => activePart.value.branchWise)
 const supplierInventory = computed(() => activePart.value.supplierInventory)
-const purchaseRecords = computed(() => activePart.value.purchaseRecords)
-const alternateSources = computed(() => activePart.value.alternateSources)
-const reorderLevels = computed(() => activePart.value.reorderLevels)
 
 const workspaceActions = [
   { label: 'Alternate Can Sell', icon: PackageSearchIcon },
-  { label: 'Classic & YMPart', icon: WarehouseIcon },
+  { label: 'Classic or YMPart', icon: Shapes },
   { label: 'Enquiry List', icon: ShoppingCartIcon },
-  { label: 'Image', icon: TruckIcon },
-  { label: 'Invoice List', icon: Layers3Icon },
-  { label: 'Kit List', icon: Layers3Icon },
-  { label: 'Model List ', icon: Layers3Icon },
-  { label: 'Invoice List', icon: Layers3Icon },
+  { label: 'Image', icon: Image },
+  { label: 'Invoice List', icon: LayoutList },
+  { label: 'Model List ', icon: LayoutList },
+  { label: 'Kit List', icon: LayoutList },
+  { label: 'List', icon: LayoutList },
+  // { label: 'Machine Model List', icon: LayoutList },
+  // { label: 'Mfgrs Part Ref', icon: LayoutList },
+  // { label: 'Parts Sales Kit', icon: LayoutList },
+  // { label: 'Purchase List', icon: LayoutList },
+  // { label: 'Quotation List', icon: LayoutList },
+  // { label: 'Transfers', icon: LayoutList },
 ]
 
 const visibleSupplierInventory = computed(() => {
@@ -951,73 +1050,6 @@ const visibleSupplierInventory = computed(() => {
 
   return supplierInventory.value.filter((item) => item.priority)
 })
-
-// const totalStock = computed(() => {
-//   return stockLocations.value.reduce((total, item) => total + item.quantity, 0)
-// })
-
-// const totalSupplierStock = computed(() => {
-//   return visibleSupplierInventory.value.reduce((total, item) => total + item.stock, 0)
-// })
-
-// const pendingOrderQuantity = computed(() => {
-//   return orders.value.reduce((total, item) => total + item.pendingQuantity, 0)
-// })
-
-const movementChart = computed(() => {
-  const ordered = [...movements.value].reverse()
-  const width = 560
-  const height = 168
-  const left = 24
-  const right = 18
-  const top = 18
-  const bottom = 30
-  const baseline = height - bottom
-  const plotWidth = width - left - right
-  const plotHeight = baseline - top
-  const maximum = Math.max(1, ...ordered.flatMap((item) => [item.sales, item.direct]))
-
-  const points = ordered.map((item, index) => {
-    const x = left + (index * plotWidth) / Math.max(ordered.length - 1, 1)
-
-    return {
-      ...item,
-      x,
-      salesY: baseline - (item.sales / maximum) * plotHeight,
-      directY: baseline - (item.direct / maximum) * plotHeight,
-    }
-  })
-
-  const salesPolyline = points.map((point) => `${point.x},${point.salesY}`).join(' ')
-  const directPolyline = points.map((point) => `${point.x},${point.directY}`).join(' ')
-  const salesArea = points.length
-    ? `M ${points[0]!.x} ${baseline} L ${points
-        .map((point) => `${point.x} ${point.salesY}`)
-        .join(' L ')} L ${points[points.length - 1]!.x} ${baseline} Z`
-    : ''
-
-  return {
-    width,
-    height,
-    baseline,
-    points,
-    salesPolyline,
-    directPolyline,
-    salesArea,
-  }
-})
-
-const branchChartMaximum = computed(() => {
-  return Math.max(1, ...branchWise.value.flatMap((item) => [item.thisYear, item.lastYear]))
-})
-
-function branchBarWidth(value: number): string {
-  if (value === 0) {
-    return '0%'
-  }
-
-  return `${Math.max((value / branchChartMaximum.value) * 100, 8)}%`
-}
 
 function normalizePartNumber(value: string): string {
   return value.trim().toUpperCase()
@@ -1069,6 +1101,19 @@ function formatMoney(value: number, currency = 'AED'): string {
     minimumFractionDigits: 2,
   }).format(value)
 }
+
+function getDetailValue(label: string): string {
+  return (
+    partDetails.value.find((detail) => detail.label.toLowerCase() === label.toLowerCase())?.value ??
+    '—'
+  )
+}
+
+function getPriceDisplay(label: string, fallbackCurrency = 'AED'): string {
+  const price = partPrices.value.find((item) => item.label.toLowerCase() === label.toLowerCase())
+
+  return price ? formatMoney(price.value, price.currency) : `${fallbackCurrency} —`
+}
 </script>
 
 <template>
@@ -1090,36 +1135,98 @@ function formatMoney(value: number, currency = 'AED'): string {
               />
             </div>
 
-            <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm">
+            <div class="w-full min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
               <Item variant="outline">
-                <div class="grid min-w-0 gap-2">
-                  <div
-                    class="grid gap-x-5 gap-y-2 px-4 py-3 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3"
-                  >
-                    <div v-for="detail in partDetails" :key="detail.label" class="min-w-0">
-                      <p
-                        class="text-[11px] font-medium uppercase tracking-wide text-muted-foreground"
-                      >
-                        {{ detail.label }}
+                <div class="min-w-0">
+                  <!-- Part information -->
+                  <div class="space-y-3 px-4 py-3">
+                    <!-- Description -->
+                    <div class="min-w-0">
+                      <p class="text-[11px] uppercase tracking-wide text-muted-foreground">
+                        Description
                       </p>
-                      <p class="mt-0.5 truncate text-sm font-medium" :title="detail.value">
-                        {{ detail.value }}
+
+                      <p class="mt-0.5 wrap-break-words text-sm font-bold">
+                        {{ getDetailValue('Description') }}
                       </p>
+                    </div>
+
+                    <!-- Weight and DE number -->
+                    <div class="grid grid-cols-2 gap-4">
+                      <div class="min-w-0">
+                        <p class="text-[11px] uppercase text-muted-foreground">Weight</p>
+
+                        <p class="mt-0.5 truncate text-sm font-bold">
+                          {{ getDetailValue('Weight') }}
+                        </p>
+                      </div>
+
+                      <div class="min-w-0">
+                        <p class="text-[11px] uppercase text-muted-foreground">DE Number</p>
+
+                        <p
+                          class="mt-0.5 truncate text-sm font-bold"
+                          :title="getDetailValue('DE number')"
+                        >
+                          {{ getDetailValue('DE number') }}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="grid border-t sm:grid-cols-2">
-                    <div
-                      v-for="price in partPrices"
-                      :key="price.label"
-                      class="flex items-center justify-between gap-3 border-b px-4 py-2 sm:border-b-0 sm:last:border-r-0"
-                    >
-                      <span class="text-xs text-muted-foreground">{{ price.label }}</span>
-                      <span class="whitespace-nowrap text-sm font-semibold tabular-nums">
-                        {{ formatMoney(price.value, price.currency) }}
-                      </span>
+                  <!-- Prices -->
+                  <dl class="border-t px-4 py-2">
+                    <!-- Sale Price -->
+                    <div class="flex items-center justify-between gap-3 py-1.5">
+                      <dt class="text-xs text-muted-foreground">Sale Price</dt>
+
+                      <dd class="whitespace-nowrap text-sm font-semibold tabular-nums">
+                        {{ getPriceDisplay('Sale price', 'AED') }}
+                      </dd>
                     </div>
-                  </div>
+
+                    <!-- OEM Dealer -->
+                    <div class="flex items-start justify-between gap-3 py-1.5">
+                      <dt class="pt-0.5 text-xs text-muted-foreground">OEM Dealer</dt>
+
+                      <dd class="space-y-1 text-right">
+                        <div class="whitespace-nowrap text-sm font-semibold tabular-nums">
+                          {{ getPriceDisplay('OEM Direct', 'AED') }}
+                        </div>
+
+                        <div class="whitespace-nowrap text-sm font-semibold tabular-nums">
+                          {{ getPriceDisplay('OEM', 'USD') }}
+                        </div>
+                      </dd>
+                    </div>
+
+                    <!-- DE Dealer -->
+                    <div class="flex items-center justify-between gap-3 py-1.5">
+                      <dt class="text-xs text-muted-foreground">DE Dealer</dt>
+
+                      <dd class="whitespace-nowrap text-sm font-semibold tabular-nums">
+                        {{ getPriceDisplay('DE Direct', 'AED') }}
+                      </dd>
+                    </div>
+
+                    <!-- Cost Price -->
+                    <div class="flex items-center justify-between gap-3 py-1.5">
+                      <dt class="text-xs text-muted-foreground">Cost Price</dt>
+
+                      <dd class="whitespace-nowrap text-sm font-semibold tabular-nums">
+                        {{ getPriceDisplay('Cost price', 'AED') }}
+                      </dd>
+                    </div>
+
+                    <!-- Web Price -->
+                    <div class="flex items-center justify-between gap-3 py-1.5">
+                      <dt class="text-xs text-muted-foreground">Web Price</dt>
+
+                      <dd class="whitespace-nowrap text-sm font-semibold tabular-nums">
+                        {{ getPriceDisplay('Web price', 'AED') }}
+                      </dd>
+                    </div>
+                  </dl>
                 </div>
               </Item>
             </div>
@@ -1133,7 +1240,7 @@ function formatMoney(value: number, currency = 'AED'): string {
                   <Label class="text-sm">Stock by Location</Label>
                   <Table class="w-full">
                     <TableHeader class="sticky top-0 bg-gray-600 h-7 text-xs">
-                      <TableRow class="">
+                      <TableRow>
                         <TableHead class="font-bold border border-l-0 px-2 py-0.5 text-white"
                           >LOC</TableHead
                         >
@@ -1191,231 +1298,466 @@ function formatMoney(value: number, currency = 'AED'): string {
             </div>
           </section>
 
-          <!-- Right column: orders and supplier inventory -->
+          <!-- Right column: orders and supplier inventory and new part numbers -->
           <section class="min-w-0 space-y-3">
-            <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm">
-              <Item variant="outline">
-                <div class="grid min-w-0 gap-2 px-4 py-3">
-                  <Label class="text-sm">Orders</Label>
-                  <Table class="w-full text-left text-xs">
-                    <TableHeader class="sticky top-0 bg-muted text-muted-foreground">
-                      <TableRow>
-                        <TableHead class="px-3 py-2.5 font-medium">Part</TableHead>
-                        <TableHead class="px-3 py-2.5 font-medium">Order date</TableHead>
-                        <TableHead class="px-3 py-2.5 font-medium">Supplier</TableHead>
-                        <TableHead class="px-3 py-2.5 font-medium">Order no.</TableHead>
-                        <TableHead class="px-3 py-2.5 text-center font-medium">Ordered</TableHead>
-                        <TableHead class="px-3 py-2.5 text-center font-medium">Expected</TableHead>
-                        <TableHead class="px-3 py-2.5 text-center font-medium">Pending</TableHead>
-                        <TableHead class="px-3 py-2.5 text-center font-medium">Price</TableHead>
-                        <TableHead class="px-3 py-2.5 font-medium">Freight</TableHead>
-                        <TableHead class="px-3 py-2.5 font-medium">ETA</TableHead>
-                        <TableHead class="px-3 py-2.5 font-medium">Remark</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody class="divide-y">
-                      <TableRow
-                        v-for="order in orders"
-                        :key="`${order.orderNumber}-${order.partNumber}`"
-                        class="hover:bg-muted/30 h-7"
-                      >
-                        <TableCell class="font-medium">
-                          {{ order.partNumber }}
-                        </TableCell>
-                        <TableCell class="whitespace-nowrap">
-                          {{ order.orderDate }}
-                        </TableCell>
-                        <TableCell class="">{{ order.supplier }}</TableCell>
-                        <TableCell class="">{{ order.orderNumber }}</TableCell>
-                        <TableCell class="text-right tabular-nums">
-                          {{ order.orderedQuantity }}
-                        </TableCell>
-                        <TableCell class="text-right tabular-nums">
-                          {{ order.expectedQuantity }}
-                        </TableCell>
-                        <TableCell class="text-right tabular-nums">
-                          {{ order.pendingQuantity }}
-                        </TableCell>
-                        <TableCell class="text-right font-medium tabular-nums">
-                          {{ formatMoney(order.price) }}
-                        </TableCell>
-                        <TableCell class="">{{ order.freight }}</TableCell>
-                        <TableCell class="">{{ order.eta }}</TableCell>
-                        <TableCell class="">{{ order.remark }}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
+            <!-- Orders -->
+            <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm h-50 overflow-hidden">
+              <Item variant="outline" class="h-full min-h-0">
+                <div class="flex h-full min-h-0 flex-col min-w-0 gap-2 px-4 py-3">
+                  <Label class="shrink-0 text-sm">Orders</Label>
+                  <div class="min-h-0 min-w-0 flex-1 overflow-auto">
+                    <Table class="whitespace-nowrap h-full">
+                      <TableHeader class="sticky top-0 bg-gray-600 h-7 text-xs">
+                        <TableRow class="">
+                          <TableHead class="font-bold border border-l-0 px-2 py-0.5 text-white"
+                            >PARTNO</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >DATE</TableHead
+                          >
+                          <TableHead class="font-bold border text-white px-2 py-0.5"
+                            >SUPID</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >ORDER NO</TableHead
+                          >
+                          <TableHead class="text-right font-bold border text-white px-2 py-0.5"
+                            >OQTY</TableHead
+                          >
+                          <TableHead class="text-right font-bold border text-white px-2 py-0.5"
+                            >EQTY</TableHead
+                          >
+                          <TableHead
+                            class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                            >PQTY</TableHead
+                          >
+                          <TableHead
+                            class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                            >PRICE</TableHead
+                          >
+                          <TableHead
+                            class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                            >FR</TableHead
+                          >
+                          <TableHead
+                            class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                            >ETS</TableHead
+                          >
+                          <TableHead
+                            class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                            >ETA</TableHead
+                          >
+                          <TableHead
+                            class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                            >R</TableHead
+                          >
+                          <TableHead
+                            class="text-right font-bold border border-r-0 text-white px-2 py-0.5"
+                            >RMK</TableHead
+                          >
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody class="divide-y">
+                        <TableRow
+                          v-for="order in orders"
+                          :key="`${order.orderNumber}-${order.partNumber}`"
+                          class="hover:bg-accent/80 h-6"
+                        >
+                          <TableCell class="border border-l-0 px-2 py-0.5">
+                            {{ order.partNumber }}
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">
+                            {{ order.orderDate }}
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">{{
+                            order.supplier
+                          }}</TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">{{
+                            order.orderNumber
+                          }}</TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">
+                            {{ order.orderedQuantity }}
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">
+                            {{ order.expectedQuantity }}
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">
+                            {{ order.pendingQuantity }}
+                          </TableCell>
+                          <TableCell class="border px-2 py-0.5 text-right">
+                            {{ Number(order.price).toFixed(2) }}
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">{{
+                            order.freight
+                          }}</TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">{{
+                            order.eta
+                          }}</TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">{{
+                            order.remark
+                          }}</TableCell>
+                          <TableCell class="border text-center px-2 py-0.5"></TableCell>
+                          <TableCell class="border border-r-0 text-center px-2 py-0.5"></TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
                 </div>
               </Item>
             </div>
-            <!-- <Card
-              class="min-w-0 overflow-hidden rounded-lg border border-amber-500/20 bg-card shadow-sm xl:h-[250px]"
-            >
-              <div class="hidden overflow-auto md:block xl:max-h-[196px]">
-                <Table class="w-full min-w-[860px] text-left text-xs">
-                  <TableHeader class="sticky top-0 z-[1] bg-muted text-muted-foreground">
-                    <TableRow>
-                      <TableHead class="px-3 py-2.5 font-medium">Part</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Order date</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Supplier</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Order no.</TableHead>
-                      <TableHead class="px-3 py-2.5 text-center font-medium">Ordered</TableHead>
-                      <TableHead class="px-3 py-2.5 text-center font-medium">Expected</TableHead>
-                      <TableHead class="px-3 py-2.5 text-center font-medium">Pending</TableHead>
-                      <TableHead class="px-3 py-2.5 text-center font-medium">Price</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Freight</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">ETA</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Remark</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody class="divide-y">
-                    <TableRow
-                      v-for="order in orders"
-                      :key="`${order.orderNumber}-${order.partNumber}`"
-                      class="hover:bg-muted/30"
+            <!-- Movements and re-orders -->
+            <div class="flex cols-3 gap-2">
+              <div class="h-60 w-95 min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
+                <Item variant="outline" class="h-full min-h-0">
+                  <Tabs
+                    default-value="movements"
+                    class="flex h-full min-h-0 w-full flex-col px-4 py-3"
+                  >
+                    <TabsList class="grid w-full shrink-0 grid-cols-2">
+                      <TabsTrigger
+                        value="movements"
+                        class="px-1 text-[11px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                      >
+                        MOVEMENTS
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="branch-wise"
+                        class="px-1 text-[11px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                      >
+                        BRANCH WISE
+                      </TabsTrigger>
+                    </TabsList>
+
+                    <!-- Movements -->
+                    <TabsContent value="movements" class="mt-2 min-h-0 flex-1 overflow-auto">
+                      <Table class="w-full">
+                        <TableHeader class="sticky top-0 bg-gray-600 text-xs">
+                          <TableRow>
+                            <TableHead class="border px-2 text-white">YEAR</TableHead>
+                            <TableHead class="border px-2 text-center text-white">
+                              SALES
+                            </TableHead>
+                            <TableHead class="border px-2 text-center text-white">
+                              DIRECT
+                            </TableHead>
+                          </TableRow>
+                        </TableHeader>
+
+                        <TableBody>
+                          <TableRow v-for="movement in movements" :key="movement.year" class="h-7">
+                            <TableCell class="border px-2 py-0.5">
+                              {{ movement.year }}
+                            </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-center tabular-nums">
+                              {{ movement.sales }}
+                            </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-center tabular-nums">
+                              {{ movement.direct }}
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TabsContent>
+
+                    <!-- Branch Wise -->
+                    <TabsContent
+                      value="branch-wise"
+                      class="mt-2 min-h-0 flex-1 space-y-3 overflow-auto"
                     >
-                      <TableCell class="px-3 py-2.5 font-medium">
-                        {{ order.partNumber }}
-                      </TableCell>
-                      <TableCell class="whitespace-nowrap px-3 py-2.5">
-                        {{ order.orderDate }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5">{{ order.supplier }}</TableCell>
-                      <TableCell class="px-3 py-2.5">{{ order.orderNumber }}</TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ order.orderedQuantity }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ order.expectedQuantity }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ order.pendingQuantity }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right font-medium tabular-nums">
-                        {{ formatMoney(order.price) }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5">{{ order.freight }}</TableCell>
-                      <TableCell class="px-3 py-2.5">{{ order.eta }}</TableCell>
-                      <TableCell class="px-3 py-2.5">{{ order.remark }}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                      <Table class="w-full">
+                        <TableHeader class="sticky top-0 z-10 bg-gray-600 text-xs">
+                          <TableRow>
+                            <TableHead class="border px-2 text-white">BRANCH</TableHead>
+                            <TableHead class="border px-2 text-center text-white"> TY </TableHead>
+                            <TableHead class="border px-2 text-center text-white"> LY </TableHead>
+                          </TableRow>
+                        </TableHeader>
+
+                        <TableBody>
+                          <TableRow v-for="movement in movements" :key="movement.year" class="h-7">
+                            <TableCell class="border px-2 py-0.5">
+                              {{ movement.year }}
+                            </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-center tabular-nums">
+                              {{ movement.sales }}
+                            </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-center tabular-nums">
+                              {{ movement.direct }}
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TabsContent>
+                  </Tabs>
+                </Item>
               </div>
 
-              <div class="divide-y md:hidden">
-                <div
-                  v-for="order in orders"
-                  :key="`${order.orderNumber}-${order.partNumber}`"
-                  class="p-3"
-                >
-                  <div class="flex items-start justify-between gap-3">
-                    <div class="min-w-0">
-                      <p class="truncate text-sm font-semibold">Order {{ order.orderNumber }}</p>
-                      <p class="text-xs text-muted-foreground">
-                        {{ order.partNumber }} · {{ order.supplier }} ·
-                        {{ order.orderDate }}
-                      </p>
-                    </div>
-                    <span class="whitespace-nowrap text-sm font-semibold tabular-nums">
-                      {{ formatMoney(order.price) }}
-                    </span>
+              <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm">
+                <Item variant="outline">
+                  <div class="grid min-w-0 gap-2 px-4 py-3">
+                    <Label class="text-sm">Suppliers</Label>
+                    <Table class="w-full">
+                      <TableHeader class="sticky top-0 bg-gray-600 h-7 text-xs">
+                        <TableRow>
+                          <TableHead class="font-bold border border-l-0 px-2 py-0.5 text-white"
+                            >SUPID</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >R</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >STOCK</TableHead
+                          >
+                          <TableHead class="text-right font-bold border text-white px-2 py-0.5"
+                            >PRICE</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >CURR</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >DATE UPD.</TableHead
+                          >
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody class="divide-y">
+                        <TableRow
+                          v-for="supplier in visibleSupplierInventory"
+                          :key="`${supplier.supplierId}-${supplier.code}`"
+                          class="hover:bg-accent/80 h-6"
+                        >
+                          <TableCell class="border border-l-0 px-2 py-0.5">
+                            {{ supplier.supplierId }}
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">{{
+                            supplier.code
+                          }}</TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">
+                            {{ supplier.stock }}
+                          </TableCell>
+                          <TableCell class="border text-right px-2 py-0.5">
+                            {{ supplier.price.toFixed(2) }}
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">{{
+                            supplier.currency
+                          }}</TableCell>
+                          <TableCell class="border border-r-0 text-center px-2 py-0.5">
+                            {{ supplier.updatedAt }}
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
                   </div>
-                  <div class="mt-3 grid grid-cols-3 gap-2 text-center">
-                    <div class="rounded-md bg-muted/60 p-2">
-                      <p class="text-[10px] text-muted-foreground">Ordered</p>
-                      <p class="text-xs font-medium">
-                        {{ order.orderedQuantity }}
-                      </p>
-                    </div>
-                    <div class="rounded-md bg-muted/60 p-2">
-                      <p class="text-[10px] text-muted-foreground">Expected</p>
-                      <p class="text-xs font-medium">
-                        {{ order.expectedQuantity }}
-                      </p>
-                    </div>
-                    <div class="rounded-md bg-muted/60 p-2">
-                      <p class="text-[10px] text-muted-foreground">Pending</p>
-                      <p class="text-xs font-medium">
-                        {{ order.pendingQuantity }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                </Item>
               </div>
-            </Card> -->
-            <Card
-              class="min-w-0 overflow-hidden rounded-lg border border-primary/20 bg-card shadow-sm xl:h-[250px]"
-            >
-              <div class="hidden overflow-auto md:block xl:max-h-[196px]">
-                <Table class="w-full min-w-[610px] text-left text-xs">
-                  <TableHeader class="sticky top-0 z-[1] bg-muted text-muted-foreground">
-                    <TableRow>
-                      <TableHead class="px-3 py-2.5 font-medium">Supplier ID</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Code</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Stock</TableHead>
-                      <TableHead class="px-3 py-2.5 text-right font-medium">Price</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Currency</TableHead>
-                      <TableHead class="px-3 py-2.5 font-medium">Updated</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody class="divide-y">
-                    <TableRow
-                      v-for="supplier in visibleSupplierInventory"
-                      :key="`${supplier.supplierId}-${supplier.code}`"
-                      class="hover:bg-muted/30"
+            </div>
+
+            <div class="flex cols-3 gap-2">
+              <div class="h-60 w-95 min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
+                <Item variant="outline" class="h-full min-h-0">
+                  <Tabs
+                    default-value="re-order"
+                    class="flex h-full min-h-0 w-full flex-col px-4 py-3"
+                  >
+                    <TabsList class="grid w-full shrink-0 grid-cols-2">
+                      <TabsTrigger
+                        value="re-order"
+                        class="px-1 text-[11px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                      >
+                        RE ORDER
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="purchase"
+                        class="px-1 text-[11px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                      >
+                        PURCHASE
+                      </TabsTrigger>
+                    </TabsList>
+
+                    <!-- Movements -->
+                    <TabsContent value="re-order" class="mt-2 min-h-0 flex-1 overflow-auto">
+                      <Table class="w-full">
+                        <TableBody>
+                          <TableRow class="h-7">
+                            <TableCell class="border px-2 py-0.5"> Max </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-center tabular-nums">
+                              37
+                            </TableCell>
+                          </TableRow>
+                          <TableRow class="h-7">
+                            <TableCell class="border px-2 py-0.5"> Min </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-center tabular-nums">
+                              37
+                            </TableCell>
+                          </TableRow>
+                          <TableRow class="h-7">
+                            <TableCell class="border px-2 py-0.5"> ROQ </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-center tabular-nums">
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TabsContent>
+
+                    <!-- Branch Wise -->
+                    <TabsContent
+                      value="purchase"
+                      class="mt-2 min-h-0 flex-1 space-y-3 overflow-auto"
                     >
-                      <TableCell class="px-3 py-2.5 font-medium">
-                        {{ supplier.supplierId }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5">{{ supplier.code }}</TableCell>
-                      <TableCell class="px-3 py-2.5 text-right tabular-nums">
-                        {{ supplier.stock }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5 text-right font-semibold tabular-nums">
-                        {{ supplier.price.toFixed(2) }}
-                      </TableCell>
-                      <TableCell class="px-3 py-2.5">{{ supplier.currency }}</TableCell>
-                      <TableCell class="whitespace-nowrap px-3 py-2.5">
-                        {{ supplier.updatedAt }}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                      <Table class="w-full">
+                        <TableBody>
+                          <TableRow class="h-7">
+                            <TableCell class="border px-2 py-0.5"> 037 D </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-right tabular-nums">
+                              0.37
+                            </TableCell>
+                          </TableRow>
+                          <TableRow class="h-7">
+                            <TableCell class="border px-2 py-0.5"> 511 D </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-right tabular-nums">
+                              0.14
+                            </TableCell>
+                          </TableRow>
+                          <TableRow class="h-7">
+                            <TableCell class="border px-2 py-0.5"> 002 D </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-right tabular-nums">
+                              0.40
+                            </TableCell>
+                          </TableRow>
+                          <TableRow class="h-7">
+                            <TableCell class="border px-2 py-0.5"> L25 D </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-right tabular-nums">
+                              3.00
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TabsContent>
+
+                    <!-- RE Order -->
+                    <!-- <TabsContent value="re-order" class="mt-2 min-h-0 flex-1 overflow-auto">
+                      <dl class="grid grid-cols-3 overflow-hidden rounded-md border divide-x">
+                        <div class="p-3 text-center">
+                          <dt class="text-[10px] uppercase text-muted-foreground">Maximum</dt>
+                          <dd class="mt-1 text-xl font-semibold tabular-nums">
+                            {{ reorderLevels.maximumStock }}
+                          </dd>
+                        </div>
+
+                        <div class="p-3 text-center">
+                          <dt class="text-[10px] uppercase text-muted-foreground">Minimum</dt>
+                          <dd class="mt-1 text-xl font-semibold tabular-nums">
+                            {{ reorderLevels.minimumStock }}
+                          </dd>
+                        </div>
+
+                        <div class="p-3 text-center">
+                          <dt class="text-[10px] uppercase text-muted-foreground">RE Quantity</dt>
+                          <dd class="mt-1 text-xl font-semibold tabular-nums">
+                            {{ reorderLevels.reorderQuantity }}
+                          </dd>
+                        </div>
+                      </dl>
+                    </TabsContent> -->
+
+                    <!-- Purchase -->
+                    <!-- <TabsContent value="purchase" class="mt-2 min-h-0 flex-1 overflow-auto">
+                      <Table class="w-full text-xs">
+                        <TableHeader class="sticky top-0 z-10 bg-gray-600">
+                          <TableRow>
+                            <TableHead class="h-7 border px-2 text-white"> Supplier </TableHead>
+                            <TableHead class="h-7 border px-2 text-white"> Code </TableHead>
+                            <TableHead class="h-7 border px-2 text-right text-white">
+                              Price
+                            </TableHead>
+                          </TableRow>
+                        </TableHeader>
+
+                        <TableBody>
+                          <TableRow
+                            v-for="(purchase, index) in purchaseRecords"
+                            :key="index"
+                            class="h-6"
+                          >
+                            <TableCell class="border px-2 py-0.5 font-medium">
+                              {{ purchase.supplier }}
+                            </TableCell>
+                            <TableCell class="border px-2 py-0.5">
+                              {{ purchase.code }}
+                            </TableCell>
+                            <TableCell class="border px-2 py-0.5 text-right tabular-nums">
+                              {{ Number(purchase.price).toFixed(2) }}
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TabsContent> -->
+                  </Tabs>
+                </Item>
               </div>
 
-              <div class="divide-y md:hidden">
-                <div
-                  v-for="supplier in visibleSupplierInventory"
-                  :key="`${supplier.supplierId}-${supplier.code}`"
-                  class="p-3"
-                >
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <p class="text-sm font-semibold">
-                        {{ supplier.supplierId }} · {{ supplier.code }}
-                      </p>
-                      <p class="text-xs text-muted-foreground">Updated {{ supplier.updatedAt }}</p>
-                    </div>
-                    <p class="text-sm font-semibold tabular-nums">
-                      {{ formatMoney(supplier.price, supplier.currency) }}
-                    </p>
+              <div class="w-full min-w-0 rounded-lg border bg-card shadow-sm">
+                <Item variant="outline">
+                  <div class="grid min-w-0 gap-2 px-4 py-3">
+                    <Label class="text-sm">Alternate Parts</Label>
+                    <Table class="w-full text-left">
+                      <TableHeader class="sticky top-0 bg-gray-600 h-7 text-xs">
+                        <TableRow>
+                          <TableHead class="font-bold border border-l-0 px-2 py-0.5 text-white"
+                            >T</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >M</TableHead
+                          >
+                          <TableHead class="font-bold border text-white px-2 py-0.5">SM</TableHead>
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >GEN</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >NPR</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >DESCRIPTION</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >QTY</TableHead
+                          >
+                          <TableHead class="text-center font-bold border text-white px-2 py-0.5"
+                            >STOCK</TableHead
+                          >
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody class="divide-y">
+                        <TableRow
+                          v-for="supplier in visibleSupplierInventory"
+                          :key="`${supplier.supplierId}-${supplier.code}`"
+                          class="hover:bg-accent/80 h-6"
+                        >
+                          <TableCell class="border border-l-0 px-2 py-0.5"> O </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5"><Checkbox /></TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">
+                            <Checkbox />
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">
+                            <Checkbox />
+                          </TableCell>
+                          <TableCell class="border text-center px-2 py-0.5">3N6618</TableCell>
+                          <TableCell class="border border-r-0 text-center px-2 py-0.5">
+                            8S1522
+                          </TableCell>
+                          <TableCell class="border border-r-0 text-center px-2 py-0.5">6</TableCell>
+                          <TableCell class="border border-r-0 text-center px-2 py-0.5"></TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
                   </div>
-                  <div class="mt-3 flex items-center justify-between">
-                    <Badge :variant="supplier.stock > 0 ? 'default' : 'secondary'">
-                      {{ supplier.stock }} in stock
-                    </Badge>
-                    <span v-if="supplier.priority" class="text-xs font-medium text-primary"
-                      >Priority supplier</span
-                    >
-                  </div>
-                </div>
+                </Item>
               </div>
-            </Card>
+            </div>
           </section>
 
           <!-- Fourth column: fixed-width minimized-sidebar style menu -->
           <aside
-            class="sticky top-3 hidden h-[calc(100vh-5rem)] w-[95px] self-start overflow-hidden rounded-lg border bg-sidebar text-sidebar-foreground shadow-sm xl:block"
+            class="sticky top-3 hidden h-full w-23.75 self-start overflow-hidden rounded-lg border bg-sidebar text-sidebar-foreground shadow-sm xl:block"
             aria-label="Workspace shortcuts"
           >
             <nav class="flex flex-col items-center gap-1 p-1.5">
@@ -1423,9 +1765,9 @@ function formatMoney(value: number, currency = 'AED'): string {
                 v-for="action in workspaceActions"
                 :key="action.label"
                 type="button"
-                class="flex h-[68px] w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-md px-1 text-center text-[10px] font-medium leading-tight transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
+                class="flex h-17 w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-md px-1 text-center text-[10px] font-medium leading-tight transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
               >
-                <component :is="action.icon" class="size-5 shrink-0 text-primary" />
+                <component :is="action.icon" class="size-7 shrink-0 text-primary" />
                 <span class="line-clamp-2 w-full">{{ action.label }}</span>
               </button>
             </nav>
@@ -1433,7 +1775,7 @@ function formatMoney(value: number, currency = 'AED'): string {
         </div>
 
         <!-- Alternate sources remain available below the four-column workspace -->
-        <Card class="min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
+        <!-- <Card class="min-w-0 overflow-hidden rounded-lg border bg-card shadow-sm">
           <Table class="w-full text-left text-xs">
             <TableHeader class="bg-muted/60 text-muted-foreground">
               <TableRow>
@@ -1466,10 +1808,10 @@ function formatMoney(value: number, currency = 'AED'): string {
               </TableRow>
             </TableBody>
           </Table>
-        </Card>
+        </Card> -->
 
         <!-- Second row: four independent operational cards -->
-        <section
+        <!-- <section
           class="mt-3 grid min-w-0 grid-cols-1 items-stretch gap-3 lg:grid-cols-2 2xl:grid-cols-4"
         >
           <Card
@@ -1717,7 +2059,7 @@ function formatMoney(value: number, currency = 'AED'): string {
               </div>
             </div>
           </Card>
-        </section>
+        </section> -->
       </div>
     </div>
   </div>

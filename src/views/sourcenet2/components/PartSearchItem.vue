@@ -119,7 +119,9 @@ function selectPartRemark(value: string): void {
       <form class="grid w-full min-w-0 gap-2" @submit.prevent="handleSearch">
         <!-- Category -->
         <div class="grid min-w-0 grid-cols-1 items-center gap-1">
-          <Label for="category-filter" class="text-xs text-muted-foreground"> Category </Label>
+          <Label for="category-filter" class="text-muted-foreground uppercase text-[11px]">
+            Category
+          </Label>
           <Select v-model="categoryModel">
             <SelectTrigger id="category-filter" class="w-full min-w-0" size="sm">
               <SelectValue placeholder="Select category" />
@@ -140,8 +142,10 @@ function selectPartRemark(value: string): void {
         </div>
 
         <!-- Part number -->
-        <div class="grid min-w-0 grid-cols-1 items-center gap-2">
-          <Label for="part-search" class="text-xs text-muted-foreground"> Part number </Label>
+        <div class="grid min-w-0 grid-cols-1 items-center gap-1">
+          <Label for="part-search" class="text-muted-foreground uppercase text-[11px]">
+            Part number
+          </Label>
           <InputGroup class="h-8">
             <InputGroupInput
               id="part-search"
@@ -157,8 +161,8 @@ function selectPartRemark(value: string): void {
         </div>
 
         <!-- Part remark -->
-        <div class="grid min-w-0 grid-cols-1 items-center gap-2">
-          <Label class="text-xs text-muted-foreground"> Part remark </Label>
+        <div class="grid min-w-0 grid-cols-1 items-center gap-1">
+          <Label class="text-muted-foreground uppercase text-[11px]"> Part remark </Label>
 
           <div class="grid grid-cols-3 gap-1.5" role="radiogroup" aria-label="Part remark">
             <Button

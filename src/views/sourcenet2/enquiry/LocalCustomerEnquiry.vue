@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from 'vue'
 import { ChevronsDownIcon, ChevronsUpIcon, GripHorizontalIcon, SearchIcon } from 'lucide-vue-next'
 import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from 'reka-ui'
+import { nextTick, onMounted, reactive, ref } from 'vue'
 
 import { Badge } from '@/components/ui/badge'
 import SourcenetWorkspace from '@/views/sourcenet2/SourcenetPartsWorkspace2.vue'

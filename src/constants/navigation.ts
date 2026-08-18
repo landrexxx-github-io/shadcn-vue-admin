@@ -1,6 +1,7 @@
 import type { SidebarData } from '@/types'
 import {
   AudioWaveform,
+  BrainCircuit,
   ChartColumnBig,
   Command,
   DatabaseSearch,
@@ -20,6 +21,22 @@ export const defaultSidebarData: SidebarData = {
     { name: 'Evil Corp.', logo: Command, plan: 'Free' },
   ],
   navMain: [
+    {
+      title: 'AI Layer',
+      url: '#',
+      icon: BrainCircuit,
+      actions: [],
+      groups: [
+        {
+          seq_no: 1,
+          label: 'Setup',
+          items: [
+            { seq_no: 1, title: 'Genesis Config', url: '#' },
+            { seq_no: 2, title: 'Explorer Options', url: '#' },
+          ],
+        },
+      ],
+    },
     {
       title: 'Sourcenet',
       url: '/accounting',

@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from 'vue'
-import { Edit, Edit2, Trash2 } from 'lucide-vue-next'
+import { Edit2, Trash2 } from 'lucide-vue-next'
 import { SplitterPanel } from 'reka-ui'
+import { nextTick, onMounted, ref } from 'vue'
 
 import Button from '@/components/ui/button/Button.vue'
 import Table from '@/components/ui/table/Table.vue'
+import TableBody from '@/components/ui/table/TableBody.vue'
 import TableCaption from '@/components/ui/table/TableCaption.vue'
+import TableCell from '@/components/ui/table/TableCell.vue'
+import TableHead from '@/components/ui/table/TableHead.vue'
 import TableHeader from '@/components/ui/table/TableHeader.vue'
 import TableRow from '@/components/ui/table/TableRow.vue'
-import TableHead from '@/components/ui/table/TableHead.vue'
-import TableBody from '@/components/ui/table/TableBody.vue'
-import TableCell from '@/components/ui/table/TableCell.vue'
-import Checkbox from '@/components/ui/checkbox/Checkbox.vue'
 import router from '@/router'
 
 const upperPanelRef = ref<InstanceType<typeof SplitterPanel>>()

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, reactive, ref } from 'vue'
 import {
   ChevronsDownIcon,
   ChevronsUpIcon,
@@ -10,12 +9,25 @@ import {
   XIcon,
 } from 'lucide-vue-next'
 import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from 'reka-ui'
+import { computed, nextTick, onMounted, reactive, ref } from 'vue'
 
-import { Badge } from '@/components/ui/badge'
+import Accordion from '@/components/ui/accordion/Accordion.vue'
+import AccordionContent from '@/components/ui/accordion/AccordionContent.vue'
+import AccordionItem from '@/components/ui/accordion/AccordionItem.vue'
+import AccordionTrigger from '@/components/ui/accordion/AccordionTrigger.vue'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -26,15 +38,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { Textarea } from '@/components/ui/textarea'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
 import {
   Table,
   TableBody,
@@ -43,11 +46,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Textarea } from '@/components/ui/textarea'
 import SourcenetWorkspace from '@/views/sourcenet2/SourcenetPartsWorkspace2.vue'
-import Accordion from '@/components/ui/accordion/Accordion.vue'
-import AccordionItem from '@/components/ui/accordion/AccordionItem.vue'
-import AccordionTrigger from '@/components/ui/accordion/AccordionTrigger.vue'
-import AccordionContent from '@/components/ui/accordion/AccordionContent.vue'
 
 interface QuotationLineItem {
   id: number
