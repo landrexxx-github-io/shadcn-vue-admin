@@ -1077,7 +1077,7 @@ function formatMoney(value: number, currency = 'AED'): string {
       <div class="space-y-4 p-1">
         <!-- First row: part workspace / stock / orders and suppliers -->
         <div
-          class="grid min-w-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 xl:grid-cols-[minmax(0,3fr)_minmax(0,3fr)_minmax(0,5fr)_95px]"
+          class="grid min-w-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 xl:grid-cols-[250px_400px_minmax(0,5fr)_95px]"
         >
           <!-- First column: part search and overview -->
           <section class="min-w-0 space-y-3">

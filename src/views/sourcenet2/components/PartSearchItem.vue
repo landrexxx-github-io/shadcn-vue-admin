@@ -115,10 +115,10 @@ function selectPartRemark(value: string): void {
 
 <template>
   <div class="w-full min-w-0">
-    <Item variant="outline" class="w-full min-w-0 rounded-xl bg-card p-3 sm:p-4">
+    <Item variant="outline" class="w-full min-w-0 rounded-lg bg-card p-3 sm:p-4">
       <form class="grid w-full min-w-0 gap-2" @submit.prevent="handleSearch">
         <!-- Category -->
-        <div class="grid min-w-0 grid-cols-1 items-center gap-2">
+        <div class="grid min-w-0 grid-cols-1 items-center gap-1">
           <Label for="category-filter" class="text-xs text-muted-foreground"> Category </Label>
           <Select v-model="categoryModel">
             <SelectTrigger id="category-filter" class="w-full min-w-0" size="sm">
@@ -160,7 +160,7 @@ function selectPartRemark(value: string): void {
         <div class="grid min-w-0 grid-cols-1 items-center gap-2">
           <Label class="text-xs text-muted-foreground"> Part remark </Label>
 
-          <div class="grid grid-cols-4 gap-1.5" role="radiogroup" aria-label="Part remark">
+          <div class="grid grid-cols-3 gap-1.5" role="radiogroup" aria-label="Part remark">
             <Button
               v-for="remark in partRemarks"
               :key="remark.value"
